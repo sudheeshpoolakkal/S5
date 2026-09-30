@@ -1,0 +1,1053 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.5cm,top=2.0cm,bottom=2.0cm,headheight=20pt]{geometry}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+% Define color palette for sleek dark theme
+\definecolor{bgblack}{RGB}{5, 7, 11}
+\definecolor{cardbg}{RGB}{17, 24, 39}
+\definecolor{cardborder}{RGB}{55, 65, 81}
+\definecolor{resultbg}{RGB}{15, 23, 42}
+\definecolor{resultborder}{RGB}{14, 165, 233}
+\definecolor{accentcyan}{RGB}{56, 189, 248}
+\definecolor{accentteal}{RGB}{45, 212, 191}
+\definecolor{accentamber}{RGB}{251, 191, 36}
+\definecolor{textwhite}{RGB}{243, 244, 246}
+\definecolor{textgray}{RGB}{156, 163, 175}
+\definecolor{highlightyellow}{RGB}{254, 240, 138}
+
+% Page background & text color
+\pagecolor{bgblack}
+\color{textwhite}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{cardborder}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\textcolor{textgray}{\small Power Electronics (Module 2) --- Numerical Assignment}}
+\fancyhead[R]{\textcolor{accentcyan}{\small CET S5 EEE}}
+\fancyfoot[C]{\textcolor{textgray}{\small Page \thepage}}
+
+% Section styling
+\titleformat{\section}{\Large\bfseries\color{accentcyan}}{}{0em}{}[\vspace{1mm}{\color{accentcyan}\hrule height 1pt}]
+\titleformat{\subsection}{\large\bfseries\color{accentteal}}{}{0em}{}
+
+% Tcolorbox styles
+\tcbset{
+  qbox/.style={
+    enhanced,
+    colback=cardbg,
+    colframe=cardborder,
+    coltitle=textwhite,
+    coltext=textwhite,
+    fonttitle=\bfseries\color{accentcyan},
+    boxrule=1pt,
+    arc=2mm,
+    left=4mm, right=4mm, top=3mm, bottom=3mm,
+    breakable
+  },
+  resbox/.style={
+    enhanced,
+    colback=resultbg,
+    colframe=resultborder,
+    coltext=textwhite,
+    boxrule=1pt,
+    arc=1.5mm,
+    left=3mm, right=3mm, top=2mm, bottom=2mm,
+    breakable
+  }
+}
+
+\begin{document}
+
+% Title Banner
+\begin{center}
+  {\Huge \bfseries \textcolor{accentcyan}{Power Electronics (Module 2)}}\\[2mm]
+  {\Large \bfseries \textcolor{textwhite}{15 Numerical Questions \& Step-by-Step Solutions}}\\[2mm]
+  {\small \textcolor{textgray}{Course: Power Electronics | S5 Electrical \& Electronics Engineering | College of Engineering Trivandrum (CET)}}\\[1mm]
+  {\footnotesize \textcolor{textgray}{References: Daniel W. Hart $\cdot$ Ned Mohan $\cdot$ L. Umanand $\cdot$ Muhammad H. Rashid}}
+\end{center}
+\vspace{1mm}
+
+% Distribution Table
+\begin{tcolorbox}[qbox, title={Assignment Topic Distribution (15 Questions Total)}]
+\centering
+\small
+\begin{tabular}{p{0.8cm} p{6.5cm} p{7.5cm} c}
+\toprule
+\textbf{\textcolor{accentcyan}{No.}} & \textbf{\textcolor{accentcyan}{Module 2 Topic}} & \textbf{\textcolor{accentcyan}{Coverage / Parameter Focus}} & \textbf{\textcolor{accentcyan}{Count}} \\
+\midrule
+1 & 1-Phase Fully Controlled Rectifier & $R$ load, $RL$ ripple-free load (THD, PF), $RLE$ load (Inverter mode) & \textbf{3} \\
+2 & 1-Phase Half-Controlled Rectifier & $RL$ continuous load (harmonics, DF), $RLE$ battery charger & \textbf{2} \\
+3 & Source Inductance Effect & 1-Phase full converter commutation overlap ($\mu$, $\Delta V_o$) & \textbf{1} \\
+4 & 3-Phase Controlled Rectifiers & Fully controlled $RLE$ bridge, Inverter mode, Semi-converter bridge & \textbf{3} \\
+5 & DC-DC Switching Regulators & Buck (Analysis \& Design), Boost (Analysis/ESR \& Design), Buck-Boost (Analysis \& Design) & \textbf{6} \\
+\midrule
+\multicolumn{3}{r}{\textbf{\textcolor{accentcyan}{Total Questions Required \& Solved:}}} & \textbf{\textcolor{accentamber}{15}} \\
+\bottomrule
+\end{tabular}
+\end{tcolorbox}
+
+\vspace{3mm}
+
+% ============================================================================
+% SECTION 1: Single-Phase Fully Controlled Rectifiers
+% ============================================================================
+\section*{Section 1: Single-Phase Fully Controlled Rectifiers (3 Questions)}
+
+% ----------------------------------------------------------------------------
+% QUESTION 1
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 1: Single-Phase Full Converter with Resistive Load}]
+\textbf{Textbook Reference:} Daniel W. Hart, \textit{Power Electronics}, Example 4-6 / L. Umanand, Section 3.6.\\[1mm]
+\textbf{Problem Statement:}\\
+A single-phase fully controlled full-wave bridge rectifier is connected to a $120\text{ V (rms)}$, $60\text{ Hz}$ single-phase AC source and supplies a purely resistive load of $R = 20\ \Omega$. The thyristor delay (firing) angle is set to $\alpha = 40^\circ$. Assuming ideal switching devices:
+\begin{enumerate}
+  \item Determine the average (DC) output voltage ($V_{o,\text{dc}}$) and average load current ($I_{o,\text{dc}}$).
+  \item Determine the RMS output voltage ($V_{o,\text{rms}}$) and RMS load current ($I_{o,\text{rms}}$).
+  \item Calculate the real active power ($P$) absorbed by the load resistance.
+  \item Calculate the apparent power ($S$) supplied by the AC source and the input power factor ($PF$).
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 120\text{ V (rms)}$, $f = 60\text{ Hz}$, $R = 20\ \Omega$, $\alpha = 40^\circ = 0.69813\text{ rad}$.
+  \item Peak supply voltage: $V_m = \sqrt{2} \times 120\text{ V} = 169.706\text{ V}$.
+\end{itemize}
+
+\noindent\textbf{1. Average Output Voltage and Average Current:}\\
+For a purely resistive load, the current ceases when the input voltage crosses zero at $\omega t = \pi$:
+\[
+V_{o,\text{dc}} = \frac{1}{\pi} \int_{\alpha}^{\pi} V_m \sin(\omega t)\, d(\omega t) = \frac{V_m}{\pi} (1 + \cos\alpha)
+\]
+\[
+V_{o,\text{dc}} = \frac{169.706}{\pi} (1 + \cos 40^\circ) = 54.019 \times (1 + 0.76604) = 54.019 \times 1.76604 = \mathbf{95.40\text{ V}}
+\]
+\[
+I_{o,\text{dc}} = \frac{V_{o,\text{dc}}}{R} = \frac{95.40\text{ V}}{20\ \Omega} = \mathbf{4.770\text{ A}}
+\]
+
+\noindent\textbf{2. RMS Output Voltage and RMS Current:}\\
+\[
+V_{o,\text{rms}} = \sqrt{\frac{1}{\pi}\int_{\alpha}^{\pi} [V_m \sin(\omega t)]^2\, d(\omega t)} = \frac{V_m}{\sqrt{2}} \sqrt{\frac{\pi - \alpha + \frac{1}{2}\sin(2\alpha)}{\pi}} = V_s \sqrt{\frac{\pi - \alpha + \frac{1}{2}\sin(2\alpha)}{\pi}}
+\]
+Evaluating the angle term:
+$\pi - \alpha = 3.14159 - 0.69813 = 2.44346\text{ rad}$, and $\frac{1}{2}\sin(80^\circ) = \frac{1}{2}(0.98481) = 0.49240$.
+\[
+\text{Radicand} = \frac{2.44346 + 0.49240}{3.14159} = \frac{2.93586}{3.14159} = 0.93451 \implies \sqrt{0.93451} = 0.96670
+\]
+\[
+V_{o,\text{rms}} = 120 \times 0.96670 = \mathbf{116.00\text{ V}}, \qquad I_{o,\text{rms}} = \frac{116.00\text{ V}}{20\ \Omega} = \mathbf{5.800\text{ A}}
+\]
+
+\noindent\textbf{3. Real Power Delivered to Load:}
+\[
+P = I_{o,\text{rms}}^2 R = (5.800\text{ A})^2 \times 20\ \Omega = 33.64 \times 20 = \mathbf{672.85\text{ W}}
+\]
+
+\noindent\textbf{4. Apparent Power and Power Factor:}\\
+For this single-phase circuit, the source RMS current equals the load RMS current ($I_{s,\text{rms}} = I_{o,\text{rms}} = 5.800\text{ A}$):
+\[
+S = V_s I_{s,\text{rms}} = 120\text{ V} \times 5.800\text{ A} = \mathbf{696.00\text{ VA}}
+\]
+\[
+PF = \frac{P}{S} = \frac{672.85\text{ W}}{696.00\text{ VA}} = \mathbf{0.9667\text{ (lagging)}}
+\]
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 1):}}\\
+$V_{o,\text{dc}} = 95.40\text{ V} \quad\mid\quad I_{o,\text{dc}} = 4.770\text{ A} \quad\mid\quad V_{o,\text{rms}} = 116.00\text{ V} \quad\mid\quad I_{o,\text{rms}} = 5.800\text{ A} \quad\mid\quad P = 672.85\text{ W} \quad\mid\quad PF = 0.9667\text{ (lag)}$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 2
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 2: Single-Phase Full Converter with RL Load (Continuous, Ripple-Free Current)}]
+\textbf{Textbook Reference:} Daniel W. Hart, Example 4-8 / Ned Mohan, Section 6-3 / L. Umanand, Section 3.4.\\[1mm]
+\textbf{Problem Statement:}\\
+A single-phase full converter is supplied from a $230\text{ V (rms)}$, $50\text{ Hz}$ AC utility. The converter delivers power to an $RL$ load with $R = 10.0\ \Omega$ and a very large series filter inductance $L$ such that the load current is continuous and virtually ripple-free ($I_o = \text{constant}$). The firing delay angle is $\alpha = 45^\circ$.
+\begin{enumerate}
+  \item Compute the average DC output voltage ($V_o$) and the average DC load current ($I_o$).
+  \item Determine the real active power ($P$) absorbed by the load.
+  \item Find the RMS value of the AC line current ($I_{s,\text{rms}}$) and the RMS fundamental current ($I_{s1,\text{rms}}$).
+  \item Calculate the displacement factor ($DF$), total input power factor ($PF$), and the Total Harmonic Distortion ($THD$).
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 230\text{ V}$, $f = 50\text{ Hz}$, $R = 10.0\ \Omega$, $\alpha = 45^\circ$.
+  \item Peak voltage: $V_m = \sqrt{2} \times 230 = 325.27\text{ V}$.
+\end{itemize}
+
+\noindent\textbf{1. Average Output Voltage and DC Current:}\\
+In continuous conduction, output voltage continues into the negative half-cycle until commutated at $\pi + \alpha$:
+\[
+V_o = \frac{1}{\pi} \int_{\alpha}^{\pi + \alpha} V_m \sin(\omega t)\, d(\omega t) = \frac{2 V_m}{\pi} \cos\alpha
+\]
+\[
+V_o = \frac{2 \times 325.27}{\pi} \cos(45^\circ) = 207.07 \times 0.70711 = \mathbf{146.42\text{ V}}
+\]
+Because load current is ripple-free, the inductor average voltage drop is zero:
+\[
+I_o = \frac{V_o}{R} = \frac{146.42\text{ V}}{10.0\ \Omega} = \mathbf{14.642\text{ A}}
+\]
+
+\noindent\textbf{2. Real Power Delivered to the Load:}\\
+With ripple-free current, $I_{o,\text{rms}} = I_o = 14.642\text{ A}$:
+\[
+P = I_o^2 R = (14.642\text{ A})^2 \times 10.0\ \Omega = \mathbf{2143.9\text{ W}} \quad (\text{also } P = V_o I_o = 146.42 \times 14.642 = 2143.9\text{ W})
+\]
+
+\noindent\textbf{3. Input Source Current Analysis:}\\
+The AC line current is a square wave of height $\pm I_o$ with conduction duration $\pi$ in each half-cycle:
+\[
+I_{s,\text{rms}} = I_o = \mathbf{14.642\text{ A}}
+\]
+The fundamental Fourier component of this square wave has RMS magnitude:
+\[
+I_{s1,\text{rms}} = \frac{2\sqrt{2}}{\pi} I_o = 0.90032 \times 14.642\text{ A} = \mathbf{13.183\text{ A}}
+\]
+
+\noindent\textbf{4. Displacement Factor, Power Factor, and THD:}
+\begin{itemize}
+  \item \textbf{Displacement Factor ($DF$):} The fundamental input current lags the voltage by $\alpha$:
+  \[
+  DF = \cos\phi_1 = \cos\alpha = \cos(45^\circ) = \mathbf{0.7071}
+  \]
+  \item \textbf{Distortion Factor:}
+  \[
+  \text{Distortion Factor} = \frac{I_{s1,\text{rms}}}{I_{s,\text{rms}}} = \frac{2\sqrt{2}}{\pi} \approx 0.90032
+  \]
+  \item \textbf{Total Power Factor ($PF$):}
+  \[
+  PF = \left(\frac{I_{s1,\text{rms}}}{I_{s,\text{rms}}}\right) \cos\phi_1 = \frac{2\sqrt{2}}{\pi} \cos(45^\circ) = 0.90032 \times 0.70711 = \mathbf{0.6366\text{ (lagging)}}
+  \]
+  \item \textbf{Total Harmonic Distortion ($THD$):}
+  \[
+  THD = \sqrt{\left(\frac{I_{s,\text{rms}}}{I_{s1,\text{rms}}}\right)^2 - 1} = \sqrt{\left(\frac{\pi}{2\sqrt{2}}\right)^2 - 1} = \sqrt{1.2337 - 1} = \sqrt{0.2337} = \mathbf{48.34\%}
+  \]
+\end{itemize}
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 2):}}\\
+$V_o = 146.42\text{ V} \quad\mid\quad I_o = 14.64\text{ A} \quad\mid\quad P = 2143.9\text{ W} \quad\mid\quad I_{s,\text{rms}} = 14.64\text{ A} \quad\mid\quad DF = 0.7071 \quad\mid\quad PF = 0.6366 \quad\mid\quad THD = 48.34\%$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 3
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 3: Single-Phase Full Converter with RLE Load --- Rectifier vs. Inverter Modes}]
+\textbf{Textbook Reference:} Daniel W. Hart, Examples 4-10 \& 4-11 / Ned Mohan, Section 6-3-3.\\[1mm]
+\textbf{Problem Statement:}\\
+A single-phase full converter operates from a $230\text{ V (rms)}$, $50\text{ Hz}$ supply and feeds an active $RLE$ load with $R = 2.0\ \Omega$ and a smoothing inductance large enough to keep the DC current ripple-free.
+\begin{enumerate}
+  \item \textbf{Rectifier Mode ($\alpha < 90^\circ$):} The DC source is a battery being charged with EMF $E = +60.0\text{ V}$. If the charging current is regulated to $I_o = 15.0\text{ A}$, find the required firing angle $\alpha_{\text{rect}}$, the power supplied by the AC grid, the power delivered to the battery, and the resistive dissipation.
+  \item \textbf{Inverter Mode ($\alpha > 90^\circ$):} The battery terminals are reversed ($E = -60.0\text{ V}$) so that it acts as a DC source delivering regenerative power back into the AC grid. For the same current $I_o = 15.0\text{ A}$, determine the inverter firing angle $\alpha_{\text{inv}}$, the power generated by the DC battery, and the net regenerative power returned to the AC grid.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item Maximum average voltage: $V_{do} = \frac{2 V_m}{\pi} = \frac{2 \times \sqrt{2} \times 230}{\pi} = 207.07\text{ V}$.
+\end{itemize}
+
+\noindent\textbf{1. Rectifier Mode ($\alpha < 90^\circ$):}\\
+The DC output voltage required to maintain $I_o = 15.0\text{ A}$ is:
+\[
+V_o = E + I_o R = 60.0\text{ V} + (15.0\text{ A} \times 2.0\ \Omega) = 60.0 + 30.0 = \mathbf{90.0\text{ V}}
+\]
+Setting $V_o = V_{do} \cos\alpha$:
+\[
+\cos\alpha_{\text{rect}} = \frac{V_o}{V_{do}} = \frac{90.0\text{ V}}{207.07\text{ V}} = 0.43463 \implies \alpha_{\text{rect}} = \cos^{-1}(0.43463) = \mathbf{64.24^\circ}
+\]
+Power components:
+\begin{itemize}
+  \item Power absorbed by battery: $P_E = E \times I_o = 60.0\text{ V} \times 15.0\text{ A} = \mathbf{900.0\text{ W}}$.
+  \item Power dissipated in resistance: $P_R = I_o^2 R = (15)^2 \times 2.0 = \mathbf{450.0\text{ W}}$.
+  \item Total power supplied by AC source: $P_{\text{ac}} = V_o I_o = 90.0 \times 15.0 = \mathbf{1350.0\text{ W}} \quad (= P_E + P_R)$.
+\end{itemize}
+
+\noindent\textbf{2. Inverter Mode ($\alpha > 90^\circ$):}\\
+Since thyristors conduct in only one direction, reversing the power flow requires reversing the DC voltage polarity:
+\[
+V_o = -E + I_o R = -60.0\text{ V} + (15.0\text{ A} \times 2.0\ \Omega) = -60.0 + 30.0 = \mathbf{-30.0\text{ V}}
+\]
+The negative polarity indicates the bridge acts as an inverter:
+\[
+\cos\alpha_{\text{inv}} = \frac{V_o}{V_{do}} = \frac{-30.0\text{ V}}{207.07\text{ V}} = -0.14488 \implies \alpha_{\text{inv}} = \cos^{-1}(-0.14488) = \mathbf{98.33^\circ}
+\]
+Power components:
+\begin{itemize}
+  \item Power supplied by DC battery source: $P_{\text{dc, gen}} = |E| \times I_o = 60.0\text{ V} \times 15.0\text{ A} = \mathbf{900.0\text{ W}}$.
+  \item Power lost in resistance $R$: $P_R = I_o^2 R = (15)^2 \times 2.0 = \mathbf{450.0\text{ W}}$.
+  \item Net power regenerated back to AC utility grid: $P_{\text{grid}} = |V_o| I_o = 30.0 \times 15.0 = \mathbf{450.0\text{ W}} \quad (= P_{\text{dc, gen}} - P_R)$.
+\end{itemize}
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 3):}}\\
+\textbf{Rectifier Mode:} $V_o = +90.0\text{ V}, \alpha = 64.24^\circ, P_{\text{ac}} = 1350\text{ W}, P_{\text{batt}} = 900\text{ W}, P_R = 450\text{ W}$\\
+\textbf{Inverter Mode:} $V_o = -30.0\text{ V}, \alpha = 98.33^\circ, P_{\text{dc, gen}} = 900\text{ W}, P_R = 450\text{ W}, P_{\text{grid}} = 450\text{ W}$
+\end{tcolorbox}
+
+\vspace{5mm}
+
+% ============================================================================
+% SECTION 2: Single-Phase Half-Controlled Rectifiers (Semi-converters)
+% ============================================================================
+\section*{Section 2: Single-Phase Half-Controlled Rectifiers (2 Questions)}
+
+% ----------------------------------------------------------------------------
+% QUESTION 4
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 4: Single-Phase Semi-converter with RL Load --- Harmonics \& Power Factor}]
+\textbf{Textbook Reference:} Muhammad H. Rashid, Chapter 11 / L. Umanand, Section 3.6.\\[1mm]
+\textbf{Problem Statement:}\\
+A single-phase half-controlled (semi-converter) bridge rectifier supplies an $RL$ load with $R = 10.0\ \Omega$ and a large smoothing reactor ensuring continuous, ripple-free current. The AC supply is $230\text{ V (rms)}$, $50\text{ Hz}$. The thyristor firing delay angle is $\alpha = 60^\circ$.
+\begin{enumerate}
+  \item Calculate the average output voltage ($V_{o,\text{dc}}$) and DC load current ($I_o$).
+  \item Calculate the RMS output voltage ($V_{o,\text{rms}}$).
+  \item Determine the RMS input line current ($I_{s,\text{rms}}$) and the fundamental RMS component ($I_{s1,\text{rms}}$).
+  \item Calculate the displacement factor ($DF$), distortion factor, total input power factor ($PF$), and $THD$.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 230\text{ V}$, $V_m = \sqrt{2} \times 230 = 325.27\text{ V}$, $R = 10.0\ \Omega$, $\alpha = 60^\circ = \pi/3\text{ rad}$.
+\end{itemize}
+
+\noindent\textbf{1. Average Output Voltage and Current:}\\
+Due to the freewheeling path, the voltage cannot be negative and is non-zero from $\alpha$ to $\pi$:
+\[
+V_{o,\text{dc}} = \frac{1}{\pi}\int_{\alpha}^{\pi} V_m \sin(\omega t)\, d(\omega t) = \frac{V_m}{\pi}(1 + \cos\alpha)
+\]
+\[
+V_{o,\text{dc}} = \frac{325.27}{\pi}(1 + \cos 60^\circ) = \frac{325.27 \times 1.5}{3.14159} = \mathbf{155.30\text{ V}}
+\]
+\[
+I_o = \frac{V_{o,\text{dc}}}{R} = \frac{155.30\text{ V}}{10.0\ \Omega} = \mathbf{15.530\text{ A}}
+\]
+
+\noindent\textbf{2. RMS Output Voltage:}\\
+\[
+V_{o,\text{rms}} = V_s \sqrt{\frac{\pi - \alpha + \frac{1}{2}\sin(2\alpha)}{2\pi}} \quad \text{where } \alpha = \frac{\pi}{3}\text{ rad}, \ 2\alpha = 120^\circ
+\]
+\[
+\text{Numerator} = \left(\pi - \frac{\pi}{3}\right) + \frac{1}{2}\sin(120^\circ) = \frac{2\pi}{3} + \frac{\sqrt{3}}{4} = 2.0944 + 0.4330 = 2.5274
+\]
+\[
+V_{o,\text{rms}} = 230 \times \sqrt{\frac{2.5274}{2\pi}} = 230 \times \sqrt{0.40225} = 230 \times 0.8969 = \mathbf{206.30\text{ V}}
+\]
+
+\noindent\textbf{3. Input Source Current Analysis:}\\
+Current is drawn from the AC source only when an SCR-diode pair conducts (duration $\pi - \alpha$ per half cycle):
+\[
+I_{s,\text{rms}} = I_o \sqrt{\frac{\pi - \alpha}{\pi}} = 15.530 \times \sqrt{\frac{180^\circ - 60^\circ}{180^\circ}} = 15.530 \times \sqrt{\frac{2}{3}} = 15.530 \times 0.81650 = \mathbf{12.680\text{ A}}
+\]
+Fundamental RMS input current for a semi-converter is:
+\[
+I_{s1,\text{rms}} = \frac{2\sqrt{2}}{\pi} I_o \cos\left(\frac{\alpha}{2}\right) = \frac{2\sqrt{2} \times 15.530}{\pi} \cos(30^\circ) = 13.982 \times 0.86603 = \mathbf{12.109\text{ A}}
+\]
+
+\noindent\textbf{4. Performance Metrics:}\\
+\begin{itemize}
+  \item \textbf{Displacement Factor:} $DF = \cos\left(\frac{\alpha}{2}\right) = \cos(30^\circ) = \mathbf{0.8660}$.
+  \item \textbf{Distortion Factor:} $\frac{I_{s1,\text{rms}}}{I_{s,\text{rms}}} = \frac{12.109}{12.680} = \mathbf{0.9550}$.
+  \item \textbf{Power Factor:} $PF = \text{Distortion Factor} \times DF = 0.9550 \times 0.8660 = \mathbf{0.8270\text{ (lagging)}}$.
+  \item \textbf{THD:}
+  \[
+  THD = \sqrt{\left(\frac{I_{s,\text{rms}}}{I_{s1,\text{rms}}}\right)^2 - 1} = \sqrt{\left(\frac{12.680}{12.109}\right)^2 - 1} = \sqrt{(1.0471)^2 - 1} = \mathbf{31.08\%}
+  \]
+\end{itemize}
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 4):}}\\
+$V_{o,\text{dc}} = 155.30\text{ V} \quad\mid\quad I_o = 15.53\text{ A} \quad\mid\quad V_{o,\text{rms}} = 206.30\text{ V} \quad\mid\quad I_{s,\text{rms}} = 12.68\text{ A} \quad\mid\quad DF = 0.8660 \quad\mid\quad PF = 0.8270 \quad\mid\quad THD = 31.08\%$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 5
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 5: Single-Phase Semi-converter with RLE Load (Battery Charger)}]
+\textbf{Textbook Reference:} Muhammad H. Rashid, Chapter 11 / Ned Mohan, Chapter 6.\\[1mm]
+\textbf{Problem Statement:}\\
+A single-phase semi-converter is employed to charge a battery rated at $E = 110.0\text{ V}$ with an internal resistance of $R = 2.50\ \Omega$. A large series inductor is connected to maintain a ripple-free DC current. The converter is connected to a $230\text{ V (rms)}$, $50\text{ Hz}$ supply. The thyristors are fired at $\alpha = 45^\circ$.
+\begin{enumerate}
+  \item Calculate the average DC output voltage ($V_o$) of the converter.
+  \item Determine the average charging current ($I_o$).
+  \item Calculate the power delivered to the battery ($P_E$), power dissipated in resistance ($P_R$), and total power ($P_{\text{total}}$).
+  \item Determine the RMS value of the input current ($I_{s,\text{rms}}$) and the input power factor ($PF$).
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 230\text{ V}$, $V_m = \sqrt{2} \times 230 = 325.27\text{ V}$, $E = 110.0\text{ V}$, $R = 2.50\ \Omega$, $\alpha = 45^\circ$.
+\end{itemize}
+
+\noindent\textbf{1. Average Output Voltage:}\\
+\[
+V_o = \frac{V_m}{\pi}(1 + \cos\alpha) = \frac{325.27}{\pi}(1 + \cos 45^\circ) = 103.537 \times 1.70711 = \mathbf{176.75\text{ V}}
+\]
+
+\noindent\textbf{2. Average Charging Current:}\\
+Applying KVL in the DC loop (inductor voltage is zero in steady state):
+\[
+I_o = \frac{V_o - E}{R} = \frac{176.75\text{ V} - 110.0\text{ V}}{2.50\ \Omega} = \frac{66.75}{2.50} = \mathbf{26.70\text{ A}}
+\]
+
+\noindent\textbf{3. Power Calculations:}\\
+\begin{itemize}
+  \item Power delivered to battery: $P_E = E \times I_o = 110.0\text{ V} \times 26.70\text{ A} = \mathbf{2937.0\text{ W}}$.
+  \item Power dissipated in internal resistance: $P_R = I_o^2 R = (26.70)^2 \times 2.50 = 712.89 \times 2.50 = \mathbf{1782.2\text{ W}}$.
+  \item Total power output: $P_{\text{total}} = P_E + P_R = 2937.0 + 1782.2 = \mathbf{4719.2\text{ W}} \quad (= V_o I_o = 176.75 \times 26.70)$.
+\end{itemize}
+
+\noindent\textbf{4. RMS Input Current and Power Factor:}\\
+\[
+I_{s,\text{rms}} = I_o \sqrt{\frac{\pi - \alpha}{\pi}} = 26.70 \times \sqrt{\frac{180^\circ - 45^\circ}{180^\circ}} = 26.70 \times \sqrt{0.75} = 26.70 \times 0.86603 = \mathbf{23.123\text{ A}}
+\]
+\[
+S = V_s I_{s,\text{rms}} = 230\text{ V} \times 23.123\text{ A} = 5318.3\text{ VA}
+\]
+\[
+PF = \frac{P_{\text{total}}}{S} = \frac{4719.2\text{ W}}{5318.3\text{ VA}} = \mathbf{0.8874\text{ (lagging)}}
+\]
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 5):}}\\
+$V_o = 176.75\text{ V} \quad\mid\quad I_o = 26.70\text{ A} \quad\mid\quad P_E = 2937.0\text{ W} \quad\mid\quad P_R = 1782.2\text{ W} \quad\mid\quad P_{\text{total}} = 4719.2\text{ W} \quad\mid\quad I_{s,\text{rms}} = 23.12\text{ A} \quad\mid\quad PF = 0.8874$
+\end{tcolorbox}
+
+\vspace{5mm}
+
+% ============================================================================
+% SECTION 3: Effect of Source Inductance
+% ============================================================================
+\section*{Section 3: Effect of Source Inductance (1 Question)}
+
+% ----------------------------------------------------------------------------
+% QUESTION 6
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 6: Commutation Overlap in Single-Phase Full Converter}]
+\textbf{Textbook Reference:} Daniel W. Hart, Section 4.7 / Ned Mohan, Section 6-3-4 / L. Umanand.\\[1mm]
+\textbf{Problem Statement:}\\
+A single-phase fully controlled bridge converter is fed from a $230\text{ V (rms)}$, $50\text{ Hz}$ supply. Due to transformer leakage, the circuit possesses an effective source inductance of $L_s = 2.0\text{ mH}$. The converter supplies a continuous, ripple-free load current of $I_o = 15.0\text{ A}$. The firing delay angle is $\alpha = 30^\circ$.
+\begin{enumerate}
+  \item Determine the commutation (overlap) angle $\mu$ in degrees.
+  \item Calculate the average DC voltage drop ($\Delta V_o$) caused by the commutation overlap.
+  \item Find the actual average DC output voltage ($V_o$).
+  \item Determine the ideal output voltage ($V_{o,\text{ideal}}$ for $L_s = 0$) and the percentage voltage regulation due to source inductance.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 230\text{ V}$, $f = 50\text{ Hz} \implies \omega = 2\pi(50) = 314.159\text{ rad/s}$, $L_s = 2.0\times 10^{-3}\text{ H}$, $I_o = 15.0\text{ A}$, $\alpha = 30^\circ$.
+  \item Peak voltage: $V_m = \sqrt{2} \times 230 = 325.27\text{ V}$.
+  \item Source reactance: $X_s = \omega L_s = 314.159 \times 0.002 = 0.62832\ \Omega$.
+\end{itemize}
+
+\noindent\textbf{1. Commutation / Overlap Angle $\mu$:}\\
+During commutation, current through $L_s$ changes from $-I_o$ to $+I_o$:
+\[
+\cos(\alpha + \mu) = \cos\alpha - \frac{2 \omega L_s I_o}{V_m}
+\]
+Calculate the reactance reduction term:
+\[
+\frac{2 \omega L_s I_o}{V_m} = \frac{2 \times 0.62832 \times 15.0}{325.27} = \frac{18.8496}{325.27} = 0.05795
+\]
+Since $\alpha = 30^\circ \implies \cos(30^\circ) = 0.86603$:
+\[
+\cos(\alpha + \mu) = 0.86603 - 0.05795 = 0.80808
+\]
+\[
+\alpha + \mu = \cos^{-1}(0.80808) = 36.09^\circ \implies \mu = 36.09^\circ - 30.00^\circ = \mathbf{6.09^\circ}
+\]
+
+\noindent\textbf{2. Average Voltage Drop Due to Overlap:}\\
+During overlap, all four SCRs conduct, shorting the bridge and making terminal voltage zero:
+\[
+\Delta V_o = \frac{2 \omega L_s I_o}{\pi} = \frac{2 (2\pi f) L_s I_o}{\pi} = 4 f L_s I_o
+\]
+\[
+\Delta V_o = 4 \times 50\text{ Hz} \times (2.0 \times 10^{-3}\text{ H}) \times 15.0\text{ A} = \mathbf{6.00\text{ V}}
+\]
+
+\noindent\textbf{3. Actual Average DC Output Voltage:}\\
+The ideal output voltage without overlap is:
+\[
+V_{o,\text{ideal}} = \frac{2 V_m}{\pi} \cos\alpha = \frac{2 \times 325.27}{\pi} \cos(30^\circ) = 207.07 \times 0.86603 = \mathbf{179.33\text{ V}}
+\]
+The actual output voltage is:
+\[
+V_o = V_{o,\text{ideal}} - \Delta V_o = 179.33\text{ V} - 6.00\text{ V} = \mathbf{173.33\text{ V}}
+\]
+
+\noindent\textbf{4. Percentage Voltage Drop:}\\
+\[
+\% \text{ Reduction} = \frac{\Delta V_o}{V_{o,\text{ideal}}} \times 100 = \frac{6.00}{179.33} \times 100 = \mathbf{3.35\%}
+\]
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 6):}}\\
+Overlap Angle $\mu = 6.09^\circ \quad\mid\quad \Delta V_o = 6.00\text{ V} \quad\mid\quad V_{o,\text{actual}} = 173.33\text{ V} \quad\mid\quad V_{o,\text{ideal}} = 179.33\text{ V} \quad\mid\quad \% \text{ Drop} = 3.35\%$
+\end{tcolorbox}
+
+\vspace{5mm}
+
+% ============================================================================
+% SECTION 4: Three-Phase Controlled Rectifiers
+% ============================================================================
+\section*{Section 4: Three-Phase Controlled Rectifiers (3 Questions)}
+
+% ----------------------------------------------------------------------------
+% QUESTION 7
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 7: Three-Phase Fully Controlled Converter with RLE Load}]
+\textbf{Textbook Reference:} Daniel W. Hart, Example 4-13 / L. Umanand, Section 3.6 / M. H. Rashid, Section 12.2.\\[1mm]
+\textbf{Problem Statement:}\\
+A 3-phase, 6-pulse fully controlled bridge converter is fed from a $415\text{ V (rms, line-to-line)}$, $50\text{ Hz}$ supply. It feeds an $RLE$ load with $R = 4.0\ \Omega$, back EMF $E = 220.0\text{ V}$, and a large inductor that keeps the load current continuous and ripple-free. The thyristor delay angle is $\alpha = 45^\circ$.
+\begin{enumerate}
+  \item State the output voltage equation and compute the average output voltage ($V_o$).
+  \item Determine the average load current ($I_o$).
+  \item Compute the power absorbed by the EMF ($P_E$), power lost in resistance ($P_R$), and total delivered power ($P_{\text{total}}$).
+  \item Calculate the RMS source line current ($I_{s,\text{rms}}$) and the input power factor ($PF$).
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_{LL} = 415\text{ V}$, $f = 50\text{ Hz}$, $R = 4.0\ \Omega$, $E = 220.0\text{ V}$, $\alpha = 45^\circ$.
+  \item Peak line-to-line voltage: $V_{m,LL} = \sqrt{2} \times 415 = 586.899\text{ V}$.
+\end{itemize}
+
+\noindent\textbf{1. Output Voltage Equation and Value:}\\
+Integrating over a $60^\circ$ conduction interval:
+\[
+V_o = \frac{3}{\pi} \int_{\pi/3 + \alpha}^{2\pi/3 + \alpha} V_{m,LL} \sin(\omega t)\, d(\omega t) = \frac{3 V_{m,LL}}{\pi} \cos\alpha = \frac{3\sqrt{2} V_{LL}}{\pi} \cos\alpha
+\]
+\[
+V_o = \frac{3 \times 586.899}{\pi} \cos(45^\circ) = 560.45 \times 0.70711 = \mathbf{396.30\text{ V}}
+\]
+
+\noindent\textbf{2. Average Load Current:}\\
+\[
+I_o = \frac{V_o - E}{R} = \frac{396.30\text{ V} - 220.0\text{ V}}{4.0\ \Omega} = \frac{176.30}{4.0} = \mathbf{44.075\text{ A}}
+\]
+
+\noindent\textbf{3. Power Calculations:}\\
+\begin{itemize}
+  \item Power absorbed by battery: $P_E = E \times I_o = 220.0\text{ V} \times 44.075\text{ A} = \mathbf{9696.5\text{ W}}$.
+  \item Resistive loss: $P_R = I_o^2 R = (44.075)^2 \times 4.0 = \mathbf{7770.4\text{ W}}$.
+  \item Total power output: $P_{\text{total}} = V_o I_o = 396.30 \times 44.075 = \mathbf{17466.9\text{ W}} \quad (= P_E + P_R)$.
+\end{itemize}
+
+\noindent\textbf{4. RMS Line Current and Input Power Factor:}\\
+Each line conducts pulses of width $120^\circ$ in positive and negative half-cycles:
+\[
+I_{s,\text{rms}} = I_o \sqrt{\frac{2}{3}} = 44.075 \times 0.81650 = \mathbf{35.987\text{ A}}
+\]
+\[
+S = \sqrt{3} V_{LL} I_{s,\text{rms}} = \sqrt{3} \times 415 \times 35.987 = \mathbf{25867.7\text{ VA}}
+\]
+\[
+PF = \frac{P_{\text{total}}}{S} = \frac{17466.9\text{ W}}{25867.7\text{ VA}} = \mathbf{0.6752\text{ (lagging)}} \quad \left(\text{Check: } \frac{3}{\pi}\cos(45^\circ) = 0.6752\right)
+\]
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 7):}}\\
+$V_o = 396.30\text{ V} \quad\mid\quad I_o = 44.08\text{ A} \quad\mid\quad P_{\text{total}} = 17.47\text{ kW} \quad\mid\quad I_{s,\text{rms}} = 35.99\text{ A} \quad\mid\quad PF = 0.6752\text{ (lag)}$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 8
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 8: Three-Phase Full Converter Operating as a Line-Commutated Inverter}]
+\textbf{Textbook Reference:} Daniel W. Hart, Example 4-14 / Ned Mohan, Section 6-4.\\[1mm]
+\textbf{Problem Statement:}\\
+A 3-phase six-pulse converter is operated as a line-commutated inverter to regenerate energy from a DC source ($E_{\text{dc}} = 320.0\text{ V}$) into a 3-phase, $415\text{ V (rms, line-to-line)}$, $50\text{ Hz}$ AC power system. The internal loop resistance is $R = 2.0\ \Omega$ with a large smoothing inductance. The thyristor delay angle is $\alpha = 120^\circ$ ($\alpha > 90^\circ$).
+\begin{enumerate}
+  \item Calculate the average DC output voltage ($V_o$) of the converter.
+  \item Determine the DC current ($I_o$) fed into the inverter.
+  \item Calculate the power delivered by the DC source ($P_{\text{dc}}$), the power loss in resistance ($P_{\text{loss}}$), and the net power delivered to the AC grid ($P_{\text{grid}}$).
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_{LL} = 415\text{ V}$, $E_{\text{dc}} = 320.0\text{ V}$, $R = 2.0\ \Omega$, $\alpha = 120^\circ$.
+\end{itemize}
+
+\noindent\textbf{1. Converter DC Output Voltage:}\\
+\[
+V_o = \frac{3\sqrt{2} V_{LL}}{\pi} \cos\alpha = 560.45 \times \cos(120^\circ) = 560.45 \times (-0.5) = \mathbf{-280.22\text{ V}}
+\]
+The negative polarity confirms inversion mode.
+
+\noindent\textbf{2. Inverter DC Current:}\\
+The DC source voltage opposes the bridge counter-voltage:
+\[
+I_o = \frac{E_{\text{dc}} - |V_o|}{R} = \frac{320.0\text{ V} - 280.22\text{ V}}{2.0\ \Omega} = \frac{39.78}{2.0} = \mathbf{19.89\text{ A}}
+\]
+
+\noindent\textbf{3. Power Calculations:}\\
+\begin{itemize}
+  \item Power supplied by DC source: $P_{\text{dc}} = E_{\text{dc}} \times I_o = 320.0\text{ V} \times 19.89\text{ A} = \mathbf{6364.8\text{ W}}$.
+  \item Resistive loss: $P_{\text{loss}} = I_o^2 R = (19.89)^2 \times 2.0 = \mathbf{791.2\text{ W}}$.
+  \item Net power regenerated into AC grid: $P_{\text{grid}} = |V_o| I_o = 280.22\text{ V} \times 19.89\text{ A} = \mathbf{5573.6\text{ W}} \quad (= P_{\text{dc}} - P_{\text{loss}})$.
+\end{itemize}
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 8):}}\\
+$V_o = -280.22\text{ V} \quad\mid\quad I_o = 19.89\text{ A} \quad\mid\quad P_{\text{dc}} = 6364.8\text{ W} \quad\mid\quad P_{\text{loss}} = 791.2\text{ W} \quad\mid\quad P_{\text{grid}} = 5573.6\text{ W}$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 9
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 9: Three-Phase Half-Controlled Bridge Converter (Semi-converter)}]
+\textbf{Textbook Reference:} L. Umanand, Eq. 3.74 / Muhammad H. Rashid, Section 12.2.5.\\[1mm]
+\textbf{Problem Statement:}\\
+A 3-phase half-controlled bridge converter (3 SCRs and 3 uncontrolled diodes) is supplied from a $415\text{ V (line-to-line, rms)}$, $50\text{ Hz}$ supply. It feeds an $RLE$ load with $R = 6.0\ \Omega$, $E = 150.0\text{ V}$, and large inductance. The firing angle is $\alpha = 60^\circ$.
+\begin{enumerate}
+  \item State the average output voltage equation and compute $V_o$.
+  \item Find the average load current ($I_o$) and the total power delivered to the load ($P_{\text{total}}$).
+  \item Compare the average output voltage with that of a fully controlled 3-phase bridge at $\alpha = 60^\circ$.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_{LL} = 415\text{ V}$, $R = 6.0\ \Omega$, $E = 150.0\text{ V}$, $\alpha = 60^\circ$.
+\end{itemize}
+
+\noindent\textbf{1. Output Voltage Equation and Value:}\\
+For a 3-phase semi-converter:
+\[
+V_o = \frac{3\sqrt{2} V_{LL}}{2\pi} (1 + \cos\alpha) = \frac{560.45}{2} (1 + \cos 60^\circ) = 280.224 \times (1 + 0.5) = \mathbf{420.34\text{ V}}
+\]
+
+\noindent\textbf{2. Average Load Current and Total Power:}\\
+\[
+I_o = \frac{V_o - E}{R} = \frac{420.34\text{ V} - 150.0\text{ V}}{6.0\ \Omega} = \frac{270.34}{6.0} = \mathbf{45.06\text{ A}}
+\]
+\[
+P_{\text{total}} = V_o I_o = 420.34\text{ V} \times 45.06\text{ A} = \mathbf{18940.5\text{ W}}
+\]
+\begin{itemize}
+  \item Power to EMF: $P_E = 150.0 \times 45.06 = 6759.0\text{ W}$.
+  \item Resistive loss: $P_R = (45.06)^2 \times 6.0 = 12182.4\text{ W}$.
+  \item Check: $6759.0 + 12182.4 = 18941.4\text{ W} \approx P_{\text{total}}$.
+\end{itemize}
+
+\noindent\textbf{3. Comparison with Fully Controlled Bridge at $\alpha = 60^\circ$:}\\
+\[
+V_{o,\text{full}} = \frac{3\sqrt{2} V_{LL}}{\pi} \cos(60^\circ) = 560.45 \times 0.5 = \mathbf{280.22\text{ V}}
+\]
+\textbf{Observation:} The semi-converter produces a higher DC output voltage ($420.34\text{ V}$ vs $280.22\text{ V}$) because the freewheeling diodes prevent the line-to-line output voltage from swinging negative.
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 9):}}\\
+$V_{o,\text{semi}} = 420.34\text{ V} \quad\mid\quad I_o = 45.06\text{ A} \quad\mid\quad P_{\text{total}} = 18.94\text{ kW} \quad\mid\quad V_{o,\text{full}} = 280.22\text{ V}$
+\end{tcolorbox}
+
+\vspace{5mm}
+
+% ============================================================================
+% SECTION 5: DC-DC Switching Regulators
+% ============================================================================
+\section*{Section 5: DC-DC Switching Regulators (6 Questions)}
+
+% ----------------------------------------------------------------------------
+% QUESTION 10
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 10: Buck Converter Analysis in Continuous Conduction Mode (CCM)}]
+\textbf{Textbook Reference:} Daniel W. Hart, Example 6-1 / Ned Mohan, Section 7-3.\\[1mm]
+\textbf{Problem Statement:}\\
+A step-down Buck converter operates with the following parameters:
+$V_s = 50.0\text{ V}$, duty ratio $D = 0.40$, filter inductance $L = 400.0\ \mu\text{H}$, filter capacitance $C = 100.0\ \mu\text{F}$, switching frequency $f = 20.0\text{ kHz}$, and load resistance $R = 20.0\ \Omega$.
+\begin{enumerate}
+  \item Determine the output voltage ($V_o$) and load current ($I_o$).
+  \item Calculate the peak-to-peak inductor ripple current ($\Delta i_L$) and find $I_{\max}$ and $I_{\min}$.
+  \item Verify whether the converter operates in Continuous Conduction Mode (CCM).
+  \item Calculate the peak-to-peak output voltage ripple ($\Delta V_o$) and percentage ripple.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 50.0\text{ V}$, $D = 0.40$, $L = 400\ \mu\text{H}$, $C = 100\ \mu\text{F}$, $f = 20\text{ kHz} \implies T = 50\ \mu\text{s}$, $R = 20\ \Omega$.
+\end{itemize}
+
+\noindent\textbf{1. Output Voltage and Current:}\\
+\[
+V_o = D V_s = 0.40 \times 50.0\text{ V} = \mathbf{20.0\text{ V}}, \qquad I_o = I_L = \frac{V_o}{R} = \frac{20.0\text{ V}}{20.0\ \Omega} = \mathbf{1.00\text{ A}}
+\]
+
+\noindent\textbf{2. Inductor Ripple Current:}\\
+During switch ON-interval ($D T = 20\ \mu\text{s}$):
+\[
+\Delta i_L = \frac{(V_s - V_o) D T}{L} = \frac{(50 - 20) \times 0.40 \times (50 \times 10^{-6})}{400 \times 10^{-6}} = \frac{30 \times 20}{400} = \mathbf{1.50\text{ A}}
+\]
+\[
+I_{\max} = I_L + \frac{\Delta i_L}{2} = 1.00 + 0.75 = \mathbf{1.75\text{ A}}, \qquad I_{\min} = I_L - \frac{\Delta i_L}{2} = 1.00 - 0.75 = \mathbf{0.25\text{ A}}
+\]
+
+\noindent\textbf{3. CCM Verification:}\\
+Since $I_{\min} = 0.25\text{ A} > 0$, current never falls to zero. \textbf{CCM operation is verified.}
+
+\noindent\textbf{4. Output Voltage Ripple:}\\
+\[
+\Delta V_o = \frac{\Delta i_L}{8 C f} = \frac{1.50\text{ A}}{8 \times (100 \times 10^{-6}) \times (20 \times 10^3)} = \frac{1.50}{16.0} = \mathbf{0.09375\text{ V} = 93.75\text{ mV}}
+\]
+\[
+\% \text{ Ripple} = \frac{\Delta V_o}{V_o} \times 100 = \frac{0.09375}{20.0} \times 100 = \mathbf{0.469\%}
+\]
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 10):}}\\
+$V_o = 20.0\text{ V} \quad\mid\quad I_o = 1.00\text{ A} \quad\mid\quad \Delta i_L = 1.50\text{ A} \quad\mid\quad I_{\max} = 1.75\text{ A} \quad\mid\quad I_{\min} = 0.25\text{ A} \quad\mid\quad \Delta V_o = 93.75\text{ mV} \ (0.469\%)$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 11
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 11: Buck Converter Design --- Sizing Filter and Device Ratings}]
+\textbf{Textbook Reference:} Daniel W. Hart, Example 6-2 / Ned Mohan, Section 7-3.\\[1mm]
+\textbf{Problem Statement:}\\
+Design a Buck converter to deliver $V_o = 18.0\text{ V}$ across $R = 10.0\ \Omega$ from a DC supply of $V_s = 48.0\text{ V}$.
+The specifications are: $f = 40.0\text{ kHz}$, voltage ripple $\Delta V_o / V_o \le 0.5\%$, and CCM operation.
+\begin{enumerate}
+  \item Determine the duty ratio $D$.
+  \item Find the critical inductance ($L_{\min}$) for CCM, and choose a practical inductor $L$ with a $60\%$ safety margin.
+  \item Sizing the output filter capacitance $C$.
+  \item Specify the peak voltage and peak current ratings for the active switch (MOSFET) and diode.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 48.0\text{ V}$, $V_o = 18.0\text{ V}$, $R = 10.0\ \Omega$, $f = 40\text{ kHz}$, $\Delta V_o / V_o \le 0.005$.
+\end{itemize}
+
+\noindent\textbf{1. Duty Ratio and Load Current:}\\
+\[
+D = \frac{V_o}{V_s} = \frac{18.0}{48.0} = \mathbf{0.375}, \qquad I_o = \frac{V_o}{R} = \frac{18.0}{10.0} = \mathbf{1.80\text{ A}}
+\]
+
+\noindent\textbf{2. Minimum Inductance and Inductor Selection:}\\
+\[
+L_{\min} = \frac{(1 - D) R}{2 f} = \frac{(1 - 0.375) \times 10.0}{2 \times 40000} = \frac{6.25}{80000} = \mathbf{78.125\ \mu\text{H}}
+\]
+Selecting $L$ with a $60\%$ design margin ($L = 1.6 \times L_{\min}$):
+\[
+L = 1.6 \times 78.125\ \mu\text{H} = \mathbf{125.0\ \mu\text{H}}
+\]
+With $L = 125.0\ \mu\text{H}$:
+\[
+\Delta i_L = \frac{(V_s - V_o) D}{L f} = \frac{(48 - 18) \times 0.375}{(125 \times 10^{-6}) \times (40 \times 10^3)} = \frac{11.25}{5.0} = 2.25\text{ A}
+\]
+\[
+I_{\text{peak}} = I_o + \frac{\Delta i_L}{2} = 1.80 + 1.125 = \mathbf{2.925\text{ A}}
+\]
+
+\noindent\textbf{3. Filter Capacitance Sizing:}\\
+\[
+C \ge \frac{1 - D}{8 L f^2 (\Delta V_o / V_o)} = \frac{1 - 0.375}{8 \times (125 \times 10^{-6}) \times (40 \times 10^3)^2 \times 0.005} = \frac{0.625}{8000} = \mathbf{78.125\ \mu\text{F}}
+\]
+Choose standard value: \textbf{$100\ \mu\text{F}$}.
+
+\noindent\textbf{4. Power Device Ratings:}\\
+\begin{itemize}
+  \item \textbf{MOSFET Switch:} Peak voltage $V_{\text{switch, peak}} = V_s = \mathbf{48.0\text{ V}}$ (select $\ge 100\text{ V}$ rated). Peak current: $I_{\text{switch, peak}} = I_{\text{peak}} = \mathbf{2.925\text{ A}}$. Average current: $I_{\text{avg}} = D I_o = 0.375 \times 1.80 = \mathbf{0.675\text{ A}}$.
+  \item \textbf{Freewheeling Diode:} Peak reverse voltage $V_{\text{diode, peak}} = V_s = \mathbf{48.0\text{ V}}$. Peak forward current: $\mathbf{2.925\text{ A}}$. Average forward current: $I_{\text{diode, avg}} = (1 - D) I_o = 0.625 \times 1.80 = \mathbf{1.125\text{ A}}$.
+\end{itemize}
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 11):}}\\
+$D = 0.375 \quad\mid\quad L_{\min} = 78.13\ \mu\text{H} \quad\mid\quad \text{Design } L = 125\ \mu\text{H} \quad\mid\quad C \ge 78.13\ \mu\text{F} \ (\text{use } 100\ \mu\text{F}) \quad\mid\quad V_{\text{device}} \ge 48\text{ V}, I_{\text{peak}} = 2.925\text{ A}$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 12
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 12: Boost Converter Analysis and Effect of Inductor Resistance}]
+\textbf{Textbook Reference:} Daniel W. Hart, Examples 6-4 \& 6-5 / Ned Mohan, Section 7-4.\\[1mm]
+\textbf{Problem Statement:}\\
+A Boost converter operates from $V_s = 12.0\text{ V}$ and delivers $V_o = 30.0\text{ V}$ to $R = 50.0\ \Omega$ at $f = 25.0\text{ kHz}$. Filter components are $L = 120.0\ \mu\text{H}$ and $C = 100.0\ \mu\text{F}$.
+\begin{enumerate}
+  \item Assuming ideal components, calculate the duty ratio $D$, average inductor current ($I_L$), ripple current ($\Delta i_L$), peak current ($I_{\max}$), and output ripple voltage ($\Delta V_o$).
+  \item If the inductor has an internal winding resistance of $r_L = 0.20\ \Omega$, determine the actual output voltage and converter efficiency $\eta$.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 12.0\text{ V}$, $V_o = 30.0\text{ V}$, $R = 50.0\ \Omega$, $f = 25\text{ kHz} \implies T = 40\ \mu\text{s}$, $L = 120\ \mu\text{H}$, $C = 100\ \mu\text{F}$.
+\end{itemize}
+
+\noindent\textbf{1. Ideal Boost Converter Analysis:}\\
+\[
+1 - D = \frac{V_s}{V_o} = \frac{12.0}{30.0} = 0.40 \implies \mathbf{D = 0.60}
+\]
+\[
+I_o = \frac{V_o}{R} = \frac{30.0\text{ V}}{50.0\ \Omega} = 0.60\text{ A}, \qquad I_L = \frac{I_o}{1 - D} = \frac{0.60}{0.40} = \mathbf{1.50\text{ A}}
+\]
+\[
+\Delta i_L = \frac{V_s D T}{L} = \frac{12.0 \times 0.60 \times (40 \times 10^{-6})}{120 \times 10^{-6}} = \mathbf{2.40\text{ A}}
+\]
+\[
+I_{\max} = I_L + \frac{\Delta i_L}{2} = 1.50 + 1.20 = \mathbf{2.70\text{ A}}, \qquad I_{\min} = 1.50 - 1.20 = \mathbf{0.30\text{ A}} \ (\text{CCM confirmed})
+\]
+\[
+\Delta V_o = \frac{I_o D}{C f} = \frac{0.60 \times 0.60}{(100 \times 10^{-6}) \times (25 \times 10^3)} = \frac{0.36}{2.50} = \mathbf{0.144\text{ V} = 144\text{ mV}} \quad (0.48\%)
+\]
+
+\noindent\textbf{2. Effect of Inductor Resistance $r_L = 0.20\ \Omega$:}\\
+Accounting for inductor series resistance:
+\[
+V_{o,\text{actual}} = \left(\frac{V_s}{1 - D}\right) \left[\frac{1}{1 + \frac{r_L}{(1 - D)^2 R}}\right]
+\]
+\[
+\frac{r_L}{(1 - D)^2 R} = \frac{0.20}{(0.40)^2 \times 50.0} = \frac{0.20}{0.16 \times 50.0} = \frac{0.20}{8.0} = 0.025
+\]
+\[
+V_{o,\text{actual}} = 30.0 \times \left(\frac{1}{1 + 0.025}\right) = \frac{30.0}{1.025} = \mathbf{29.27\text{ V}}
+\]
+\[
+\eta = \frac{1}{1 + \frac{r_L}{(1 - D)^2 R}} = \frac{1}{1.025} = \mathbf{97.56\%}
+\]
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 12):}}\\
+\textbf{Ideal:} $D = 0.60 \quad\mid\quad I_L = 1.50\text{ A} \quad\mid\quad \Delta i_L = 2.40\text{ A} \quad\mid\quad I_{\max} = 2.70\text{ A} \quad\mid\quad \Delta V_o = 144\text{ mV}$\\
+\textbf{With $r_L = 0.2\ \Omega$:} $V_{o,\text{actual}} = 29.27\text{ V} \quad\mid\quad \text{Efficiency } \eta = 97.56\%$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 13
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 13: Boost Converter Design --- Filter Sizing and Power Device Selection}]
+\textbf{Textbook Reference:} Daniel W. Hart, Example 6-4 / Ned Mohan, Section 7-4.\\[1mm]
+\textbf{Problem Statement:}\\
+Design a Boost converter to step up $V_s = 24.0\text{ V}$ to $V_o = 48.0\text{ V}$ supplying $P_o = 120.0\text{ W}$ ($R = 19.2\ \Omega$) at $f = 50.0\text{ kHz}$.
+The design criteria are: $\Delta V_o / V_o \le 1.0\%$, and inductor ripple $\Delta i_L \le 30\%$ of $I_L$.
+\begin{enumerate}
+  \item Determine the duty cycle $D$ and average inductor current ($I_L$).
+  \item Determine the critical boundary inductance ($L_{\min}$) and calculate the required design inductance ($L$).
+  \item Calculate the required filter capacitance ($C$).
+  \item Specify the voltage and current ratings for the active switch and fast diode.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 24.0\text{ V}$, $V_o = 48.0\text{ V}$, $P_o = 120\text{ W} \implies I_o = \frac{120}{48} = 2.50\text{ A}$, $R = \frac{48}{2.5} = 19.2\ \Omega$, $f = 50\text{ kHz}$.
+\end{itemize}
+
+\noindent\textbf{1. Duty Cycle and Inductor Current:}\\
+\[
+1 - D = \frac{V_s}{V_o} = \frac{24.0}{48.0} = 0.50 \implies \mathbf{D = 0.50}, \qquad I_L = \frac{I_o}{1 - D} = \frac{2.50}{0.50} = \mathbf{5.00\text{ A}}
+\]
+
+\noindent\textbf{2. Inductor Sizing:}\\
+Critical inductance at CCM boundary:
+\[
+L_{\min} = \frac{D (1 - D)^2 R}{2 f} = \frac{0.50 \times (0.50)^2 \times 19.20}{2 \times 50000} = \frac{2.40}{100000} = \mathbf{24.0\ \mu\text{H}}
+\]
+Design for $\Delta i_L \le 30\% \times I_L = 0.30 \times 5.0\text{ A} = 1.50\text{ A}$:
+\[
+L = \frac{V_s D}{f \Delta i_L} = \frac{24.0 \times 0.50}{(50 \times 10^3) \times 1.50} = \frac{12.0}{75000} = \mathbf{160.0\ \mu\text{H}} \quad (\gg L_{\min})
+\]
+
+\noindent\textbf{3. Filter Capacitance Sizing:}\\
+\[
+C \ge \frac{D}{R f (\Delta V_o / V_o)} = \frac{0.50}{19.20 \times (50 \times 10^3) \times 0.01} = \frac{0.50}{9600} = \mathbf{52.08\ \mu\text{F}}
+\]
+Select standard value: \textbf{$68\ \mu\text{F}$} or \textbf{$100\ \mu\text{F}$}.
+
+\noindent\textbf{4. Device Selection / Ratings:}\\
+\begin{itemize}
+  \item \textbf{MOSFET Switch:} Peak voltage stress: $V_{\text{switch, peak}} = V_o = \mathbf{48.0\text{ V}}$ (select $\ge 100\text{ V}$). Peak current: $I_{\text{peak}} = I_L + \frac{\Delta i_L}{2} = 5.0 + 0.75 = \mathbf{5.75\text{ A}}$. RMS current: $I_{\text{rms}} \approx I_L \sqrt{D} = 5.0 \times \sqrt{0.50} = \mathbf{3.536\text{ A}}$.
+  \item \textbf{Diode:} Peak reverse voltage: $V_{\text{diode, peak}} = V_o = \mathbf{48.0\text{ V}}$. Peak forward current: $\mathbf{5.75\text{ A}}$. Average forward current: $I_{\text{diode, avg}} = I_o = \mathbf{2.50\text{ A}}$.
+\end{itemize}
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 13):}}\\
+$D = 0.50 \quad\mid\quad L_{\min} = 24.0\ \mu\text{H} \quad\mid\quad \text{Designed } L = 160.0\ \mu\text{H} \quad\mid\quad C \ge 52.08\ \mu\text{F} \quad\mid\quad V_{\text{peak}} = 48\text{ V}, I_{\text{peak}} = 5.75\text{ A}$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 14
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 14: Buck-Boost Converter Analysis in Continuous Conduction Mode}]
+\textbf{Textbook Reference:} Daniel W. Hart, Example 6-6 / Ned Mohan, Section 7-5.\\[1mm]
+\textbf{Problem Statement:}\\
+An inverting Buck-Boost DC-DC converter has the following parameters:
+$V_s = 24.0\text{ V}$, duty ratio $D = 0.40$, switching frequency $f = 100.0\text{ kHz}$, $L = 20.0\ \mu\text{H}$, $C = 80.0\ \mu\text{F}$, and load resistance $R = 5.0\ \Omega$.
+\begin{enumerate}
+  \item Determine the output voltage ($V_o$) and load current magnitude ($I_o$).
+  \item Determine the average inductor current ($I_L$), the ripple current ($\Delta i_L$), and the peak and minimum inductor currents ($I_{\max}$ and $I_{\min}$).
+  \item Verify whether the converter operates in Continuous Conduction Mode (CCM).
+  \item Calculate the peak-to-peak output voltage ripple ($\Delta V_o$) and percentage ripple.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 24.0\text{ V}$, $D = 0.40$, $f = 100\text{ kHz} \implies T = 10\ \mu\text{s}$, $L = 20\ \mu\text{H}$, $C = 80\ \mu\text{F}$, $R = 5.0\ \Omega$.
+\end{itemize}
+
+\noindent\textbf{1. Output Voltage and Load Current:}\\
+\[
+V_o = -V_s \left(\frac{D}{1 - D}\right) = -24.0 \times \left(\frac{0.40}{0.60}\right) = \mathbf{-16.0\text{ V}} \implies |V_o| = 16.0\text{ V}
+\]
+\[
+I_o = \frac{|V_o|}{R} = \frac{16.0\text{ V}}{5.0\ \Omega} = \mathbf{3.20\text{ A}}
+\]
+
+\noindent\textbf{2. Inductor Current Analysis:}\\
+\[
+I_L = \frac{I_o}{1 - D} = \frac{3.20\text{ A}}{0.60} = \mathbf{5.333\text{ A}}
+\]
+During switch ON-interval ($D T = 4\ \mu\text{s}$):
+\[
+\Delta i_L = \frac{V_s D T}{L} = \frac{24.0 \times 0.40 \times (10 \times 10^{-6})}{20 \times 10^{-6}} = \frac{9.6}{2.0} = \mathbf{4.80\text{ A}}
+\]
+\[
+I_{\max} = I_L + \frac{\Delta i_L}{2} = 5.333 + 2.40 = \mathbf{7.733\text{ A}}, \qquad I_{\min} = 5.333 - 2.40 = \mathbf{2.933\text{ A}}
+\]
+
+\noindent\textbf{3. CCM Verification:}\\
+Since $I_{\min} = 2.933\text{ A} > 0$, the inductor current is always positive. \textbf{CCM operation is verified.}
+
+\noindent\textbf{4. Output Voltage Ripple:}\\
+\[
+\Delta V_o = \frac{I_o D}{C f} = \frac{3.20 \times 0.40}{(80 \times 10^{-6}) \times (100 \times 10^3)} = \frac{1.28}{8.0} = \mathbf{0.160\text{ V} = 160\text{ mV}}
+\]
+\[
+\% \text{ Ripple} = \frac{\Delta V_o}{|V_o|} \times 100 = \frac{0.160}{16.0} \times 100 = \mathbf{1.00\%}
+\]
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 14):}}\\
+$V_o = -16.0\text{ V} \quad\mid\quad I_o = 3.20\text{ A} \quad\mid\quad I_L = 5.333\text{ A} \quad\mid\quad \Delta i_L = 4.80\text{ A} \quad\mid\quad I_{\max} = 7.733\text{ A} \quad\mid\quad \Delta V_o = 160\text{ mV} \ (1.0\%)$
+\end{tcolorbox}
+
+\vspace{4mm}
+
+% ----------------------------------------------------------------------------
+% QUESTION 15
+% ----------------------------------------------------------------------------
+\begin{tcolorbox}[qbox, title={Question 15: Buck-Boost Converter Design --- Component Sizing \& Device Ratings}]
+\textbf{Textbook Reference:} Daniel W. Hart, Chapter 6 / Ned Mohan, Section 7-5.\\[1mm]
+\textbf{Problem Statement:}\\
+Design an inverting Buck-Boost regulator to deliver $V_o = -18.0\text{ V}$ to a load of $P_o = 36.0\text{ W}$ ($R = 9.0\ \Omega$) from an input supply of $V_s = 12.0\text{ V}$.
+The specifications are: $f = 50.0\text{ kHz}$, voltage ripple $\Delta V_o / |V_o| \le 1.0\%$, and inductor current ripple $\Delta i_L \le 25\%$ of $I_L$.
+\begin{enumerate}
+  \item Determine the required duty cycle $D$ and load resistance $R$.
+  \item Calculate the critical inductance ($L_{\min}$) for CCM, and size the filter inductance ($L$).
+  \item Size the filter capacitance ($C$).
+  \item Determine the peak voltage and peak current ratings required for the active switch and diode.
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{1mm}
+\noindent\textbf{\textcolor{accentteal}{Solution:}}
+\begin{itemize}
+  \item \textbf{Given Data:} $V_s = 12.0\text{ V}$, $|V_o| = 18.0\text{ V}$, $P_o = 36.0\text{ W}$, $f = 50\text{ kHz} \implies T = 20\ \mu\text{s}$, $\Delta V_o / |V_o| \le 0.01$.
+\end{itemize}
+
+\noindent\textbf{1. Duty Cycle and Load Current:}\\
+\[
+\frac{D}{1 - D} = \frac{|V_o|}{V_s} = \frac{18.0}{12.0} = 1.50 \implies D = 1.50(1 - D) \implies 2.50 D = 1.50 \implies \mathbf{D = 0.60}
+\]
+\[
+I_o = \frac{P_o}{|V_o|} = \frac{36.0\text{ W}}{18.0\text{ V}} = \mathbf{2.00\text{ A}}, \qquad R = \frac{|V_o|}{I_o} = \frac{18.0}{2.00} = \mathbf{9.00\ \Omega}
+\]
+\[
+I_L = \frac{I_o}{1 - D} = \frac{2.00}{0.40} = \mathbf{5.00\text{ A}}
+\]
+
+\noindent\textbf{2. Inductor Sizing:}\\
+Critical boundary inductance:
+\[
+L_{\min} = \frac{(1 - D)^2 R}{2 f} = \frac{(0.40)^2 \times 9.00}{2 \times 50000} = \frac{0.16 \times 9.00}{100000} = \mathbf{14.40\ \mu\text{H}}
+\]
+Design requirement: $\Delta i_L \le 25\% \times I_L = 0.25 \times 5.0\text{ A} = 1.25\text{ A}$:
+\[
+L = \frac{V_s D}{f \Delta i_L} = \frac{12.0 \times 0.60}{(50 \times 10^3) \times 1.25} = \frac{7.20}{62500} = \mathbf{115.20\ \mu\text{H}} \quad (\gg L_{\min})
+\]
+
+\noindent\textbf{3. Filter Capacitance Sizing:}\\
+\[
+C \ge \frac{D}{R f (\Delta V_o / |V_o|)} = \frac{0.60}{9.00 \times (50 \times 10^3) \times 0.01} = \frac{0.60}{4500} = \mathbf{133.33\ \mu\text{F}}
+\]
+Select standard commercial rating: \textbf{$150\ \mu\text{F}$} or \textbf{$220\ \mu\text{F}$}.
+
+\noindent\textbf{4. Power Semiconductor Ratings:}\\
+In a Buck-Boost converter, when the switch turns off, the switch experiences a voltage equal to $V_s + |V_o|$:
+\begin{itemize}
+  \item \textbf{Switch (MOSFET):}
+    \begin{itemize}
+      \item Peak reverse voltage: $V_{\text{switch, peak}} = V_s + |V_o| = 12.0\text{ V} + 18.0\text{ V} = \mathbf{30.0\text{ V}}$ (select $\ge 60\text{ V}$ rated).
+      \item Peak current: $I_{\text{switch, peak}} = I_L + \frac{\Delta i_L}{2} = 5.00 + 0.625 = \mathbf{5.625\text{ A}}$.
+      \item RMS current: $I_{\text{switch, rms}} \approx I_L \sqrt{D} = 5.00 \times \sqrt{0.60} = \mathbf{3.873\text{ A}}$.
+    \end{itemize}
+  \item \textbf{Diode:}
+    \begin{itemize}
+      \item Peak reverse voltage: $V_{\text{diode, peak}} = V_s + |V_o| = \mathbf{30.0\text{ V}}$.
+      \item Peak forward current: $I_{\text{diode, peak}} = \mathbf{5.625\text{ A}}$.
+      \item Average forward current: $I_{\text{diode, avg}} = I_o = \mathbf{2.00\text{ A}}$.
+    \end{itemize}
+\end{itemize}
+
+\begin{tcolorbox}[resbox]
+\textbf{\textcolor{accentcyan}{Summary of Results (Question 15):}}\\
+$D = 0.60 \quad\mid\quad L_{\min} = 14.4\ \mu\text{H} \quad\mid\quad \text{Designed } L = 115.2\ \mu\text{H} \quad\mid\quad C \ge 133.33\ \mu\text{F} \quad\mid\quad V_{\text{device}} \ge 30\text{ V}, I_{\text{peak}} = 5.625\text{ A}$
+\end{tcolorbox}
+
+\end{document}

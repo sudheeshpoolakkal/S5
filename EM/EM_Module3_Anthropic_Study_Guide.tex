@@ -1,0 +1,2190 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=18mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{pdflscape}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{needspace}
+
+\definecolor{anthDark}{HTML}{141413}
+\definecolor{anthLight}{HTML}{FAF9F5}
+\definecolor{anthMid}{HTML}{B0AEA5}
+\definecolor{anthSoft}{HTML}{E8E6DC}
+\definecolor{anthOrange}{HTML}{D97757}
+\definecolor{anthBlue}{HTML}{6A9BCC}
+\definecolor{anthGreen}{HTML}{788C5D}
+
+\pagecolor{anthLight}
+\color{anthDark}
+
+\setmainfont{Liberation Serif}[Ligatures=TeX]
+\newfontfamily\HeadingFont{Poppins}[Ligatures=TeX]
+
+\setstretch{1.08}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\headheight}{22pt}
+
+\hypersetup{colorlinks=true,linkcolor=anthOrange,urlcolor=anthBlue,pdfauthor={OpenAI Codex},pdftitle={EM Module 3 Anthropic Study Guide}}
+
+\titleformat{\section}{\HeadingFont\fontsize{24}{28}\selectfont\color{anthDark}}{}{0pt}{}
+\titleformat{\subsection}{\HeadingFont\fontsize{16}{20}\selectfont\color{anthDark}}{}{0pt}{}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\HeadingFont\small EM Module 3 Study Guide}
+\fancyhead[R]{\color{anthMid}\small Synchronous Machines}
+\fancyfoot[C]{\color{anthMid}\thepage}
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{anthSoft}\leaders\hrule height \headrulewidth\hfill}}
+
+\newcommand{\partsummary}[3]{%
+  \begin{mdframed}[roundcorner=8pt,backgroundcolor=anthSoft,linecolor=#1,linewidth=1.2pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+  {\HeadingFont\fontsize{15}{18}\selectfont #2}\par
+  \vspace{0.35em}
+  {\color{anthDark}#3}
+  \end{mdframed}
+}
+
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[anthLight] (current page.south west) rectangle (current page.north east);
+  \fill[anthOrange!18] ([xshift=-12mm,yshift=-18mm]current page.north east) circle [radius=25mm];
+  \fill[anthBlue!20] ([xshift=18mm,yshift=20mm]current page.south west) circle [radius=28mm];
+  \fill[anthGreen!18] ([xshift=-5mm,yshift=55mm]current page.south east) rectangle ++(-38mm,18mm);
+  \fill[anthSoft] ([xshift=0mm,yshift=-40mm]current page.north west) rectangle ++(\paperwidth,-20mm);
+\end{tikzpicture}
+\vspace*{24mm}
+{\HeadingFont\fontsize{30}{34}\selectfont\color{anthDark}Electrical Machines\\[0.2em]Module 3 Study Guide\par}
+\vspace{5mm}
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthOrange}Synchronous Machines\par}
+\vspace{10mm}
+{\large This guide combines all three source slide decks into one branded study PDF. It includes cleaned reading notes first and every original slide in the appendix so no material is lost.\par}
+\vfill
+\begin{mdframed}[roundcorner=8pt,backgroundcolor=anthDark,linecolor=anthDark,linewidth=0pt,innerleftmargin=14pt,innerrightmargin=14pt,innertopmargin=10pt,innerbottommargin=10pt]
+{\color{anthLight}\HeadingFont\fontsize{13}{16}\selectfont Anthropic Brand Styling}\par
+{\color{anthLight}\small Palette: \texttt{\#141413}, \texttt{\#FAF9F5}, \texttt{\#B0AEA5}, \texttt{\#E8E6DC}, \texttt{\#D97757}, \texttt{\#6A9BCC}, \texttt{\#788C5D}. Headings use Poppins when available. Body text uses Lora when available, with serif fallback when not present on the system.}
+\end{mdframed}
+\vspace{8mm}
+{\color{anthMid}\small Generated from: EM\_Module 3\_Part1 (1).pdf, EM\_Module 3\_Part2.pdf, EM\_Module 3\_Part3.pdf\par}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Module Roadmap}
+This document is structured in two layers: a readable study section for revision, followed by a full appendix containing every original slide exactly as supplied.
+
+\partsummary{anthOrange}{Part 1: Generator Fundamentals}{Principle of operation of the 3-phase synchronous generator, AC generation, EMF equation, and the main constructional classifications of alternators.}
+\partsummary{anthBlue}{Part 2: Load Behaviour and Synchronisation}{Armature reaction, synchronous impedance, phasor diagrams, voltage regulation by EMF and MMF methods, and synchronising conditions and lamp methods.}
+\partsummary{anthGreen}{Part 3: Synchronous Motor}{Construction, working principle, why the motor is not self-starting, starting methods, and the basic equivalent-circuit idea.}
+
+\section{Study Notes}
+The note cards below are cleaned from the slide text for easier reading. Use the appendix whenever a page is mainly diagrammatic or whenever you want the exact original slide layout.
+
+\subsection{Part 1: Synchronous Generator Basics, EMF Equation and Construction}
+Principle of operation, AC generation, EMF equation, rotor and stator construction, and alternator classification.
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}PCEOT402 · ELECTRICAL MACHINES Module 3 Synchronous Machines\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 1 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Three phase Synchronous Machine\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 2 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+• Principle of Operation of 3-phase synchronous generator – classification -\\
+• constructional features - EMF equation – coil-span factor and distribution factor (sinusoidal flux distribution only) – numerical problems Synchronous generator on no-load – open circuit characteristics –\\
+• synchronous generator on load – armature reaction – effect of armature reaction\\
+• Equivalent circuit - phasor diagram – voltage regulation –\\
+• predetermination of voltage regulation by emf and mmf method –\\
+• Parallel operation - synchronous generator on infinite bus-bar – conditions – methods of synchronisation – dark lamp method – bright lamp method (2 hours)\\
+• Synchronous motor – rotating magnetic field (no derivation) - principle of operation – starting methods\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}• Principle of Operation of 3-phase synchronous generator\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 3 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}AC Generator\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 4 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+• Faraday’s law dictates that if a coil of N turns experiences a change in magnetic flux, then the induced voltage V is given by dΦ V =N dt\\
+\smallskip
+• If a coil of area A rotates with respect to a field B, and if at a particular time it is at an angle θ to the field, then the flux linking the coil is BAcosθ, and the rate of change of flux is given by dΦ      d(sinθ ) dθ = BA         =    cosθ = ωcosθ dt        dt      dt\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Magnetic induction in a wire moving in a field.\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 5 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Fleming’s Right hand rule\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 6 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Fleming’s Right hand rule Used to determine the direction of emf induced\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 7 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+in a conductor The middle finger , the fore finger and thumb of\\
+the left hand are kept at right angles to one\\
+another. The fore finger represent the direction of magnetic field The thumb represent the direction of motion of the conductor The middle finger will indicate the direction of the inducted emf . This rule is used in DC Generators\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}AC generator with slip rings and brushes.\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 8 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}• Thus for the arrangement shown below dPhi       d(sintheta ) V =N      = NBA          = NBAomega costheta dt         dt dPhi V =N dt\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 9 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}• Wires connected to the rotating coil would get twisted\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 10 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+• Therefore we use circular slip rings with sliding contacts called brushes\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}• Therefore this arrangement produces a sinusoidal output as shown below\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 11 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}SYNCHRONOUS GENERATOR\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 12 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+CONSTRUCTION\\
+• rotor carry the “field windings” , while “armature windings” (or “stator windings”) carry the main voltages of machine in synchronous generator, rotor winding energized by dc source to develop rotor magnetic field\\
+\smallskip
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}rotor is turned by a prime mover, producing a rotating magnetic field which induce 3 phase voltages in stator windings\\
+\smallskip
+therefore:\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}rotor windings - field windings\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}stator windings - armature windings\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}3-phase synchronous generator – classification\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 13 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Based on Prime Mover • Hydro Generators – Driven by water turbines • Turbo Generators – Driven by steam turbines • Diesel Engine Generators – Driven by diesel engines • Gas Turbine Generators – Driven by gas turbines\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 14 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+Based on No. of Phase • Single phase •Three phase\\
+Based on type of roatating • Rotating Armature •Rotating Field\\
+Based on Rotor Construction •Salient Pole machine •Non Salient Pole Machine\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Advantages of rotating field and stationary armature type\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 15 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+High voltage generation\\
+Better insulation\\
+Rotor weight – less\\
+Current collection - easy\\
+Lesser number of slip rings\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Alternator - Construction\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 16 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+Standard construction consists of : Armature windings on stationery stator Field poles on rotor. The field windings are excited by DC supply from the exciter and given through the slip rings\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Types of alternators based on rotor construction\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 17 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+Salient pole alternator\\
+Non salient pole or Turbo or\\
+Cylindrical rotor alternator\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Rotor Non salient pole\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 18 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+Salient pole alternator           or Turbo or cylindrical rotor alternator\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}• Rotor of synchronous machine can be\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 19 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+Nonsalient: 2 pole rotor Salient: six-pole rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Salient pole type alternator\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 20 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+It consists of cast iron frame which supports the\\
+silicon steel laminated ( bundling of thin sheets)\\
+armature core .\\
+The core has slots on its inner periphery for housing\\
+the conductor .\\
+Silicon steel material reduces the hysteresis loss\\
+and the lamination structure reduces the eddy current\\
+loss.\\
+Suitable for low and medium speed alternator\\
+( Ex Hydro alternator )\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Advantages of a smooth cylindrical type rotor\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 21 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+Less windage loss\\
+No need of damper winding\\
+Good balancing of the rotor\\
+Sound less running\\
+Good cooling to the field because it is a\\
+distributed one.\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}SYNCHRONOUS GENERATOR\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 22 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+CONSTRUCTION\\
+• Photograph of a salient 8-pole synchronous machine rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}SYNCHRONOUS GENERATOR\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 23 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+CONSTRUCTION\\
+• Rotor experience varying magnetic fields, therefore is constructed of thin laminations to reduce eddy current losses\\
+• To supply the rotor winding while it is rotating, special arrangement employed to connect its terminal to dc supply\\
+\textcolor{anthBlue}{\textbf{1.}}\hspace{0.5em}supply dc power from an external dc source to rotor by means of slip rings\\
+\textcolor{anthBlue}{\textbf{2.}}\hspace{0.5em}supply dc power from a special dc power source mounted on shaft of rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}SYNCHRONOUS GENERATOR\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 24 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+CONSTRUCTION\\
+• Rotor of synchronous machine can be\\
+Nonsalient: 2 pole rotor Salient: six-pole rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Non-Salient Pole (Cylindrical Salient Pole Rotor Rotor)\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 25 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+Rotor Construction    Projecting poles mounted on rotor    Smooth solid cylindrical rotor\\
+\smallskip
+Air Gap               Non-uniform air gap                  Uniform air gap Small diameter, long axial\\
+Shape                 Large diameter, short axial length length\\
+\smallskip
+Speed of Operation    Low speed (100–600 rpm)              High speed (1500–3000 rpm) Large number of poles (6–60\\
+\smallskip
+Number of Poles                                            Usually 2 or 4 poles poles)\\
+\smallskip
+Mechanical Strength   Lower mechanical strength            Very high mechanical strength Thermal \& nuclear power\\
+\smallskip
+Applications          Hydroelectric power plants plants Hydrogen or forced cooling (in\\
+\smallskip
+Cooling               Natural or air cooling turbo generators)\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}SYNCHRONOUS GENERATOR\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 26 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+CONSTRUCTION\\
+• salient 8-pole synchronous machine rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}SYNCHRONOUS GENERATOR\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 27 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+CONSTRUCTION\\
+• Rotor experience varying magnetic fields, therefore is constructed of thin laminations to reduce eddy current losses\\
+• To supply the rotor winding while it is rotating, special arrangement employed to connect its terminal to dc supply\\
+\textcolor{anthGreen}{\textbf{1.}}\hspace{0.5em}supply dc power from an external dc source to rotor by means of slip rings\\
+\textcolor{anthGreen}{\textbf{2.}}\hspace{0.5em}supply dc power from a special dc power source mounted on shaft of rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 28\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 28 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}SYNCHRONOUS GENERATOR Speed of rotation of synchronous generator\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 29 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+• synchronous generators are synchronous, during their operation\\
+means: electrical frequency is synchronized with mechanical speed of rotor\\
+• Relation between electrical frequency of stator and mechanical speed of rotor as shown before:\\
+•     f =Ns p / 120 f : electrical frequency in Hz Ns: speed of rotor in r/min p: number of poles\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Winding factor\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 30 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Pitch factor\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 31 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Distribution factor\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 32 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 33\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 33 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}EMF Equation\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 34 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 35\par}
+{\color{anthMid}\small Part 1 \textbullet{} Slide 35 \textbullet{} Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\subsection{Part 2: Load Operation, Regulation and Synchronisation}
+Armature reaction, synchronous impedance, phasor diagrams, voltage regulation, and methods of synchronisation.
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}PCEOT402 · ELECTRICAL MACHINES Module 3 Synchronous Machines\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 1 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Three phase Synchronous Machine\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 2 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+• Synchronous generator on no-load – open circuit characteristics –\\
+• synchronous generator on load – armature reaction – effect of armature reaction\\
+• Equivalent circuit - phasor diagram – voltage regulation –\\
+• predetermination of voltage regulation by emf and mmf method\\
+• Parallel operation - synchronous generator on infinite bus-bar –\\
+• conditions – methods of synchronisation – dark lamp method – bright lamp method\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Leakage reactance\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 3 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Armature Reaction\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 4 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+• Effect of armature flux on main flux\\
+• In alternator it depend on type of load\\
+• Effects are • Magnetising • Demagnetising • Cross magnetising\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}i) At upf load\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 5 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}ii) Zero power factor lagging\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 6 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}iii) Zero power factor leading\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 7 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchronous Impedance\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 8 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+• Synchronous Reactance\\
+\smallskip
+• Synchronous Impedance\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Alternator on load Phasor Diagram\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 9 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Equivalent Circuit\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 10 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 11\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 11 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Load Characteristics\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 12 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Voltage Regulation\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 13 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}EMF Method (Synchronous Impedance Method)\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 14 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 15\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 15 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}MMF ( Ampere Turn Method)\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 16 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Parallel Operation of Alternators\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 17 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+Efficiency\\
+Reliability or Continuity of Service\\
+Maintenance and Repair\\
+Physical Size\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Requirements for Parallel Operation\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 18 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+• Alternators must have same output voltage rating\\
+• Speeds of the machines should be such as to generate same frequency\\
+• Alternators should be of same type so as to generate voltages of same waveform\\
+• Prime movers of the alternators should have same speed-load characteristics\\
+• Alternators should have reactances in their armature\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Conditions for Synchronising\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 19 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Synchronising - The process of connecting an alternator in parallel\\
+with another alternator or with the common bus bar.\\
+\smallskip
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}For satisfactory operation,\\
+\smallskip
+• The terminal voltage of incoming machine must be exactly equal to that of running machines or common bus bar\\
+• The speed of incoming machine must be such that its frequency f\\
+equals to bus bar frequency\\
+• Phase of incoming machine voltage must be the same as that of the bus bar voltage relative to the load.\\
+• For three phase alternator, the phase sequence of incoming machine must be same as that of bus bar.\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Methods of Synchronisation\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 20 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+Synchronising of three phase alternators 1   •   Three Dark Lamp Method 2   •   Bright lamp Method (Two Bright and One Dark Lamp Method) •   Synchroscope\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Lamp Method Synchronisation of Single-Phase Alternators Figure 8 : Synchronising of single phase alternators\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 21 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Dark Lamp Method\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 22 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+Equality of terminal voltages can be determined by connecting\\
+voltmeters to the incoming and running alternators.\\
+Equality of frequency and phasing can be determined with the help of\\
+synchronising lamps.\\
+Let alternator B is to be paralleled with alternator A,\\
+Prime mover of Alternator B is started and brought up close to the\\
+rated speed.\\
+Alternator B is excited and its voltage is raised by increasing the\\
+excitation.\\
+If frequencies of alternators A \& B are exactly same and their terminal\\
+voltages w.r.t local series circuit -> no resultant voltage will act across\\
+lamps L1 and L2 -> Lamps will remain dark.\\
+If frequencies of A \& B are not equal -> flickering of lamps. Frequency\\
+of flickering = Difference of frequencies of two alternators.\\
+==> greater the difference in frequencies, greater will be the\\
+frequency of flicker\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Dark Lamp Method\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 23 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+Synchronising is done at the middle of dark period.\\
+”At the time of synchronising of alternators, the speed of the\\
+incoming machine is adjusted until the lamps go in and out very\\
+slowly, the terminal voltage of the incoming alternator is made\\
+equal to bus bar voltage by adjusting the excitation of the\\
+incoming alternator and then switch of incoming alternator is\\
+closed in the middle of the dark period.”\\
+But it is not so easy to judge the middle of dark period.\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Bright Lamp Method Figure 9 : Synchronising of single phase alternators\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 24 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Bright Lamp Method\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 25 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+Easy to judge the middle of bright period\\
+In Bright lamp method, lamps are cross-connected.\\
+Maximum voltage across lamps will occur when alternator C is in\\
+phase opposition with alternator A.\\
+Magnitude of maximum voltage that can exist across a lamp is\\
+double that of the voltage of one machine.\\
+After doing the adjustments, the synchronising switch is closed at\\
+the middle of bright period.\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchronization of 3-Phase Alternators\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 26 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+”Phasing out the alternator” -> The process of checking the\\
+phase sequence and getting it correct\\
+\smallskip
+1   Three Dark Lamp Method\\
+2   Two Bright and One Dark Lamp Method\\
+3   Using Synchroscope\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Three Dark Lamp Method Figure 10 : Synchronising of 3-Phase Alternators\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 27 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Three Dark Lamp Method\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 28 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+Prime mover of alternator B is started and brought up close to the\\
+rated speed.\\
+Then alternator B is excited and its voltage is raised by increasing the\\
+excitation.\\
+If the incoming alternator B is properly connected, all the three lamps\\
+should become bright and dark together.\\
+If they bright and dim in sequence   ==>       incoming alternator B is\\
+not properly connected with the bus-bars and the phase sequence of\\
+incoming alternator B must be reversed relative to the\\
+system.(Interchange any two leads on either the alternator side or the\\
+line side of the switch)\\
+The speed of incoming machine is further adjusted until the lamps\\
+flicker at a very rate and voltage is made equal to the bus bar voltage\\
+by adjusting the excitation.\\
+The synchronising switch is closed at the instant all the three lamps\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Two Bright and One Dark Lamp Method Figure 11 : Synchronising of 3-Phase Alternators\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 29 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Two Bright and One Dark Lamp Meth When incoming alternator is in synchronism with running machine, lamps L1 and L3 are bright and L2 is dark. Since near the point of synchronism, the brightness of one lamp increases and of another decreases. The instant at which the incoming machine is in synchronism with the bus-bars can be accurately determined and the paralleling switch will be closed at this instant. If the incoming machine is too fast to voltage across L3 decreases, L1 increases and L2 decreases. If the incoming machine is too slow to voltage across L3 increases, L1 decreases and L2 increases. Hence when the three lamps are placed in a ring, a light wave travelling in counter-clockwise direction indicates that the incoming machine is slow and light wave travelling in clockwise direction indicates that the incoming machine is fast. Synchronising switch is closed when changes in light are very slow and at the instant the lamp L is2dark. Dept. of EEE, MACE)   Synchronous and Induction Machines   May 1\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 30 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 31\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 31 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Using Three Limbed Transformer and Lamp Figure 12 : Three Limbed Transformer and Lamp\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 32 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchroscope\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 33 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+Synchroscope -> Instrument indicating the difference of phase and\\
+frequency between two voltages.\\
+Its a split-phase motor\\
+Torque is developed if the frequencies of the two voltages differ.\\
+Voltages from corresponding phases of incoming and running\\
+alternators are applie to synchroscope.\\
+When frequencies are equal, no torque is exerted on the pointer\\
+and the pointer stops at the middle of the dial.\\
+When pointerstops at vertical position, the frequencies are equal,\\
+the voltages are in phase and the paralleling switch can be closed.\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchronising Current Figure 15 : Voltage Phasors\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 34 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchronising Current\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 35 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+When two alternators are in synchronism -> have equal emfs in\\
+exact phase opposition -> no circulating current (Fig. (a))\\
+When induced emfs are equal in magnitude but not in exact phase\\
+opposition -> resultant emf around the local circuit /= zero ->\\
+causes flow of current -> Synchronising current(Isy )\\
+-> Let alternator-2 tends to retard,\\
+E2 falls back by a phase angle δ electrical degrees\\
+|E1| = |E2| = E\\
+but phase difference = 180 - δ\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}to Resultant emf(ER ) 180 − ER = 2ECos    delta 2 delta = 2ECos 90 −               2 = 2ESindelta delta = 2E × = Edelta to Synchroni sing ER      Edelta current(I I s    = sy = y)    Zcs    Zcs\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 36 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchronising Current\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 37 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+Isy lags behind ER by an angle θ\\
+If Rce <<< Xcs ,\\
+\smallskip
+ER Isy = Xcs\\
+==> Isy lags ER by 90o ==> almost in phase with E1\\
+Isy -> generating current w.r.t machine 1 and motoring current w.r.t\\
+machine 2\\
+Isy sets up synchronising torque(Tsy ) which tends to accelerate\\
+machine no.2 and decelerate machine no.1\\
+Any departure from synchronism results in development of\\
+synchronising torque which tends to keep the machines in\\
+synchronism\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchronising Power\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 38 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+Power supplied by Machine no.1 = E1Isy CosΦ1\\
+Power received by Machine no.2 = E2Isy Cos (180 − Φ2)\\
+Power supplied by Machine no.1 = Power received by Machine no.2\\
++ copper losses\\
+Power supplied by Machine no.1 is called as Synchronising\\
+power(Psy ) Psy = E1Isy CosΦ1 = E1Isy Eδ =E× X cs δE 2 = Xcs\\
+\smallskip
+Total synchronising power = 3P sy = 3δE Xcs\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Synchronising Torque 2πNs 3Psy = T sy ×\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 39 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\smallskip
+Therefore Synchronising torque, 3Psy × 60 sy   T       = 2πNs\\
+\smallskip
+where Ns is the synchronous speed in rpm\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Effects of Changing Excitation Figure 16 : (a)             Figure 17 : (b)\par}
+{\color{anthMid}\small Part 2 \textbullet{} Slide 40 \textbullet{} Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\subsection{Part 3: Synchronous Motor Construction and Starting}
+Construction of the synchronous motor, principle of operation, failure to self-start, starting methods, and equivalent circuit.
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}MODULE III\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 1 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+Synchronous motor – Construction, Principle of operation, Effect of excitation on armature\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 2\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 2 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Construction of Synchronous motor\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 3 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}It has mainly 2 parts\\
+-\\
+\textcolor{anthGreen}{\textbf{1.}}\hspace{0.5em}Stator\\
+\textcolor{anthGreen}{\textbf{2.}}\hspace{0.5em}Rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}1. Stator or Armature\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 4 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Stator is the stationary part\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Main parts of stator are stator core, stator winding \& stator frame\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Stator core contain an iron ring made of silicon steel laminations\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Slots are cut on the inner periphery of the stator core, in which stator conductors are placed\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Stator core is laminated to reduce eddy current loss\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}axial \& radial ventilating ducts to provide efficient cooling\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Slots can be open, semi closed or totally closed\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Open slots are commonly used\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Stator contain a 3 phase winding which is normally star connected\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 5 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Stator conductors are made of copper or aluminium\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Windings can be single layer or double layer, lap or wave, concentrated or distributed\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}The whole structure is held in a frame made of cast iron or welded steel plate\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}2. Rotor or Field magnet system\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 6 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}It is the rotating part of the machine\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Rotor contain Field magnets \& are supplied with DC voltage\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}For this external DC sources are used \& exciting current is supplied to rotor through slip rings \& brushes\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}An exciter mounted on the motor shaft can also be used to provide necessary excitation.\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Normally, the rotor is having a salient pole structure\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Field poles contains laminated pole core \& pole shoe (to reduce eddy current losses) and field windings\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Slide 7\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 7 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textit{This slide is primarily a title page or visual reference. The original slide is preserved in the appendix.}
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Now stator North pole (Ns) \& rotor North pole (Nr) will repel each other \& rotor experiences a torque in anticlockwise direction\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 8 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}After a period of half cycle, stator poles changes their position but rotor poles remain at previous position\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Now stator South pole (Ss) \& rotor North pole (Nr) will attract each other \& rotor experiences a torque in clockwise direction\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Since stator poles changes their polarity rapidly, rotor experiences torque in opposite directions in a cycle.\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Due to high inertia of rotor, motor fails to start\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}How to get unidirectional torque?\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 9 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}If rotor is rotated by some external means at a speed near synchronous speed, in the same direction of stator magnetic field, then rotor will experience a unidirectional torque\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Now stator South pole (Ss) \& rotor North pole (Nr) will attract each other \& rotor experiences a torque in clockwise direction\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}After a period of half cycle, stator \& rotor magnetic field poles changes their position as shown in second figure\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}rotor experiences a torque in clockwise direction.\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Under this condition, stator \& rotor poles of opposite polarity experiences a strong attraction \& the mutual attraction locks the rotor \& stator together\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 10 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Now if the external prime mover is removed, rotor will continue to rotate at synchronous speed due to magnetic locking between stator \& rotor\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthBlue,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Starting methods of Synchronous motor\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 11 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Synchronous motor has no self starting torque \& motor must first be brought upto synchronous speed by some external means for getting unidirectional torque in rotor.\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Various methods of starting of synchronous motors are\\
+\textcolor{anthBlue}{\textbf{1.}}\hspace{0.5em}From DC source\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}If a DC supply \& a DC motor (shunt/compound) is available, the Synchronous motor is coupled to DC motor \& is started using DC motor\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}DC motor is coupled to Synchronous motor and dc motor is started \& rotated at synchronous speed\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}AC supply is given to Synchronous motor (make sure that rotating magnetic field \& rotor of synchronous motor are rotating in same direction)\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}Now DC field excitation is given \& rotor gets locked to stator rotating magnetic field \& continue to rotate at synchronous speed\\
+\textcolor{anthBlue}{\textbullet}\hspace{0.65em}The DC motor is now disconnected from supply\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthGreen,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}2. By using an AC motor\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 12 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Here a small AC induction motor (called pony motor) is used for starting the Synchronous motor\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}First the induction motor is started \& will rotate Synchronous motor rotor at near synchronous speed\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}AC supply is given to Synchronous motor (make sure that rotating magnetic field \& rotor of synchronous motor are rotating in same direction)\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Now DC field excitation is given \& rotor gets locked to stator rotating magnetic field \& continue to rotate at synchronous speed\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}The Induction motor is now disconnected from supply\\
+\textcolor{anthGreen}{\textbf{3.}}\hspace{0.5em}By providing damper windings\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Synchronous motor can be made self starting by providing a special winding on rotor poles known as damper winding or squirrel cage winding\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Damper winding consist of short circuited copper bars placed in rotor poles\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}When AC supply is given to stator, the synchronous motor will start as an Induction motor \& rotates at a speed near synchronous speed\\
+\textcolor{anthGreen}{\textbullet}\hspace{0.65em}Now DC field excitation is given \& rotor gets locked to stator rotating magnetic field \& continue to rotate at synchronous speed\\
+
+}
+\end{mdframed}
+
+\Needspace{12\baselineskip}
+\begin{mdframed}[roundcorner=9pt,backgroundcolor=white,linecolor=anthOrange,linewidth=1pt,innerleftmargin=12pt,innerrightmargin=12pt,innertopmargin=10pt,innerbottommargin=10pt,skipabove=8pt,skipbelow=10pt]
+{\HeadingFont\fontsize{15}{18}\selectfont\color{anthDark}Equivalent circuit of a Synchronous motor\par}
+{\color{anthMid}\small Part 3 \textbullet{} Slide 13 \textbullet{} Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.5em}
+{\small
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}In a synchronous motor we are giving two supply, DC supply to rotor \& 3 phase AC supply to stator\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}When AC supply is given to stator, a current flows through stator windings\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Stator windings have resistance (Ra) \& synchronous reactance (Xs)\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}Also when a DC supply is given to rotor, a magnetic field is produced \& it links stator conductors,\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}As rotor rotates, flux linked with stator conductors changes \& an EMF induces in stator windings. This is called back EMF (Eb) or counter EMF\\
+\textcolor{anthOrange}{\textbullet}\hspace{0.65em}The back EMF opposes the stator supply voltage\\
+
+}
+\end{mdframed}
+
+\clearpage
+\section{Original Slide Appendix}
+Every source slide is embedded below for exact reference. This appendix preserves diagrams, formula layouts, and any visual content that may not extract cleanly as text.
+
+\subsection{Part 1: Original Slides}
+
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 1\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=1,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 2\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=2,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 3\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=3,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 4\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=4,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 5\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=5,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 6\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=6,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 7\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=7,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 8\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=8,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 9\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=9,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 10\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=10,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 11\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=11,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 12\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=12,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 13\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=13,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 14\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=14,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 15\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=15,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 16\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=16,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 17\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=17,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 18\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=18,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 19\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=19,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 20\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=20,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 21\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=21,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 22\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=22,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 23\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=23,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 24\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=24,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 25\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=25,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 26\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=26,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 27\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=27,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 28\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=28,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 29\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=29,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 30\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=30,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 31\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=31,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 32\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=32,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 33\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=33,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 34\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=34,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 1 \textbullet{} Slide 35\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part1 (1).pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=35,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part1.pdf}
+\end{center}
+\end{landscape}
+\subsection{Part 2: Original Slides}
+
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 1\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=1,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 2\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=2,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 3\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=3,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 4\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=4,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 5\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=5,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 6\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=6,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 7\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=7,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 8\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=8,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 9\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=9,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 10\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=10,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 11\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=11,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 12\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=12,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 13\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=13,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 14\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=14,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 15\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=15,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 16\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=16,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 17\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=17,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 18\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=18,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 19\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=19,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 20\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=20,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 21\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=21,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 22\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=22,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 23\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=23,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 24\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=24,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 25\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=25,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 26\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=26,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 27\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=27,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 28\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=28,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 29\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=29,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 30\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=30,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 31\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=31,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 32\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=32,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 33\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=33,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 34\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=34,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 35\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=35,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 36\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=36,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 37\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=37,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 38\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=38,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 39\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=39,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 2 \textbullet{} Slide 40\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part2.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=40,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part2.pdf}
+\end{center}
+\end{landscape}
+\subsection{Part 3: Original Slides}
+
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 1\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=1,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 2\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=2,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 3\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=3,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 4\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=4,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 5\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=5,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 6\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=6,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 7\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=7,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 8\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=8,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 9\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=9,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 10\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=10,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 11\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=11,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 12\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=12,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\clearpage
+\begin{landscape}
+\thispagestyle{fancy}
+{\HeadingFont\fontsize{15}{18}\selectfont Part 3 \textbullet{} Slide 13\par}
+{\color{anthMid}\small Source: EM\_Module 3\_Part3.pdf\par}
+\vspace{0.6em}
+\begin{center}
+\includegraphics[page=13,width=0.92\linewidth,height=0.82\textheight,keepaspectratio]{build/part3.pdf}
+\end{center}
+\end{landscape}
+\end{document}

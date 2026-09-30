@@ -1,0 +1,976 @@
+% ============================================================
+%  PCEOT402 – Electrical Machines
+%  Module 3: Synchronous Machines – Complete Study Notes
+%  Built from Parts 1, 2 & 3 and styled to Anthropic branding
+% ============================================================
+\documentclass[12pt,a4paper]{article}
+
+% ── packages ────────────────────────────────────────────────
+\usepackage[a4paper,
+            top=2.5cm, bottom=2.5cm,
+            left=2.2cm, right=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,multirow,array,longtable}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,theorems}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing}
+\usepackage{circuitikz}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{pdfpages}
+\usepackage{pdflscape}
+
+% ── Anthropic Brand Colour Palette ───────────────────────────
+\definecolor{anthDark}{HTML}{141413}
+\definecolor{anthLight}{HTML}{FAF9F5}
+\definecolor{anthMidGray}{HTML}{B0AEA5}
+\definecolor{anthLightGray}{HTML}{E8E6DC}
+\definecolor{anthOrange}{HTML}{D97757}
+\definecolor{anthBlue}{HTML}{6A9BCC}
+\definecolor{anthGreen}{HTML}{788C5D}
+\definecolor{anthOrangeLight}{HTML}{F5DDD5}
+\definecolor{anthBluePale}{HTML}{DDEAF5}
+\definecolor{anthGreenPale}{HTML}{DDE5D2}
+\definecolor{anthDarkLight}{HTML}{3A3A38}
+
+% ── typography ───────────────────────────────────────────────
+\IfFileExists{assets/fonts/Lora/LoraVar.ttf}{
+  \setmainfont{LoraVar}[
+    Path=assets/fonts/Lora/,
+    Extension=.ttf,
+    UprightFont=*,
+    ItalicFont=LoraItalicVar,
+    BoldFont=*,
+    BoldItalicFont=LoraItalicVar
+  ]
+}{
+  \setmainfont{Liberation Serif}
+}
+\IfFontExistsTF{Poppins}{
+  \newfontfamily\HeadingFont{Poppins}
+}{
+  \newfontfamily\HeadingFont{Liberation Sans}
+}
+
+% ── page look ────────────────────────────────────────────────
+\pagecolor{anthLight}
+\color{anthDark}
+\setstretch{1.08}
+
+% ── hyperref setup ───────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=anthDark,
+  urlcolor=anthBlue,
+  pdftitle={PCEOT402 – Module 3: Synchronous Machines},
+  pdfauthor={Electrical Machines},
+}
+
+% ── section/subsection formatting ────────────────────────────
+\titleformat{\section}[block]
+  {\HeadingFont\color{anthLight}\Large\bfseries}
+  {\thesection\quad}
+  {0pt}
+  {\colorbox{anthDark}\bgroup\parbox{\dimexpr\linewidth-2\fboxsep\relax}}
+  [\egroup\vspace{2pt}]
+
+\titleformat{\subsection}
+  {\HeadingFont\color{anthDark}\large\bfseries}
+  {\thesubsection}
+  {0.6em}
+  {}
+
+\titleformat{\subsubsection}
+  {\HeadingFont\color{anthBlue}\normalsize\bfseries}
+  {\thesubsubsection}
+  {0.5em}
+  {}
+
+\titlespacing*{\section}{0pt}{16pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+\titlespacing*{\subsubsection}{0pt}{8pt}{3pt}
+
+% ── tcolorbox environments ───────────────────────────────────
+\tcbset{
+  studybox/.style={
+    breakable,
+    colback=anthLightGray,
+    colframe=anthDark,
+    colbacktitle=anthDark,
+    coltitle=anthLight,
+    fonttitle=\HeadingFont\bfseries,
+    arc=3pt,
+    boxrule=0.8pt,
+    left=8pt,
+    right=8pt,
+    top=8pt,
+    bottom=8pt,
+  },
+  formulabox/.style={
+    breakable,
+    colback=anthBluePale,
+    colframe=anthBlue,
+    arc=3pt,
+    boxrule=0.7pt,
+    left=10pt,
+    right=10pt,
+    top=6pt,
+    bottom=6pt,
+  },
+  definebox/.style={
+    breakable,
+    colback=anthDark!6,
+    colframe=anthDark,
+    colbacktitle=anthBluePale,
+    coltitle=anthDark,
+    fonttitle=\HeadingFont\bfseries\small,
+    arc=3pt,
+    boxrule=0.6pt,
+    left=8pt,
+    right=8pt,
+    top=6pt,
+    bottom=6pt,
+  },
+  importantbox/.style={
+    breakable,
+    colback=anthOrangeLight,
+    colframe=anthOrange,
+    colbacktitle=anthOrangeLight,
+    coltitle=anthOrange,
+    fonttitle=\HeadingFont\bfseries\small,
+    arc=3pt,
+    boxrule=0.7pt,
+    left=8pt,
+    right=8pt,
+    top=8pt,
+    bottom=8pt,
+  },
+  notebox/.style={
+    breakable,
+    colback=anthGreenPale,
+    colframe=anthGreen,
+    arc=2pt,
+    boxrule=0.5pt,
+    left=6pt,
+    right=6pt,
+    top=4pt,
+    bottom=4pt,
+  },
+  examplebox/.style={
+    breakable,
+    colback=anthLightGray,
+    colframe=anthMidGray,
+    colbacktitle=anthMidGray,
+    coltitle=anthDark,
+    fonttitle=\HeadingFont\bfseries,
+    arc=3pt,
+    boxrule=0.6pt,
+    left=8pt,
+    right=8pt,
+    top=8pt,
+    bottom=8pt,
+  },
+}
+
+\newtcolorbox{studybox}[1][]{studybox, title={#1}}
+\newtcolorbox{formulabox}{formulabox}
+\newtcolorbox[auto counter,number within=section]{definebox}[1][]{
+  definebox, title={Definition~\thetcbcounter\ — #1}}
+\newtcolorbox{importantbox}[1][Key Point]{importantbox, title={#1}}
+\newtcolorbox{notebox}{notebox}
+\newtcolorbox{examplebox}[1][]{examplebox, title={#1}}
+
+% ── table helpers ────────────────────────────────────────────
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\newcommand{\thead}[1]{\cellcolor{anthDark}\color{anthLight}\HeadingFont\bfseries #1}
+\newcommand{\trow}[0]{\rowcolor{anthLightGray}}
+\newcommand{\troww}[0]{\rowcolor{anthBluePale}}
+
+% ── header / footer ──────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{anthDark}\HeadingFont\textbf{PCEOT402 – Electrical Machines}}
+\fancyhead[R]{\small\color{anthDark}\HeadingFont Module 3: Synchronous Machines}
+\fancyfoot[C]{\color{anthMidGray}\small\thepage}
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headrule}{\color{anthOrange}\hrule width\headwidth height\headrulewidth}
+
+% ── misc macros ──────────────────────────────────────────────
+\newcommand{\degr}{^\circ}
+\newcommand{\Eph}{E_{\mathrm{ph}}}
+\newcommand{\Vt}{V_t}
+\newcommand{\Ef}{E_f}
+\newcommand{\Ia}{I_a}
+\newcommand{\Ra}{R_a}
+\newcommand{\Xs}{X_s}
+\newcommand{\Phim}{\Phi_m}
+\newcommand{\kp}{k_p}
+\newcommand{\kd}{k_d}
+\newcommand{\kw}{k_w}
+
+% ============================================================
+\begin{document}
+
+% ── TITLE PAGE ──────────────────────────────────────────────
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[anthDark] (current page.north west) rectangle
+    ([yshift=-7.8cm]current page.north east);
+  \fill[anthOrange!70] ([yshift=-7.8cm]current page.north west) rectangle
+    ([yshift=-8.25cm]current page.north east);
+  \fill[anthBlue!22] ([xshift=-1.2cm,yshift=-1.2cm]current page.north east) circle (1.9cm);
+  \fill[anthGreen!20] ([xshift=1.7cm,yshift=1.4cm]current page.south west) circle (2.3cm);
+\end{tikzpicture}
+
+\vspace*{0.7cm}
+\begin{center}
+  {\color{anthLight}\HeadingFont\fontsize{28}{34}\selectfont\bfseries PCEOT402}\\[6pt]
+  {\color{anthLight}\HeadingFont\fontsize{22}{28}\selectfont\bfseries Electrical Machines}\\[10pt]
+  {\color{anthOrange!92}\HeadingFont\fontsize{16}{22}\selectfont Module 3 — Synchronous Machines}\\[4pt]
+  {\color{anthLightGray}\large Complete Study Notes from Parts 1, 2 \& 3}
+\end{center}
+
+\vspace{4.4cm}
+
+\begin{tcolorbox}[studybox={Topics Covered in This Module}]
+\begin{enumerate}[leftmargin=*, label=\textcolor{anthOrange}{\HeadingFont\bfseries\arabic*.}]
+  \item Principle of operation of the 3-phase synchronous generator
+  \item Classification and constructional features of alternators
+  \item Speed of rotation, pole relation and generated frequency
+  \item Pitch factor, distribution factor, winding factor and EMF equation
+  \item Open-circuit characteristics and no-load operation
+  \item Armature reaction and synchronous reactance / impedance
+  \item Equivalent circuit, load phasor diagrams and voltage regulation
+  \item Predetermination of regulation by EMF and MMF methods
+  \item Parallel operation of alternators and synchronising conditions
+  \item Dark-lamp, bright-lamp and synchroscope methods
+  \item Synchronising current, synchronising torque and synchronising power
+  \item Synchronous motor construction and principle of operation
+  \item Why the motor is not self-starting and practical starting methods
+  \item Equivalent circuit of the synchronous motor and effect of excitation
+  \item Original slide appendix for exact source-page reference
+\end{enumerate}
+\end{tcolorbox}
+
+\vspace{0.8cm}
+\begin{notebox}
+\textbf{How this document is organised:} the main body is written as clean study notes in the
+style of your Module 2 document. An appendix at the end embeds the original slide decks so
+that no source material is lost.
+\end{notebox}
+
+\newpage
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Principle of Operation of a 3-Phase Synchronous Generator}
+% ============================================================
+
+\begin{definebox}[Synchronous Generator]
+A \textbf{synchronous generator} or \textbf{alternator} is an AC generator in which the rotor
+magnetic field is excited by DC and driven by a prime mover so that a 3-phase emf is induced in
+the stator armature windings.
+\end{definebox}
+
+\subsection{Physical Idea}
+
+\begin{itemize}[leftmargin=*]
+  \item The rotor carries the \textbf{field winding}; the stator carries the \textbf{armature winding}.
+  \item DC excitation establishes fixed rotor poles.
+  \item When the rotor is driven mechanically, the rotor field sweeps past the stationary stator conductors.
+  \item Hence the flux linking each stator phase changes continuously and an emf is induced according to Faraday's law.
+  \item Since the stator contains a 3-phase distributed winding, the induced voltages are 3-phase and displaced by $120\degr$ electrical.
+\end{itemize}
+
+\subsection{Faraday-Law Basis}
+
+\begin{formulabox}
+\[
+  e = N\frac{d\Phi}{dt}
+\]
+For a rotating coil in a sinusoidally distributed field, the flux linkage varies sinusoidally; hence the induced emf is also sinusoidal.
+\end{formulabox}
+
+\begin{importantbox}[AC Generation in One Line]
+Mechanical rotation \(\rightarrow\) changing magnetic flux linkage \(\rightarrow\) induced alternating emf.
+\end{importantbox}
+
+\subsection{Why Slip Rings are Used}
+
+\begin{itemize}[leftmargin=*]
+  \item If the output were taken directly from the rotating coil, the connecting wires would twist.
+  \item Hence \textbf{slip rings} and \textbf{brushes} are used for a rotating coil arrangement.
+  \item In a practical alternator, however, the armature is stationary and only the rotor field needs DC excitation through slip rings.
+\end{itemize}
+
+% ============================================================
+\section{Classification and Construction of Alternators}
+% ============================================================
+
+\subsection{Classification}
+
+\begin{center}
+\begin{tabular}{L{3.4cm} L{8.8cm}}
+\toprule
+\thead{Basis} & \thead{Types}\\
+\midrule
+\trow Prime mover & Hydro generators, turbo generators, diesel-engine generators, gas-turbine generators\\
+Number of phases & Single-phase, three-phase\\
+\trow Rotating member & Rotating armature, rotating field\\
+Rotor construction & Salient-pole machine, non-salient (cylindrical / turbo) machine\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Standard Construction}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Stator:} houses the armature conductors in slots on the inner periphery.
+  \item \textbf{Rotor:} carries the field poles and field winding supplied with DC.
+  \item \textbf{Excitation:} supplied either from an external DC source through slip rings or from a shaft-mounted exciter.
+\end{itemize}
+
+\begin{importantbox}[Why Rotating Field and Stationary Armature are Preferred]
+\begin{itemize}[leftmargin=*]
+  \item High voltage can be generated at the stationary armature terminals.
+  \item Better insulation is possible for the armature winding.
+  \item Collection of output current is easier.
+  \item Rotor becomes lighter, especially for large machines.
+  \item Only two slip rings are required for the field supply.
+\end{itemize}
+\end{importantbox}
+
+\subsection{Salient-Pole vs Cylindrical Rotor}
+
+\begin{center}
+\begin{tabular}{L{3.0cm} L{4.9cm} L{4.9cm}}
+\toprule
+\thead{Feature} & \thead{Salient-Pole Rotor} & \thead{Cylindrical Rotor}\\
+\midrule
+\trow Rotor form & Projecting poles mounted on rotor body & Smooth solid cylindrical rotor\\
+Air gap & Non-uniform & Uniform\\
+\trow Shape & Large diameter, short axial length & Small diameter, long axial length\\
+Speed range & Low / medium speed & High speed\\
+\trow Number of poles & Usually many poles & Usually 2 or 4 poles\\
+Mechanical strength & Lower & Very high\\
+\trow Typical use & Hydroelectric stations & Steam / turbo alternators\\
+Cooling & Natural / air cooling & Hydrogen or forced cooling possible\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Constructional Notes from the Slides}
+
+\begin{itemize}[leftmargin=*]
+  \item The armature core is built from laminated silicon-steel sheets to reduce hysteresis and eddy-current losses.
+  \item Cylindrical rotors have low windage loss, good balancing and quieter operation.
+  \item Salient-pole machines are well suited to low-speed prime movers such as water turbines.
+\end{itemize}
+
+% ============================================================
+\section{Speed of Rotation, Frequency and Winding Factors}
+% ============================================================
+
+\subsection{Speed-Frequency Relation}
+
+\begin{formulabox}
+\[
+  f = \frac{P N_s}{120}
+  \qquad\Longleftrightarrow\qquad
+  N_s = \frac{120f}{P}
+\]
+where \(f\) is electrical frequency in hertz, \(N_s\) is synchronous speed in rpm, and \(P\) is the number of poles.
+\end{formulabox}
+
+\begin{notebox}
+The generator is called \textbf{synchronous} because the electrical frequency is locked to rotor speed and pole number.
+\end{notebox}
+
+\subsection{Pitch Factor, Distribution Factor and Winding Factor}
+
+\begin{definebox}[Pitch Factor / Coil-Span Factor]
+The \textbf{pitch factor} \(\kp\) accounts for the reduction in generated emf when a coil is short-pitched.
+\end{definebox}
+
+\begin{formulabox}
+\[
+  \kp = \cos\frac{\alpha}{2}
+\]
+where \(\alpha\) is the chording angle.
+\end{formulabox}
+
+\begin{definebox}[Distribution Factor]
+The \textbf{distribution factor} \(\kd\) accounts for the reduction in resultant emf when the phase winding is distributed over several slots.
+\end{definebox}
+
+\begin{formulabox}
+\[
+  \kd = \frac{\sin\left(\dfrac{m\beta}{2}\right)}{m\sin\left(\dfrac{\beta}{2}\right)}
+\]
+where \(m\) is the number of slots per pole per phase and \(\beta\) is the slot angle.
+\end{formulabox}
+
+\begin{importantbox}[Winding Factor]
+\[
+  \kw = \kp \kd
+\]
+For sinusoidal flux distribution, \(\kw\) is used directly in the emf equation.
+\end{importantbox}
+
+\subsection{EMF Equation}
+
+\begin{formulabox}
+\[
+  \Eph = 4.44 \, \kw \, f \, \Phim \, T
+\]
+where \(T\) is the number of series turns per phase and \(\Phim\) is flux per pole in weber.
+\end{formulabox}
+
+\[
+  \Eph = 4.44 \, \kp \kd \, f \, \Phim \, T
+\]
+
+\begin{examplebox}[Example — Generated EMF per Phase]
+\textbf{Given:} \(f = 50\,\mathrm{Hz}\), \(\Phim = 0.05\,\mathrm{Wb}\), \(T = 100\) turns/phase,
+\(\kp = 0.96\), \(\kd = 0.95\). Find the generated emf per phase.
+
+\[
+  \kw = \kp\kd = 0.96 \times 0.95 = 0.912
+\]
+\[
+  \Eph = 4.44 \times 0.912 \times 50 \times 0.05 \times 100
+  \approx 1012\ \mathrm{V}
+\]
+If the winding is star connected, line voltage \(\approx \sqrt{3}\,\Eph \approx 1753\ \mathrm{V}\).
+\end{examplebox}
+
+% ============================================================
+\section{Open-Circuit Characteristics and No-Load Operation}
+% ============================================================
+
+\begin{definebox}[Open-Circuit Characteristic]
+The \textbf{open-circuit characteristic} (OCC) of an alternator is the graph between the no-load generated emf and field current when the machine runs at constant rated speed with the armature open-circuited.
+\end{definebox}
+
+\subsection{Features of OCC}
+
+\begin{itemize}[leftmargin=*]
+  \item At zero field current, a small residual emf is present because of residual magnetism.
+  \item Initially, the OCC is almost linear; this region is called the \textbf{air-gap line}.
+  \item At higher excitation, magnetic saturation sets in and the curve bends.
+\end{itemize}
+
+\subsection{Why OCC is Important}
+
+\begin{itemize}[leftmargin=*]
+  \item It gives the relation between field current and generated voltage.
+  \item It is used for predetermination of voltage regulation.
+  \item Together with short-circuit data, it helps determine synchronous impedance.
+\end{itemize}
+
+\begin{notebox}
+On no-load, the terminal voltage of the alternator is practically equal to the internally generated emf per phase because armature current is zero.
+\end{notebox}
+
+% ============================================================
+\section{Armature Reaction, Leakage Reactance and Synchronous Impedance}
+% ============================================================
+
+\begin{definebox}[Armature Reaction]
+\textbf{Armature reaction} is the effect of armature-flux mmf on the main field flux in the alternator.
+\end{definebox}
+
+\subsection{Nature of Armature Reaction}
+
+\begin{center}
+\begin{tabular}{L{4.5cm} L{7.5cm}}
+\toprule
+\thead{Load Condition} & \thead{Effect of Armature Reaction}\\
+\midrule
+\trow Unity power factor & Cross-magnetising\\
+Zero power factor lagging & Demagnetising\\
+\trow Zero power factor leading & Magnetising\\
+General lagging power factor & Partly demagnetising and partly cross-magnetising\\
+\trow General leading power factor & Partly magnetising and partly cross-magnetising\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Leakage Reactance and Synchronous Reactance}
+
+\begin{itemize}[leftmargin=*]
+  \item Some flux produced by armature current does not cross the air-gap in the main path; it forms \textbf{leakage flux}.
+  \item Leakage flux produces a voltage drop represented by the \textbf{leakage reactance} \(X_l\).
+  \item Armature reaction is often represented by an equivalent reactance \(X_a\).
+\end{itemize}
+
+\begin{formulabox}
+\[
+  X_s = X_l + X_a
+  \qquad\text{(synchronous reactance)}
+\]
+\[
+  Z_s = \sqrt{\Ra^2 + X_s^2}
+  \qquad\text{(synchronous impedance)}
+\]
+\end{formulabox}
+
+\begin{importantbox}[Practical Meaning]
+The synchronous reactance combines the effect of armature leakage and armature reaction into one equivalent series reactance.
+\end{importantbox}
+
+% ============================================================
+\section{Equivalent Circuit, Phasor Diagram and Load Characteristics}
+% ============================================================
+
+\subsection{Per-Phase Equivalent Circuit of an Alternator}
+
+\begin{center}
+\begin{circuitikz}[american voltages, scale=0.95]
+  \draw
+  (0,0) to[sV, l=$\Ef$] (0,3)
+  (0,3) to[R, l=$\Ra$] (3,3)
+        to[L, l=$jX_s$] (6,3)
+        to[short, -o] (7,3)
+  (0,0) to[short, -o] (7,0);
+  \draw (7,1.5) node[right] {$\Vt$};
+  \draw[-{Latex[length=2mm]}] (4,3.45) -- (5.4,3.45) node[midway, above] {$\Ia$};
+\end{circuitikz}
+\end{center}
+
+\begin{formulabox}
+\[
+  \Ef = \Vt + \Ia(\Ra + jX_s)
+\]
+If \(\Ra\) is neglected,
+\[
+  \Ef \approx \Vt + j\Ia X_s
+\]
+\end{formulabox}
+
+\subsection{Phasor Behaviour with Different Loads}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Lagging load:} armature current lags terminal voltage; terminal voltage tends to fall because the reactive drop adds strongly.
+  \item \textbf{Unity power factor load:} armature current is nearly in phase with terminal voltage; armature reaction is mainly cross-magnetising.
+  \item \textbf{Leading load:} armature reaction becomes magnetising; terminal voltage may rise with load and voltage regulation can become negative.
+\end{itemize}
+
+\subsection{Load Characteristic}
+
+\begin{itemize}[leftmargin=*]
+  \item The load characteristic is the relation between terminal voltage and armature current at constant speed and constant excitation.
+  \item For lagging power-factor load, terminal voltage falls more rapidly.
+  \item For leading power-factor load, voltage fall is smaller and may even reverse.
+\end{itemize}
+
+% ============================================================
+\section{Voltage Regulation and Predetermination Methods}
+% ============================================================
+
+\begin{definebox}[Voltage Regulation]
+Voltage regulation of an alternator is the change in terminal voltage when the full-load is removed, while speed and excitation are kept constant, expressed as a fraction or percentage of full-load voltage.
+\end{definebox}
+
+\begin{formulabox}
+\[
+  \%\,\text{Voltage Regulation}
+  =
+  \frac{E_0 - \Vt}{\Vt}\times 100
+\]
+where \(E_0\) is the no-load emf corresponding to the same excitation and \(\Vt\) is the full-load terminal voltage.
+\end{formulabox}
+
+\subsection{EMF Method (Synchronous Impedance Method)}
+
+\begin{studybox}[Procedure]
+\begin{enumerate}[leftmargin=*, label=\textcolor{anthOrange}{\HeadingFont\bfseries\arabic*.}]
+  \item Determine the synchronous impedance \(Z_s\) from OCC and short-circuit data.
+  \item Calculate \(X_s = \sqrt{Z_s^2 - \Ra^2}\).
+  \item Use the phasor equation \(\Ef = \Vt + \Ia(\Ra + jX_s)\).
+  \item Obtain \(E_0 = |\Ef|\) and then compute voltage regulation.
+\end{enumerate}
+\end{studybox}
+
+\begin{formulabox}
+\[
+  E_0
+  =
+  \sqrt{\left(\Vt\cos\phi + \Ia\Ra\right)^2
+       +
+       \left(\Vt\sin\phi \pm \Ia X_s\right)^2}
+\]
+\(+\) for lagging power factor, \(-\) for leading power factor.
+\end{formulabox}
+
+\begin{notebox}
+The EMF method usually gives a \textbf{higher} value of regulation and is therefore called a \textbf{pessimistic method}.
+\end{notebox}
+
+\subsection{MMF Method (Ampere-Turn Method)}
+
+\begin{studybox}[Idea of the Method]
+\begin{itemize}[leftmargin=*]
+  \item Convert the required terminal-voltage emf into an equivalent field current from OCC.
+  \item Convert the armature reaction and leakage effects into an equivalent field current.
+  \item Add these field-current components vectorially according to power factor.
+  \item From the resultant field current, read the no-load emf from OCC and compute regulation.
+\end{itemize}
+\end{studybox}
+
+\begin{notebox}
+The MMF method usually gives a \textbf{lower} value of regulation and is therefore regarded as an \textbf{optimistic method}.
+\end{notebox}
+
+% ============================================================
+\section{Parallel Operation of Alternators and Synchronisation}
+% ============================================================
+
+\subsection{Why Alternators are Operated in Parallel}
+
+\begin{itemize}[leftmargin=*]
+  \item Better efficiency over varying load.
+  \item Greater reliability and continuity of service.
+  \item Maintenance and repair can be done without complete shutdown.
+  \item Large power demand can be met by combining smaller units.
+\end{itemize}
+
+\subsection{Requirements / Desirable Features}
+
+\begin{itemize}[leftmargin=*]
+  \item Same output voltage rating.
+  \item Speeds such that the machines generate the same frequency.
+  \item Same phase sequence and same waveform.
+  \item Similar speed-load characteristics of prime movers.
+  \item Armature reactance present so current sharing is stable.
+\end{itemize}
+
+\subsection{Conditions for Synchronising}
+
+\begin{importantbox}[Conditions to be Satisfied Before Closing the Switch]
+\begin{enumerate}[leftmargin=*, label=\textcolor{anthBlue}{\HeadingFont\bfseries\arabic*.}]
+  \item Incoming machine terminal voltage must equal bus-bar voltage.
+  \item Incoming machine frequency must equal bus-bar frequency.
+  \item Phase sequence must be identical.
+  \item Phase angle between corresponding voltages must be zero at the instant of switching.
+\end{enumerate}
+\end{importantbox}
+
+\begin{definebox}[Infinite Bus-Bar]
+An \textbf{infinite bus-bar} is an electrical system of practically constant voltage and frequency, unaffected by the connection or disconnection of a single alternator.
+\end{definebox}
+
+\subsection{Methods of Synchronisation}
+
+\begin{center}
+\begin{tabular}{L{3.7cm} L{5.2cm} L{4.2cm}}
+\toprule
+\thead{Method} & \thead{Main Observation} & \thead{Switch Closing Instant}\\
+\midrule
+\trow Dark-lamp method & Lamps become dark when voltages match in phase & Middle of dark period\\
+Bright-lamp method & Cross-connected lamps become bright at synchronism reference & Middle of bright period\\
+\trow Three-dark-lamp method & Three lamps brighten and darken together if phase sequence is correct & Instant all three are dark together\\
+Two-bright-one-dark method & One lamp dark and two bright at synchronism & Lamp \(L_2\) dark, other two bright\\
+\trow Synchroscope & Pointer shows relative phase and frequency difference & Pointer at vertical synchronising mark\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Useful Observations from Lamp Methods}
+
+\begin{itemize}[leftmargin=*]
+  \item If lamps brighten and dim in sequence, the phase sequence is wrong; interchange any two leads.
+  \item In two-bright-one-dark method, a clockwise travelling light wave indicates one speed condition and the opposite direction indicates the other.
+  \item The incoming machine is adjusted until lamp changes are very slow, then the switch is closed at the proper instant.
+\end{itemize}
+
+% ============================================================
+\section{Synchronising Current, Torque and Power}
+% ============================================================
+
+\subsection{Synchronising Current}
+
+\begin{itemize}[leftmargin=*]
+  \item If two equal emfs are exactly in phase opposition, no circulating current flows.
+  \item If one induced emf falls back by a small electrical angle \(\delta\), a resultant emf appears in the local circuit.
+\end{itemize}
+
+\begin{formulabox}
+For a small angular displacement \(\delta\) (in radians),
+\[
+  E_R \approx E\delta
+\]
+and the synchronising current is
+\[
+  I_{sy} = \frac{E_R}{Z_{cs}} \approx \frac{E\delta}{Z_{cs}}
+\]
+If circuit resistance is much smaller than reactance,
+\[
+  I_{sy} \approx \frac{E\delta}{X_{cs}}
+\]
+\end{formulabox}
+
+\subsection{Role of Synchronising Current}
+
+\begin{itemize}[leftmargin=*]
+  \item It acts as a generating current for one machine and a motoring current for the other.
+  \item Hence it produces a \textbf{synchronising torque} that accelerates the retarded machine and decelerates the advanced machine.
+  \item Any small departure from synchronism therefore produces a restoring tendency.
+\end{itemize}
+
+\begin{importantbox}[Synchronising Power]
+The power exchanged between two parallel alternators due to synchronising current is called
+\textbf{synchronising power}. It is the power-transfer mechanism that helps maintain steady
+parallel operation.
+\end{importantbox}
+
+% ============================================================
+\section{Construction and Principle of Operation of a Synchronous Motor}
+% ============================================================
+
+\begin{definebox}[Synchronous Motor]
+A \textbf{synchronous motor} is a 3-phase AC motor in which the rotor, excited by DC, runs at the
+\textbf{synchronous speed} of the stator rotating magnetic field.
+\end{definebox}
+
+\subsection{Construction}
+
+\begin{center}
+\begin{tabular}{L{3.0cm} L{9.2cm}}
+\toprule
+\thead{Part} & \thead{Details}\\
+\midrule
+\trow Stator / armature & Laminated core, slots on inner periphery, 3-phase winding usually star connected, frame of cast iron or welded steel\\
+Rotor / field system & Field poles with field winding supplied by DC, excitation through slip rings and brushes or shaft-mounted exciter\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Working Principle}
+
+\begin{itemize}[leftmargin=*]
+  \item The 3-phase stator supply produces a rotating magnetic field at synchronous speed.
+  \item The DC-excited rotor behaves like a magnet with fixed polarity.
+  \item If the rotor is already near synchronous speed in the same direction as the rotating field, opposite stator and rotor poles attract and lock magnetically.
+  \item The rotor then continues to run at synchronous speed with \textbf{zero steady-state slip}.
+\end{itemize}
+
+\subsection{Why the Motor is Not Self-Starting}
+
+\begin{studybox}[Reason]
+\begin{itemize}[leftmargin=*]
+  \item At standstill, the stator poles reverse rapidly every half cycle.
+  \item Hence the rotor experiences torque alternately in clockwise and anticlockwise directions.
+  \item Due to inertia, the average starting torque is zero.
+  \item Therefore a synchronous motor is \textbf{not self-starting} unless a special starting arrangement is provided.
+\end{itemize}
+\end{studybox}
+
+% ============================================================
+\section{Starting Methods of a Synchronous Motor}
+% ============================================================
+
+\subsection{Starting by an External DC Motor}
+
+\begin{itemize}[leftmargin=*]
+  \item The synchronous motor is mechanically coupled to a DC shunt or compound motor.
+  \item The DC motor brings the rotor near synchronous speed.
+  \item AC supply is applied to the stator and then DC excitation is applied to the rotor field.
+  \item Once magnetic locking takes place, the auxiliary DC motor is disconnected.
+\end{itemize}
+
+\subsection{Starting by an AC Motor (Pony Motor)}
+
+\begin{itemize}[leftmargin=*]
+  \item A small induction motor is used as a pony motor.
+  \item It brings the synchronous motor rotor close to synchronous speed.
+  \item After that, the stator AC supply and rotor field excitation are applied for magnetic locking.
+\end{itemize}
+
+\subsection{Starting by Damper Winding}
+
+\begin{itemize}[leftmargin=*]
+  \item Copper bars embedded in the rotor pole faces and short-circuited at the ends form the \textbf{damper winding}.
+  \item At start, the motor behaves like an induction motor.
+  \item When it reaches near-synchronous speed, DC excitation is applied and the rotor pulls into step.
+\end{itemize}
+
+\begin{importantbox}[Most Practical Method]
+Damper winding is the most common practical method because it makes the machine effectively self-starting.
+\end{importantbox}
+
+% ============================================================
+\section{Equivalent Circuit and Effect of Excitation on Armature Current}
+% ============================================================
+
+\subsection{Equivalent Circuit of a Synchronous Motor}
+
+\begin{center}
+\begin{circuitikz}[american voltages, scale=0.95]
+  \draw
+  (0,0) to[sV, l=$V$] (0,3)
+  (0,3) to[R, l=$R_a$] (3,3)
+        to[L, l=$jX_s$] (6,3)
+        to[sV, l_=$E_b$] (6,0)
+        -- (0,0);
+  \draw[-{Latex[length=2mm]}] (1.2,3.45) -- (5.1,3.45) node[midway, above] {$I_a$};
+\end{circuitikz}
+\end{center}
+
+\begin{formulabox}
+\[
+  V = E_b + I_a(R_a + jX_s)
+\]
+where \(E_b\) is the internal or back emf induced by the rotor field.
+\end{formulabox}
+
+\begin{itemize}[leftmargin=*]
+  \item The stator is supplied by 3-phase AC.
+  \item The rotor is supplied by DC.
+  \item Rotor flux induces a back emf \(E_b\) in the stator that opposes the applied voltage.
+\end{itemize}
+
+\subsection{Effect of Excitation on Armature Current}
+
+\begin{center}
+\begin{tabular}{L{3.5cm} L{4.0cm} L{4.4cm}}
+\toprule
+\thead{Field Excitation} & \thead{Armature Current} & \thead{Power Factor}\\
+\midrule
+\trow Under-excited & Higher than minimum & Lagging\\
+Normal excitation & Minimum & Approximately unity\\
+\trow Over-excited & Increases again & Leading\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{importantbox}[V-Curve Idea]
+At constant load, a plot of armature current versus field current gives a \textbf{V-curve}. The current is minimum at the excitation corresponding to unity power factor.
+\end{importantbox}
+
+\begin{notebox}
+When over-excited, a synchronous motor draws leading current and can be used for power-factor improvement as a \textbf{synchronous condenser}.
+\end{notebox}
+
+% ============================================================
+\section{Quick Comparison: Synchronous Generator vs Synchronous Motor}
+% ============================================================
+
+\begin{center}
+\begin{tabular}{L{3.0cm} L{4.8cm} L{4.8cm}}
+\toprule
+\thead{Aspect} & \thead{Generator} & \thead{Motor}\\
+\midrule
+\trow Energy conversion & Mechanical to electrical & Electrical to mechanical\\
+Internal emf relation & \(\Ef = \Vt + \Ia(\Ra + jX_s)\) & \(V = E_b + I_a(R_a + jX_s)\)\\
+\trow Rotor excitation & DC field required & DC field required\\
+Speed & Locked to synchronous speed & Locked to synchronous speed\\
+\trow Starting nature & Prime mover starts it naturally & Not self-starting without auxiliary arrangement\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+\section{Comprehensive Formula Summary}
+% ============================================================
+
+\renewcommand{\arraystretch}{1.55}
+\begin{longtable}{L{5cm} L{9cm}}
+\toprule
+\thead{Quantity} & \thead{Formula / Key Relation}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{\small\itshape (continued)}\\
+\toprule
+\thead{Quantity} & \thead{Formula / Key Relation}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+
+\trow\textbf{Synchronous speed} & \(N_s = \dfrac{120f}{P}\)\\
+\textbf{Generated frequency} & \(f = \dfrac{PN_s}{120}\)\\
+\trow\textbf{Pitch factor} & \(\kp = \cos\dfrac{\alpha}{2}\)\\
+\textbf{Distribution factor} & \(\kd = \dfrac{\sin(m\beta/2)}{m\sin(\beta/2)}\)\\
+\trow\textbf{Winding factor} & \(\kw = \kp\kd\)\\
+\textbf{Alternator emf per phase} & \(\Eph = 4.44\,\kw\,f\,\Phim\,T\)\\
+\trow\textbf{Synchronous reactance} & \(X_s = X_l + X_a\)\\
+\textbf{Synchronous impedance} & \(Z_s = \sqrt{R_a^2 + X_s^2}\)\\
+\trow\textbf{Generator phasor equation} & \(\Ef = \Vt + \Ia(\Ra + jX_s)\)\\
+\textbf{Voltage regulation} & \(\%VR = \dfrac{E_0-\Vt}{\Vt}\times 100\)\\
+\trow\textbf{EMF method} & \(E_0 = \sqrt{(\Vt\cos\phi + \Ia \Ra)^2 + (\Vt\sin\phi \pm \Ia X_s)^2}\)\\
+\textbf{Armature reaction at UPF} & Cross-magnetising\\
+\trow\textbf{Armature reaction at ZPF lagging} & Demagnetising\\
+\textbf{Armature reaction at ZPF leading} & Magnetising\\
+\trow\textbf{Resultant emf for small angular displacement} & \(E_R \approx E\delta\)\\
+\textbf{Synchronising current} & \(I_{sy} = \dfrac{E_R}{Z_{cs}} \approx \dfrac{E\delta}{Z_{cs}}\)\\
+\trow\textbf{Motor equivalent equation} & \(V = E_b + I_a(R_a + jX_s)\)\\
+\textbf{Unity-pf excitation point} & Minimum armature current on V-curve\\
+\end{longtable}
+\renewcommand{\arraystretch}{1.0}
+
+% ============================================================
+\section{Exam-Focused Revision Points}
+% ============================================================
+
+\begin{importantbox}[High-Yield Points]
+\begin{enumerate}[leftmargin=*, label=\textcolor{anthOrange}{\HeadingFont\bfseries\arabic*.}]
+  \item In alternators, the \textbf{field} is on the rotor and the \textbf{armature} is on the stator.
+  \item Salient-pole rotors are for \textbf{low-speed} machines; cylindrical rotors are for \textbf{high-speed} turbo alternators.
+  \item Generated emf per phase depends on \(\kw\), frequency, flux per pole and turns per phase.
+  \item At unity pf, armature reaction is mainly \textbf{cross-magnetising}; at lagging pf it is demagnetising; at leading pf it is magnetising.
+  \item EMF method is \textbf{pessimistic}; MMF method is \textbf{optimistic}.
+  \item Synchronising requires equality of \textbf{voltage, frequency, phase sequence and phase angle}.
+  \item A synchronous motor is \textbf{not self-starting}; damper winding solves this practically.
+  \item Over-excited synchronous motors draw \textbf{leading current} and help improve power factor.
+\end{enumerate}
+\end{importantbox}
+
+% ============================================================
+\section{Original Slide Appendix}
+% ============================================================
+
+\addcontentsline{toc}{section}{Original Slide Appendix}
+\begin{studybox}[Why the Appendix is Included]
+The notes above are rewritten for study. The original source slides are embedded below so that
+no diagram-only or slide-specific content is lost from the final single PDF.
+\end{studybox}
+
+\includepdf[pages=-,fitpaper=true,pagecommand={\thispagestyle{plain}}]{build/part1.pdf}
+\includepdf[pages=-,fitpaper=true,pagecommand={\thispagestyle{plain}}]{build/part2.pdf}
+\includepdf[pages=-,fitpaper=true,pagecommand={\thispagestyle{plain}}]{build/part3.pdf}
+
+% ── back cover ───────────────────────────────────────────────
+\clearpage
+\thispagestyle{empty}
+\vfill
+\begin{center}
+\begin{tikzpicture}
+  \fill[anthDark] (0,0) rectangle (\textwidth, 0.52cm);
+  \fill[anthOrange] (0,0.52cm) rectangle (\textwidth, 0.68cm);
+  \node[anthLight, font=\HeadingFont\bfseries\small] at (0.5\textwidth, 0.26cm)
+    {End of Module 3 — Synchronous Machines\quad|\quad PCEOT402 Electrical Machines};
+\end{tikzpicture}
+\end{center}
+
+\end{document}

@@ -1,0 +1,254 @@
+%% ═══════════════════════════════════════════════════════════════════════════
+%% PCEOT503: POWER SYSTEMS — EXAM DAY QUICK REVISION & HIGH-YIELD FORMULA SHEET
+%% Modules 1 & 2 Crash Course · KTU / CET S5 EEE (2024 Scheme)
+%% Styled with Anthropic Notes Design System
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Anthropic-serif}[
+    Path          = ./,
+    Extension     = .ttf,
+    AutoFakeBold  = 1.5,
+    AutoFakeSlant = 0.2
+]
+\setsansfont{Poppins}[
+    AutoFakeBold  = 1.5,
+    AutoFakeSlant = 0.2
+]
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+
+\usepackage[margin=1.5cm, top=1.8cm, bottom=1.8cm, headheight=20pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{colortbl}
+
+%% ─── Brand Colors ────────────────────────────────────────────────────────────
+\definecolor{AnthDark}{HTML}{141413}
+\definecolor{AnthLight}{HTML}{faf9f5}
+\definecolor{AnthMidGray}{HTML}{7a7870}
+\definecolor{AnthLightGray}{HTML}{e8e6dc}
+\definecolor{AnthOrange}{HTML}{d97757}
+\definecolor{AnthBlue}{HTML}{3b75a4}
+\definecolor{AnthGreen}{HTML}{5d7343}
+\definecolor{AnthCodeBG}{HTML}{edebe1}
+\definecolor{AnthCardBG}{HTML}{f6f5ee}
+
+\setlength{\parskip}{0.25em}
+\setlength{\parindent}{0pt}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.25}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+%% ─── Page Style ─────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{AnthMidGray}\textbf{PCEOT503: Power Systems} \textbar\ Last-Minute Exam Booster (Modules 1 \& 2)}
+\fancyhead[R]{\footnotesize\sffamily\color{AnthOrange}\textbf{Page \thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{AnthOrange}\leaders\hrule height \headrulewidth\hfill}}
+\fancyfoot[L]{\tiny\sffamily\color{AnthMidGray} KTU S5 EEE · Fast Skimming \& High-Yield Formula Sheet}
+\fancyfoot[R]{\tiny\sffamily\color{AnthMidGray} Confidential Exam Revision Material}
+
+%% ─── Section Styles ─────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\sffamily\color{AnthDark}}
+  {\colorbox{AnthOrange}{\makebox[0.5cm][c]{\color{white}\thesection}}\enspace}
+  {0em}{}
+  [\vspace{-0.5ex}\color{AnthLightGray}\hrule\vspace{0.2ex}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\sffamily\color{AnthBlue}}
+  {\thesubsection\enspace}
+  {0em}{}
+
+\titlespacing{\section}{0pt}{0.8em}{0.3em}
+\titlespacing{\subsection}{0pt}{0.6em}{0.2em}
+
+\tcbset{
+  boosterbox/.style={
+    enhanced, breakable,
+    colback=AnthCardBG, colframe=AnthOrange,
+    arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt, boxrule=0.6pt,
+    fonttitle=\bfseries\sffamily\small, coltitle=white, colbacktitle=AnthOrange
+  },
+  formulabox/.style={
+    enhanced, breakable,
+    colback=AnthBlue!6, colframe=AnthBlue!80,
+    arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt, boxrule=0.5pt,
+    fonttitle=\bfseries\sffamily\footnotesize, coltitle=white, colbacktitle=AnthBlue
+  },
+  trapbox/.style={
+    enhanced, breakable,
+    colback=AnthOrange!8, colframe=AnthOrange!90,
+    arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt, boxrule=0.5pt,
+    fonttitle=\bfseries\sffamily\footnotesize, coltitle=white, colbacktitle=AnthOrange
+  }
+}
+
+\setlist[itemize]{itemsep=1.0pt, topsep=1.0pt, parsep=0pt, label={\color{AnthOrange}\scriptsize$\blacktriangleright$}}
+\setlist[enumerate]{itemsep=1.0pt, topsep=1.0pt, parsep=0pt, label={\bfseries\color{AnthBlue}\arabic*.}}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries\sffamily\color{AnthDark} PCEOT503: POWER SYSTEMS}\\[0.2em]
+  {\large\sffamily\color{AnthOrange}\textbf{Last-Minute High-Yield Exam Booster \& Formula Cheatsheet}}\\[0.2em]
+  {\footnotesize\sffamily\color{AnthMidGray} Master Summary of Essential Definitions, Derivations, Diagrams \& Numerical Shortcuts · Modules 1 \& 2}
+\end{center}
+\vspace{-0.5em}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\section{MODULE 1: Power Generation Technologies, Energy Storage \& Load Dynamics}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{1. Conventional \& Renewable Power Plants (Must-Know Functions \& Layouts)}
+
+\begin{center}
+\scriptsize
+\begin{tabularx}{\textwidth}{L{2.2cm} L{4.5cm} X}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{Plant Type} & \color{white}\textbf{Core Principle / Thermodynamic Cycle} & \color{white}\textbf{Key Components \& Their Exact Functions} \\
+  \rowcolor{AnthCardBG} \textbf{Thermal (Coal)} & Rankine Cycle (Overall $\eta \approx 30-38\%$) & \textbf{Economizer:} Preheats feed-water using flue gas waste heat; \textbf{Superheater:} Converts wet steam to dry superheated steam; \textbf{Air Preheater:} Recovers flue heat to preheat combustion air; \textbf{Electrostatic Precipitator (ESP):} Traps fly ash particles. \\
+  \textbf{Gas Turbine} & Brayton Cycle ($\eta \approx 30-35\%$; Combined Cycle $\text{CCGT} \approx 55-60\%$) & Compressor $\to$ Combustion Chamber $\to$ Gas Turbine; CCGT pairs Gas Turbine exhaust with Heat Recovery Steam Generator (HRSG) and Steam Turbine. \\
+  \rowcolor{AnthCardBG} \textbf{Nuclear} & Controlled Nuclear Fission ($^{235}\text{U} + n \to \text{Fission} + 2.5n + 200\,\text{MeV}$) & \textbf{Moderator:} Slows fast neutrons ($D_2O$, Graphite); \textbf{Control Rods:} Absorbs neutrons (Cadmium/Boron); \textbf{Coolant:} Transfers fission heat; \textbf{Shielding:} Lead/thick concrete. \\
+  \textbf{Hydroelectric} & Potential $\to$ Kinetic $\to$ Mechanical ($P = 9.81 \cdot \eta \cdot Q \cdot H\,\text{kW}$) & \textbf{Surge Tank:} Absorbs water hammer pressure transients caused by rapid governor valve closure; \textbf{Penstock:} High-pressure conduit; \textbf{Draft Tube:} Recovers kinetic head. \\
+  \rowcolor{AnthCardBG} \textbf{Solar PV} & Photovoltaic Effect ($E_{\text{photon}} \ge E_g$) & Cell $\to$ Module $\to$ Array; \textbf{MPPT (Maximum Power Point Tracking):} Perturb \& Observe algorithms lock into maximum power operating point. \\
+  \textbf{Wind Energy} & Kinetic power $P = \frac{1}{2} \rho A v^3 C_p$ & \textbf{Betz Limit:} Maximum theoretical aerodynamic power coefficient $C_{p,\max} = \frac{16}{27} \approx 59.3\%$. Pitch control \& Yaw mechanism. \\
+\end{tabularx}
+\end{center}
+
+\subsection{2. Grid Energy Storage Systems (BESS, PHES, Flywheels, Supercapacitors)}
+\begin{itemize}
+  \item \textbf{Battery Energy Storage (BESS):} Lithium-Ion (high energy density, 85--95\% round-trip efficiency), Lead-Acid, Flow Batteries. Fast sub-second response for frequency regulation.
+  \item \textbf{Pumped Hydro (PHES):} Largest grid storage ($>90\%$ global); round-trip efficiency $\eta \approx 70-80\%$; pumps water to upper reservoir during off-peak and generates during peak.
+  \item \textbf{Flywheels \& Supercapacitors:} High power density, fast charge/discharge (milliseconds), millions of cycles; ideal for grid inertia and momentary voltage sag support.
+\end{itemize}
+
+\subsection{3. Load Dynamics \& Economic Dispatch (All Numerical Formulas)}
+
+\begin{tcolorbox}[formulabox, title=Master Formulas for Load Curves \& Plant Economics]
+\small
+\begin{minipage}[t]{0.48\textwidth}
+\begin{enumerate}
+  \item $\text{Connected Load (CL)} = \sum \text{Rated capacities of all connected loads}$
+  \item $\text{Maximum Demand (MD)} = \text{Peak instantaneous power demand}$
+  \item $\text{Demand Factor} = \frac{\text{Maximum Demand}}{\text{Connected Load}} \le 1$
+  \item $\text{Average Load} = \frac{\text{Total Energy Generated in Time } T}{\text{Time Duration } T} = \frac{\text{Area under Load Curve}}{24\,\text{hours}}$
+  \item $\text{Load Factor (LF)} = \frac{\text{Average Load}}{\text{Maximum Demand}} = \frac{\text{Energy Generated in } T}{\text{MD} \times T} \le 1$
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{enumerate}[resume]
+  \item $\text{Diversity Factor} = \frac{\sum \text{Individual Maximum Demands}}{\text{Coincident System Maximum Demand}} \ge 1$
+  \item $\text{Capacity Factor (CF)} = \frac{\text{Average Load}}{\text{Plant Rated Capacity}} = \text{LF} \times \frac{\text{MD}}{\text{Capacity}}$
+  \item $\text{Plant Use Factor (UF)} = \frac{\text{Energy Generated in } T}{\text{Plant Capacity} \times \text{Operating Hours } t_{\text{op}}}$
+  \item $\text{Reserve Capacity} = \text{Plant Rated Capacity} - \text{Maximum Demand}$
+  \item $\text{Straight Line Depreciation:} \quad D = \frac{P - S}{n} \quad [\text{Rs/year}]$
+  \item $\text{Sinking Fund:} \quad q = (P - S) \left[ \frac{r}{(1+r)^n - 1} \right] \quad [\text{Rs/year}]$
+\end{enumerate}
+\end{minipage}
+\end{tcolorbox}
+
+\begin{tcolorbox}[trapbox, title=Key Exam Traps \& Quick Facts for Module 1]
+\footnotesize
+$\bullet$ \textbf{Diversity Factor is ALWAYS $\ge 1$!} Higher diversity factor decreases coincident maximum demand, reducing required capital plant capacity and lowering generation cost per unit.\\
+$\bullet$ \textbf{Base Load vs Peak Load Plants:} Base load (Coal, Nuclear, Run-of-river Hydro) have high capital cost, low running cost, and run at $100\%$ capacity. Peak load (Gas Turbine, Pumped Storage, Diesel) have low capital cost, high running cost, and quick startup time.
+\end{tcolorbox}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\clearpage
+\section{MODULE 2: Transmission Line Parameters, Modelling, Operational Phenomena \& Insulators}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{1. Transmission Line Inductance \& Capacitance (Formula Summary)}
+
+\begin{tcolorbox}[formulabox, title=Inductance and Capacitance Exact Working Formulas]
+\small
+\textbf{1. Self GMR ($D_s$) and Internal Inductance:}
+\begin{itemize}
+  \item Solid Conductor Internal Inductance: $L_{\text{int}} = \frac{\mu_0}{8\pi} = \frac{1}{2} \times 10^{-7}\,\text{H/m}$ \quad (\textbf{Independent of conductor radius!})
+  \item Fictitious Self GMR for Inductance: $D_s = r' = r \cdot e^{-1/4} = 0.7788 \cdot r$ \quad (Accounts for internal flux linkages).
+  \item For Capacitance: **ALWAYS USE PHYSICAL RADIUS $r$** (Electrostatic charge resides exclusively on outer surface).
+\end{itemize}
+
+\textbf{2. 3-Phase Single Circuit Lines (Transposed):}
+\begin{equation*}
+  D_m = \sqrt[3]{D_{12} D_{23} D_{31}}, \qquad L = 2 \times 10^{-7} \ln\left(\frac{D_m}{D_s}\right)\,\text{H/m/phase}, \qquad C_n = \frac{2\pi\epsilon_0}{\ln(D_m / r)}\,\text{F/m/phase}
+\end{equation*}
+
+\textbf{3. 3-Phase Double Circuit Lines (Inverted Hexagonal $a-b-c$ vs $c'-b'-a'$):}
+\begin{align*}
+  D_{sa} &= \sqrt{r' D_{aa'}}, \quad D_{sb} = \sqrt{r' D_{bb'}}, \quad D_{sc} = \sqrt{r' D_{cc'}} \implies D_s = \sqrt[3]{D_{sa} D_{sb} D_{sc}} \\
+  D_{ab} &= \sqrt[4]{D_{ab} D_{ab'} D_{a'b} D_{a'b'}}, \quad D_{bc} = \sqrt[4]{D_{bc} D_{bc'} D_{b'c} D_{b'c'}}, \quad D_{ca} = \sqrt[4]{D_{ca} D_{ca'} D_{c'a} D_{c'a'}} \implies D_m = \sqrt[3]{D_{ab} D_{bc} D_{ca}} \\
+  L &= 2 \times 10^{-7} \ln\left(\frac{D_m}{D_s}\right)\,\text{H/m/phase}, \qquad C_n = \frac{2\pi\epsilon_0}{\ln(D_m / D_{sc})}\,\text{F/m/phase} \quad (\text{with } D_{sca} = \sqrt{r D_{aa'}})
+\end{align*}
+\end{tcolorbox}
+
+\subsection{2. Transmission Line Modelling \& Two-Port ABCD Parameters}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{L{2.2cm} L{2.2cm} C{2.2cm} C{2.5cm} C{2.2cm} C{2.0cm}}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{Model} & \color{white}\textbf{Length / Volt} & \color{white}\textbf{A} & \color{white}\textbf{B} & \color{white}\textbf{C} & \color{white}\textbf{D} \\
+  \rowcolor{AnthCardBG} \textbf{Short Line} & $<80\,\text{km}, <20\,\text{kV}$ & $1$ & $Z$ & $0$ & $1$ \\
+  \textbf{Nominal-T} & $80-250\,\text{km}$ & $1 + \frac{YZ}{2}$ & $Z\left(1 + \frac{YZ}{4}\right)$ & $Y$ & $1 + \frac{YZ}{2}$ \\
+  \rowcolor{AnthCardBG} \textbf{Nominal-$\pi$} & $80-250\,\text{km}$ & $1 + \frac{YZ}{2}$ & $Z$ & $Y\left(1 + \frac{YZ}{4}\right)$ & $1 + \frac{YZ}{2}$ \\
+  \textbf{Long Line} & $>250\,\text{km}$ & $\cosh(\gamma l)$ & $Z_c \sinh(\gamma l)$ & $\frac{1}{Z_c}\sinh(\gamma l)$ & $\cosh(\gamma l)$ \\
+\end{tabularx}
+\end{center}
+
+\begin{itemize}
+  \item \textbf{Fundamental Properties:} Symmetric $\iff A = D$; Reciprocal $\iff AD - BC = 1$.
+  \item \textbf{Sending End Matrix:} $V_s = A V_r + B I_r, \quad I_s = C V_r + D I_r$.
+  \item \textbf{Percentage Voltage Regulation:} $\%VR = \frac{|V_s / A| - |V_r|}{|V_r|} \times 100\%$ \quad (\textbf{Do NOT forget to divide $V_s$ by $A$ for medium/long lines!}).
+  \item \textbf{Transmission Efficiency:} $\eta = \frac{P_r}{P_s} \times 100\% = \frac{3 |V_{r,\text{ph}}| |I_r| \cos\phi_r}{3 \operatorname{Re}(V_s I_s^*)} \times 100\%$.
+\end{itemize}
+
+\subsection{3. Operational Phenomena (Key Exam Definitions \& Derivations)}
+
+\begin{center}
+\scriptsize
+\begin{tabularx}{\textwidth}{L{2.5cm} L{3.8cm} L{4.5cm} X}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{Phenomenon} & \color{white}\textbf{Core Definition / Cause} & \color{white}\textbf{Mathematical Expression} & \color{white}\textbf{Consequences \& Mitigation} \\
+  \rowcolor{AnthCardBG} \textbf{Skin Effect} & Concentration of AC current near conductor outer periphery due to internal flux eddy currents & Skin Depth $\delta = \sqrt{\frac{\rho}{\pi f \mu}}$ & Increases effective resistance ($R_{\text{ac}} > R_{\text{dc}}$). Mitigated by stranded ACSR conductors. \\
+  \textbf{Ferranti Effect} & No-load / light-load receiving end voltage exceeds sending end voltage ($V_r > V_s$) due to capacitive charging current & $\Delta V = V_r - V_s \approx \frac{V_r \omega^2 l^2 L C}{2} > 0$ & Overvoltage stress on insulation; mitigated by connecting **Shunt Reactors** at receiving end. \\
+  \rowcolor{AnthCardBG} \textbf{Corona} & Dielectric breakdown of air surrounding conductor when surface gradient exceeds $g_0 = 21.2\,\text{kV/cm (rms)}$ & $V_d = m_0 g_0 \delta r \ln(d/r)$ \newline $P = \frac{242.2}{\delta}(f+25)\sqrt{\frac{r}{d}}(V-V_d)^2 \times 10^{-5}$ & Pale-violet glow, hissing noise, $\text{O}_3$ corrosion, power loss. Mitigated by bundled conductors. \\
+  \textbf{Surge Impedance Loading (SIL)} & Power delivered to purely resistive load equal to surge impedance $Z_c = \sqrt{L/C}$ & $\text{SIL} = \frac{V_{\text{L-L}}^2}{Z_c}$ \newline ($Z_c \approx 400\,\Omega$ overhead, $40\,\Omega$ cable) & At SIL, $Q_C = Q_L$, flat voltage profile ($V_s = V_r$). $P < \text{SIL} \to$ voltage rise; $P > \text{SIL} \to$ voltage drop. \\
+\end{tabularx}
+\end{center}
+
+\subsection{4. Insulators \& String Efficiency (Quick Formula Guide)}
+\begin{itemize}
+  \item \textbf{Disc Voltages (3-Disc String with shunt ratio $k = C_1 / C$):}
+    \begin{equation*}
+      V_2 = V_1 (1 + k), \qquad V_3 = V_1 (1 + 3k + k^2), \qquad V = V_1 (3 + 4k + k^2)
+    \end{equation*}
+  \item \textbf{Maximum Voltage Stress:} Occurs across the disc \textbf{nearest to the conductor} ($V_3$).
+  \item \textbf{String Efficiency:} $\eta = \frac{V}{n \times V_n} \times 100\%$.
+  \item \textbf{Methods of Improvement:} Longer cross-arms (reduces $k$), Capacitance Grading ($C_1 < C_2 < C_3$), Guard Ring (injects current from line to achieve $100\%$ uniform voltage distribution).
+\end{itemize}
+
+\end{document}

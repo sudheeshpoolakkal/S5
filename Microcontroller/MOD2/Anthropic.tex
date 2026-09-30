@@ -1,0 +1,713 @@
+%% ═══════════════════════════════════════════════════════════════════════════
+%% Study Notes Template — Polished Edition
+%% Fixes applied:
+%%   · tcolorbox drop shadow corrected
+%%   · AutoFakeBold/AutoFakeSlant replaced with explicit font declarations
+%%   · \inlinecode uses \colorbox instead of TikZ
+%%   · Redundant color aliases removed
+%%   · Widow/orphan protection added
+%%   · \parskip set with explicit length
+%%   · lstset gets a default language
+%%   · \titleformat section guard removed; use \section* when unnumbered
+%%   · Subject/title parameterised via commands
+%%   · TOC styling added
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\documentclass[12pt,a4paper]{article}
+
+%% ─── Packages ────────────────────────────────────────────────────────────────
+\usepackage{fontspec}
+
+%% If your font has real bold/italic cuts, declare them explicitly:
+\setmainfont{Anthropic-serif}[Path=./, Extension=.ttf]
+%% \setmainfont{Anthropic-serif}[
+%%     Path        = ./,
+%%     Extension   = .ttf,
+%%     BoldFont    = Anthropic-serif-Bold,       %% replace with actual filename
+%%     ItalicFont  = Anthropic-serif-Italic,     %% replace with actual filename
+%%     BoldItalicFont = Anthropic-serif-BoldItalic
+%% ]
+%% Fallback if only one weight exists — remove the lines above and uncomment:
+%% \setmainfont{Anthropic-serif}[Path=./, Extension=.ttf]
+
+\setsansfont{Poppins}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]  %% or any monospace you have
+
+\usepackage[margin=2.2cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds,
+                decorations.pathreplacing, calc}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings, skins, breakable, raster}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{colortbl}
+
+%% ─── Document metadata (edit here only) ─────────────────────────────────────
+\newcommand{\docsubject}{Computer Engineering Theory}
+\newcommand{\docshortsubject}{CET}
+\newcommand{\doctitle}{Study Notes}
+
+%% ─── Widow / orphan protection ───────────────────────────────────────────────
+\widowpenalty=10000
+\clubpenalty=10000
+
+%% ─── Paragraph spacing ───────────────────────────────────────────────────────
+\setlength{\parskip}{0.5em plus 0.2em minus 0.1em}
+\setlength{\parindent}{0pt}
+
+%% ─── Table geometry ──────────────────────────────────────────────────────────
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\setlength{\extrarowheight}{0.75ex}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\arrayrulewidth}{0.3pt}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+%% ─── Brand Colors (Anthropic palette — light mode) ───────────────────────────
+\definecolor{AnthDark}{HTML}{141413}
+\definecolor{AnthLight}{HTML}{faf9f5}
+\definecolor{AnthMidGray}{HTML}{b0aea5}
+\definecolor{AnthLightGray}{HTML}{e8e6dc}
+\definecolor{AnthOrange}{HTML}{d97757}
+\definecolor{AnthBlue}{HTML}{6a9bcc}
+\definecolor{AnthGreen}{HTML}{788c5d}
+\definecolor{AnthCodeBG}{HTML}{e8e6dc}
+
+\arrayrulecolor{AnthMidGray!50}
+
+%% ─── Hyperref ────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks  = true,
+  linkcolor   = AnthBlue,
+  urlcolor    = AnthOrange,
+  citecolor   = AnthGreen,
+  pdftitle    = {\doctitle{} · \docshortsubject},
+  pdfauthor   = {Sudheesh},
+}
+
+%% ─── Page style ──────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{AnthMidGray}\textbf{\doctitle} · \docshortsubject}
+\fancyhead[R]{\small\color{AnthMidGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{%
+  \hbox to\headwidth{\color{AnthOrange}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+%% ─── Section formatting ──────────────────────────────────────────────────────
+\titleformat{\section}
+  {\Large\bfseries\sffamily\color{AnthDark}}
+  {\colorbox{AnthOrange}{\makebox[0.5cm][c]{\color{white}\thesection}}\quad}
+  {0em}
+  {}
+  [\vspace{-0.5ex}\color{AnthLightGray}\hrule\vspace{0.5ex}]
+
+\titleformat{\subsection}
+  {\large\bfseries\sffamily\color{AnthDark}}
+  {\color{AnthBlue}\thesubsection\enspace}
+  {0em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily\color{AnthDark}}
+  {\color{AnthGreen}\thesubsubsection\enspace}
+  {0em}{}
+
+\titlespacing{\section}     {0pt}{1.5em}{0.8em}
+\titlespacing{\subsection}  {0pt}{1em}{0.4em}
+\titlespacing{\subsubsection}{0pt}{0.8em}{0.3em}
+
+%% ─── TOC styling ─────────────────────────────────────────────────────────────
+\contentsmargin{0pt}
+
+\titlecontents{section}
+  [0pt]
+  {\vspace{4pt}\bfseries\sffamily\color{AnthGreen}}
+  {\colorbox{AnthOrange}{\makebox[0.45cm][c]{\color{white}\small\thecontentslabel}}\enspace}
+  {}
+  {\hfill\color{AnthGreen}\contentspage}
+
+\titlecontents{subsection}
+  [1.4em]
+  {\small\color{AnthBlue}}
+  {\thecontentslabel\enspace}
+  {}
+  {\titlerule*[6pt]{\tiny\color{AnthMidGray}.}\color{AnthBlue}\contentspage}
+
+\titlecontents{subsubsection}
+  [3.2em]
+  {\footnotesize\color{AnthBlue}}
+  {\thecontentslabel\enspace}
+  {}
+  {\titlerule*[6pt]{\tiny\color{AnthMidGray}.}\color{AnthBlue}\contentspage}
+
+%% ─── Code Listings ───────────────────────────────────────────────────────────
+\lstset{
+  language        = Python,           %% sensible default; override per listing
+  basicstyle      = \ttfamily\small,
+  keywordstyle    = \color{AnthOrange}\bfseries,
+  stringstyle     = \color{AnthGreen},
+  commentstyle    = \color{AnthMidGray}\itshape,
+  numberstyle     = \tiny\color{AnthMidGray},
+  numbers         = left,
+  stepnumber      = 1,
+  numbersep       = 10pt,
+  breaklines      = true,
+  tabsize         = 4,
+  showstringspaces= false,
+  captionpos      = b,
+  frame           = none,
+  xleftmargin     = 18pt,
+  xrightmargin    = 6pt,
+  aboveskip       = 4pt,
+  belowskip       = 4pt,
+  keepspaces      = true,
+}
+
+%% ─── tcolorbox styles ────────────────────────────────────────────────────────
+\tcbset{
+  %% Dark code box
+  codebox/.style={
+    enhanced, breakable,
+    colback     = AnthDark,
+    colframe    = AnthDark,
+    arc=6pt, outer arc=6pt,
+    sharp corners=west,
+    left=4pt, right=4pt, top=4pt, bottom=4pt,
+    boxrule     = 0.6pt,
+    colupper    = AnthLight,
+    coltitle    = white,
+    colbacktitle= AnthDark!80,
+    fonttitle   = \small\bfseries\sffamily,
+    attach boxed title to top left={yshift=-2mm, xshift=8mm},
+    boxed title style={arc=3pt, outer arc=3pt, colback=AnthDark!80, boxrule=0pt, sharp corners=west},
+    drop fuzzy shadow={AnthMidGray!40},
+    top=8pt,
+  },
+  %% Neutral note
+  notebox/.style={
+    enhanced,
+    colback     = AnthLightGray!40,
+    colframe    = AnthMidGray,
+    arc=6pt, outer arc=6pt,
+    sharp corners=west,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    boxrule     = 0.6pt,
+    colupper    = AnthDark,
+    fonttitle   = \bfseries\sffamily,
+    coltitle    = AnthDark,
+    colbacktitle= AnthLightGray,
+    borderline west={3pt}{0pt}{AnthMidGray},
+    drop fuzzy shadow={AnthMidGray!25},
+  },
+  %% Tip / positive
+  tipbox/.style={
+    enhanced,
+    colback     = AnthGreen!8,
+    colframe    = AnthGreen!70,
+    arc=6pt, outer arc=6pt,
+    sharp corners=west,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    boxrule     = 0.6pt,
+    colupper    = AnthDark,
+    fonttitle   = \bfseries\sffamily,
+    coltitle    = white,
+    colbacktitle= AnthGreen,
+    borderline west={3pt}{0pt}{AnthGreen},
+    drop fuzzy shadow={AnthGreen!20},
+  },
+  %% Warning
+  warnbox/.style={
+    enhanced,
+    colback     = AnthOrange!6,
+    colframe    = AnthOrange!70,
+    arc=6pt, outer arc=6pt,
+    sharp corners=west,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    boxrule     = 0.6pt,
+    colupper    = AnthDark,
+    fonttitle   = \bfseries\sffamily,
+    coltitle    = white,
+    colbacktitle= AnthOrange,
+    borderline west={3pt}{0pt}{AnthOrange},
+    drop fuzzy shadow={AnthOrange!20},
+  },
+  %% Definition
+  defbox/.style={
+    enhanced,
+    colback     = AnthLight,
+    colframe    = AnthLightGray,
+    arc=6pt, outer arc=6pt,
+    sharp corners=west,
+    left=10pt, right=10pt, top=8pt, bottom=8pt,
+    boxrule     = 0.6pt,
+    colupper    = AnthDark,
+    borderline west={3.5pt}{0pt}{AnthOrange},
+    drop fuzzy shadow={AnthMidGray!25},
+  },
+}
+
+%% ─── Inline helpers ──────────────────────────────────────────────────────────
+
+%% Lightweight inline code — no TikZ overhead
+\newcommand{\ic}[1]{%
+  \mbox{\colorbox{AnthCodeBG}{\footnotesize\ttfamily\textcolor{AnthBlue}{#1}}}%
+}
+
+%% Concept label (orange left-rule + bold heading)
+\newcommand{\concept}[1]{%
+  \noindent\textcolor{AnthGreen}{\rule{3pt}{10pt}}\enspace
+  \textbf{\color{AnthDark}#1}\par\vspace{2pt}%
+}
+
+%% ─── List style ──────────────────────────────────────────────────────────────
+\setlist[itemize,1]{itemsep=2pt, topsep=4pt, parsep=0pt, label={\color{AnthOrange}\small$\blacktriangleright$}}
+\setlist[itemize,2]{itemsep=2pt, topsep=4pt, parsep=0pt, label={\color{AnthBlue}\small$\blacktriangleright$}}
+\setlist[itemize,3]{itemsep=2pt, topsep=4pt, parsep=0pt, label={\color{AnthGreen}\small$\blacktriangleright$}}
+
+\setlist[enumerate,1]{itemsep=2pt, topsep=4pt, parsep=0pt, label={\color{AnthOrange}\arabic*.}}
+\setlist[enumerate,2]{itemsep=2pt, topsep=4pt, parsep=0pt, label={\color{AnthBlue}\alph*)}}
+\setlist[enumerate,3]{itemsep=2pt, topsep=4pt, parsep=0pt, label={\color{AnthGreen}\roman*.}}
+
+%% ─── Custom environments (convenience wrappers) ──────────────────────────────
+\newenvironment{Note}[1][Note]{%
+  \begin{tcolorbox}[notebox, title=#1]}{\end{tcolorbox}}
+
+\newenvironment{Tip}[1][Tip]{%
+  \begin{tcolorbox}[tipbox, title=#1]}{\end{tcolorbox}}
+
+\newenvironment{Warn}[1][Warning]{%
+  \begin{tcolorbox}[warnbox, title=#1]}{\end{tcolorbox}}
+
+\newenvironment{Def}[1][]{%
+  \begin{tcolorbox}[defbox]\ifx&#1&\else\textbf{#1.}\enspace\fi}{\end{tcolorbox}}
+
+%% ─── Title page ──────────────────────────────────────────────────────────────
+\newcommand{\maketitlepage}{%
+  \begin{titlepage}
+    \pagecolor{AnthDark}
+    \color{AnthLight}
+    \vspace*{4cm}
+    \begin{center}
+      {\Huge\bfseries\sffamily \doctitle}\\[0.6em]
+      {\large\sffamily\color{AnthOrange} \docsubject}\\[2em]
+      \color{AnthMidGray}\rule{0.4\textwidth}{0.4pt}\\[1.5em]
+      {\small\sffamily\color{AnthMidGray} Compiled \today}
+    \end{center}
+    \vfill
+  \end{titlepage}
+  \pagecolor{AnthLight}
+  \color{AnthDark}
+}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+%% Document
+%% ═══════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\maketitlepage
+
+%% ─── Table of Contents ───────────────────────────────────────────────────────
+\thispagestyle{empty}
+{
+  \hypersetup{hidelinks}
+  \tableofcontents
+}
+\newpage
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\section{Digital Logic Fundamentals}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Boolean Algebra}
+
+Boolean algebra operates over the set $\{0, 1\}$ under three primary operations:
+\textbf{AND} ($\cdot$), \textbf{OR} ($+$), and \textbf{NOT} ($\overline{\phantom{x}}$).
+Every digital circuit can be expressed as a combination of these primitives.
+
+\begin{Def}[De Morgan's Theorems]
+  \begin{align}
+    \overline{A \cdot B} &= \overline{A} + \overline{B} \\
+    \overline{A + B}     &= \overline{A} \cdot \overline{B}
+  \end{align}
+  These identities let you push a negation \emph{through} a gate by flipping
+  AND $\leftrightarrow$ OR — invaluable for converting between NAND/NOR implementations.
+\end{Def}
+
+\begin{Note}
+  De Morgan's theorems extend naturally to $n$ variables:
+  $\overline{A_1 \cdot A_2 \cdots A_n} = \overline{A_1} + \overline{A_2} + \cdots + \overline{A_n}$.
+\end{Note}
+
+\subsection{Logic Gates and Truth Tables}
+
+The table below shows the four most common two-input gates. NAND and NOR are
+\emph{functionally complete} individually — any Boolean function can be realised
+using only NANDs, or only NORs.
+
+\begin{center}
+\begin{tabular}{C{0.8cm} C{0.8cm} C{1.1cm} C{1.1cm} C{1.1cm} C{1.1cm}}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{A} &
+  \color{white}\textbf{B} &
+  \color{white}\textbf{AND} &
+  \color{white}\textbf{OR} &
+  \color{white}\textbf{NAND} &
+  \color{white}\textbf{NOR} \\
+  \rowcolor{AnthLightGray!60} 0 & 0 & 0 & 0 & 1 & 1 \\
+  0 & 1 & 0 & 1 & 1 & 0 \\
+  \rowcolor{AnthLightGray!60} 1 & 0 & 0 & 1 & 1 & 0 \\
+  1 & 1 & 1 & 1 & 0 & 0 \\
+\end{tabular}
+\end{center}
+
+\begin{Tip}[Implementation tip]
+  Prefer NAND-only designs in CMOS: NAND gates are slightly faster and smaller than
+  NOR gates in that technology because PMOS transistors (used in pull-up networks) are
+  inherently slower than NMOS.
+\end{Tip}
+
+\subsection{Karnaugh Maps}
+
+A Karnaugh map (K-map) is a visual method for minimising Boolean expressions.
+Groups of $2^n$ adjacent \ic{1}s correspond directly to product terms in the
+simplified sum-of-products (SOP) expression.
+
+\concept{Grouping rules}
+
+\begin{enumerate}
+  \item Groups must be rectangular and contain a power-of-two number of cells ($1, 2, 4, 8\ldots$).
+  \item Every \ic{1} must be covered by at least one group.
+  \item Groups may wrap around edges (the map is toroidal).
+  \item Prefer the \emph{fewest, largest} groups to minimise literals.
+\end{enumerate}
+
+\begin{Warn}[Don't-care conditions]
+  Don't-care entries (\ic{X}) may be included in a group if doing so makes it
+  larger — but you are \textbf{not obligated} to cover them. Never include an
+  \ic{X} in a group if it does not increase the group's size.
+\end{Warn}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\section{Computer Architecture}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Instruction Set Architectures}
+
+\begin{Def}[ISA]
+  An \textbf{Instruction Set Architecture} is the abstract interface between hardware
+  and software: it specifies the programmer-visible registers, data types, addressing
+  modes, and the encoding of every instruction the processor can execute.
+\end{Def}
+
+The two dominant design philosophies are contrasted below.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{L{3.2cm} X X}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{Property} &
+  \color{white}\textbf{RISC} &
+  \color{white}\textbf{CISC} \\
+  \rowcolor{AnthLightGray!60}
+  Instruction count & Many simple instructions & Fewer, complex instructions \\
+  Memory access     & Load/store only          & Any instruction can access memory \\
+  \rowcolor{AnthLightGray!60}
+  Register file     & Large (32+)              & Small (8 in x86) \\
+  Microcode         & None (typically)         & Extensive \\
+  \rowcolor{AnthLightGray!60}
+  Examples          & ARM, RISC-V, MIPS        & x86, x86-64 \\
+\end{tabularx}
+\end{center}
+
+\subsection{Pipelining}
+
+Pipelining overlaps the execution of multiple instructions by dividing the datapath
+into discrete stages. A classic five-stage RISC pipeline:
+
+\begin{enumerate}
+  \item \textbf{IF} — Instruction Fetch: read instruction from memory at PC.
+  \item \textbf{ID} — Instruction Decode / Register Read.
+  \item \textbf{EX} — Execute: ALU operation or address calculation.
+  \item \textbf{MEM} — Memory access (loads and stores only).
+  \item \textbf{WB} — Write Back: result to register file.
+\end{enumerate}
+
+\concept{Pipeline hazards}
+
+\begin{itemize}
+  \item \textbf{Structural} — two instructions require the same hardware resource simultaneously.
+  \item \textbf{Data} — an instruction depends on a result not yet written back (RAW, WAR, WAW).
+  \item \textbf{Control} — branch outcome is unknown; fetched instructions may be wrong.
+\end{itemize}
+
+\begin{Note}[Forwarding / bypassing]
+  Most RAW data hazards are resolved by \emph{forwarding}: routing the output of the
+  EX or MEM stage directly back to the EX stage input, without waiting for WB.
+  This eliminates the majority of pipeline stalls without compiler intervention.
+\end{Note}
+
+\subsubsection{Branch prediction}
+
+Static prediction (always-taken / always-not-taken) achieves roughly 60\% accuracy.
+Dynamic predictors maintain a history table; a 2-bit saturating counter scheme
+typically reaches 85–90\% accuracy on real workloads.
+
+\begin{Tip}[Loop unrolling]
+  Loop unrolling reduces branch overhead \emph{and} exposes more instruction-level
+  parallelism to the scheduler — useful when the loop body is small and the iteration
+  count is known at compile time.
+\end{Tip}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\section{Operating Systems}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Process Scheduling}
+
+\begin{Def}[Scheduling criteria]
+  Key metrics: \textbf{CPU utilisation}, \textbf{throughput} (processes/unit time),
+  \textbf{turnaround time} (submit $\to$ complete), \textbf{waiting time} (time in ready
+  queue), and \textbf{response time} (submit $\to$ first response).
+\end{Def}
+
+\subsubsection{Completely Fair Scheduler (CFS)}
+
+Linux's default scheduler assigns a \emph{virtual runtime} (\ic{vruntime}) to each
+task. The task with the smallest \ic{vruntime} is always scheduled next; it accumulates
+\ic{vruntime} at a rate inversely proportional to its \emph{nice} weight. Tasks are
+stored in a red-black tree keyed on \ic{vruntime}, giving $O(\log n)$ scheduling
+decisions.
+
+\begin{tcolorbox}[codebox, title=Inspecting CFS scheduling weights (Linux)]
+\begin{lstlisting}[language=bash]
+# View the scheduling policy and priority of a process
+chrt -p <PID>
+
+# Inspect vruntime and load weight via /proc
+cat /proc/<PID>/sched
+
+# Change the nice value of a running process
+renice -n 5 -p <PID>
+\end{lstlisting}
+\end{tcolorbox}
+
+\subsection{Memory Management}
+
+\subsubsection{Virtual memory and paging}
+
+Each process sees a private, contiguous virtual address space. The MMU translates
+virtual addresses to physical addresses via a \emph{page table}; modern systems use
+multi-level tables (e.g.\ four levels on x86-64) to avoid storing entries for the
+entire virtual space.
+
+\begin{Def}[Translation Lookaside Buffer (TLB)]
+  A small, fully-associative cache inside the MMU storing recent virtual-to-physical
+  mappings. A TLB \emph{hit} resolves a translation in 1–2 cycles; a \emph{miss}
+  requires a page-table walk costing 10–100+ cycles.
+\end{Def}
+
+\begin{Warn}[TLB shootdowns in SMP]
+  When a mapping is modified on one core, all other cores must invalidate their
+  TLB entries for that page. This inter-processor interrupt (IPI) broadcast —
+  the \emph{TLB shootdown} — is a significant scalability bottleneck on
+  many-core systems under high \ic{munmap}/\ic{mmap} rates.
+\end{Warn}
+
+\subsubsection{Page replacement policies}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{L{2.4cm} X L{2.8cm}}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{Algorithm} &
+  \color{white}\textbf{Description} &
+  \color{white}\textbf{Practical cost} \\
+  \rowcolor{AnthLightGray!60}
+  OPT       & Evict the page used furthest in the future & Impossible online \\
+  LRU       & Evict least recently used page & High (full timestamp) \\
+  \rowcolor{AnthLightGray!60}
+  Clock     & Approximates LRU with a reference bit      & Low \\
+  LFU       & Evict least frequently used page           & Medium \\
+  \rowcolor{AnthLightGray!60}
+  Linux (2Q)& Active/inactive list pair with promotion   & Low \\
+\end{tabularx}
+\end{center}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\section{Data Structures and Algorithms}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Asymptotic Complexity}
+
+\begin{Def}[Big-O notation]
+  $f(n) = O(g(n))$ iff $\exists\, c > 0,\; n_0 > 0$ such that
+  $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$.
+  It describes an \emph{asymptotic upper bound} — it says nothing about constant factors
+  or small inputs.
+\end{Def}
+
+\begin{Note}
+  $O$, $\Omega$, and $\Theta$ are distinct. When people say "the complexity \emph{is}
+  $O(n \log n)$" they usually mean $\Theta(n \log n)$ — both upper and lower bounded.
+  Sloppy usage propagates through a lot of textbooks; be precise in your own work.
+\end{Note}
+
+\subsection{Sorting algorithms — complexity summary}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{L{2.8cm} C{2cm} C{2cm} C{2cm} C{1.6cm}}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{Algorithm} &
+  \color{white}\textbf{Best} &
+  \color{white}\textbf{Average} &
+  \color{white}\textbf{Worst} &
+  \color{white}\textbf{Space} \\
+  \rowcolor{AnthLightGray!60}
+  Insertion sort & $O(n)$ & $O(n^2)$ & $O(n^2)$ & $O(1)$ \\
+  Merge sort   & $O(n \log n)$ & $O(n \log n)$ & $O(n \log n)$ & $O(n)$ \\
+  \rowcolor{AnthLightGray!60}
+  Quick sort   & $O(n \log n)$ & $O(n \log n)$ & $O(n^2)$ & $O(\log n)$ \\
+  Heap sort    & $O(n \log n)$ & $O(n \log n)$ & $O(n \log n)$ & $O(1)$ \\
+  \rowcolor{AnthLightGray!60}
+  Timsort      & $O(n)$ & $O(n \log n)$ & $O(n \log n)$ & $O(n)$ \\
+\end{tabularx}
+\end{center}
+
+\subsection{Example: merge sort}
+
+\begin{tcolorbox}[codebox, title=Merge sort — Python]
+\begin{lstlisting}[language=Python]
+def merge_sort(arr: list[int]) -> list[int]:
+    """Recursive merge sort. Returns a new sorted list."""
+    if len(arr) <= 1:
+        return arr
+
+    mid   = len(arr) // 2
+    left  = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return _merge(left, right)
+
+
+def _merge(left: list[int], right: list[int]) -> list[int]:
+    result, i, j = [], 0, 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i]); i += 1
+        else:
+            result.append(right[j]); j += 1
+    return result + left[i:] + right[j:]
+\end{lstlisting}
+\end{tcolorbox}
+
+\begin{Tip}[When to use Timsort]
+  Python's built-in \ic{sorted()} and \ic{list.sort()} both use Timsort, which
+  exploits existing \emph{runs} of sorted data in real inputs. For nearly-sorted
+  sequences it degrades gracefully to $O(n)$. Prefer it over rolling your own
+  sort for anything outside embedded or GPU contexts.
+\end{Tip}
+
+\subsection{Graph representations}
+
+Two standard representations for a graph $G = (V, E)$:
+
+\concept{Adjacency matrix}
+
+An $|V| \times |V|$ matrix where entry $(i, j) = 1$ iff edge $(i, j) \in E$.
+Space: $O(V^2)$. Edge lookup: $O(1)$. Preferred for dense graphs.
+
+\concept{Adjacency list}
+
+An array of $|V|$ lists, each containing the neighbours of vertex $i$.
+Space: $O(V + E)$. Edge lookup: $O(\deg(v))$. Preferred for sparse graphs —
+which is nearly every real-world network.
+
+\begin{tcolorbox}[codebox, title=BFS — C]
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+#define MAX 128
+
+void bfs(int adj[MAX][MAX], int n, int src) {
+    bool visited[MAX] = {false};
+    int  queue[MAX], front = 0, rear = 0;
+
+    visited[src]  = true;
+    queue[rear++] = src;
+
+    while (front < rear) {
+        int v = queue[front++];
+        printf("%d ", v);
+        for (int u = 0; u < n; u++) {
+            if (adj[v][u] && !visited[u]) {
+                visited[u]    = true;
+                queue[rear++] = u;
+            }
+        }
+    }
+}
+\end{lstlisting}
+\end{tcolorbox}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\section{Networking}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{The TCP/IP Stack}
+
+\begin{center}
+\begin{tabularx}{\linewidth}{C{0.4cm} L{2.6cm} X L{3.8cm}}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{\#} &
+  \color{white}\textbf{Layer} &
+  \color{white}\textbf{Responsibility} &
+  \color{white}\textbf{Key protocols} \\
+  \rowcolor{AnthLightGray!60}
+  4 & Application  & User-facing services             & HTTP, DNS, SMTP, SSH \\
+  3 & Transport    & End-to-end delivery, flow control & TCP, UDP, QUIC \\
+  \rowcolor{AnthLightGray!60}
+  2 & Internet     & Logical addressing, routing       & IP (v4/v6), ICMP \\
+  1 & Link         & Framing, MAC addressing           & Ethernet, Wi-Fi \\
+\end{tabularx}
+\end{center}
+
+\subsection{TCP three-way handshake}
+
+\begin{enumerate}
+  \item Client sends \ic{SYN} (seq = $x$).
+  \item Server replies \ic{SYN-ACK} (seq = $y$, ack = $x+1$).
+  \item Client sends \ic{ACK} (ack = $y+1$). Connection established.
+\end{enumerate}
+
+\begin{Warn}[SYN flood attacks]
+  A SYN flood exploits the half-open connection state: an attacker sends many
+  \ic{SYN} packets with spoofed source IPs, exhausting the server's connection
+  backlog. Mitigated with \emph{SYN cookies}: the server encodes state into the
+  \ic{ISN} instead of allocating a TCB, deferring allocation until the \ic{ACK}
+  is verified.
+\end{Warn}
+
+\begin{Note}
+  QUIC (RFC~9000) eliminates the TCP handshake latency for repeat connections via
+  \emph{0-RTT resumption} and integrates TLS~1.3 natively — the entire handshake
+  costs 1~RTT on first connection, 0~RTT on resumption.
+\end{Note}
+
+\end{document}

@@ -1,0 +1,267 @@
+%% ═══════════════════════════════════════════════════════════════════════════
+%% PBEOT504: DATABASE MANAGEMENT SYSTEM — EXAM DAY QUICK REVISION CHEATSHEET
+%% Modules 1 & 2 Crash Course · KTU / CET S5 (2024 Scheme)
+%% Styled with Anthropic Notes Design System
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{fontspec}
+\setmainfont{Anthropic-serif}[
+    Path          = ./,
+    Extension     = .ttf,
+    AutoFakeBold  = 1.5,
+    AutoFakeSlant = 0.2
+]
+\setsansfont{Poppins}[
+    AutoFakeBold  = 1.5,
+    AutoFakeSlant = 0.2
+]
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+
+\usepackage[margin=1.5cm, top=1.8cm, bottom=1.8cm, headheight=20pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings, skins, breakable}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{colortbl}
+\usepackage[normalem]{ulem}
+
+%% ─── Brand Colors ────────────────────────────────────────────────────────────
+\definecolor{AnthDark}{HTML}{141413}
+\definecolor{AnthLight}{HTML}{faf9f5}
+\definecolor{AnthMidGray}{HTML}{7a7870}
+\definecolor{AnthLightGray}{HTML}{e8e6dc}
+\definecolor{AnthOrange}{HTML}{d97757}
+\definecolor{AnthBlue}{HTML}{3b75a4}
+\definecolor{AnthGreen}{HTML}{5d7343}
+\definecolor{AnthCodeBG}{HTML}{edebe1}
+\definecolor{AnthCardBG}{HTML}{f6f5ee}
+
+\setlength{\parskip}{0.25em}
+\setlength{\parindent}{0pt}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\renewcommand{\arraystretch}{1.25}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+%% ─── Page Style ─────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{AnthMidGray}\textbf{PBEOT504: Database Management System} \textbar\ Last-Minute Exam Booster (Modules 1 \& 2)}
+\fancyhead[R]{\footnotesize\sffamily\color{AnthOrange}\textbf{Page \thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{AnthOrange}\leaders\hrule height \headrulewidth\hfill}}
+\fancyfoot[L]{\tiny\sffamily\color{AnthMidGray} KTU S5 · Fast Skimming \& High-Yield Cheat Sheet}
+\fancyfoot[R]{\tiny\sffamily\color{AnthMidGray} Confidential Exam Revision Material}
+
+%% ─── Section Styles ─────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\sffamily\color{AnthDark}}
+  {\colorbox{AnthOrange}{\makebox[0.5cm][c]{\color{white}\thesection}}\enspace}
+  {0em}{}
+  [\vspace{-0.5ex}\color{AnthLightGray}\hrule\vspace{0.2ex}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\sffamily\color{AnthBlue}}
+  {\thesubsection\enspace}
+  {0em}{}
+
+\titlespacing{\section}{0pt}{0.8em}{0.3em}
+\titlespacing{\subsection}{0pt}{0.6em}{0.2em}
+
+\tcbset{
+  boosterbox/.style={
+    enhanced, breakable,
+    colback=AnthCardBG, colframe=AnthOrange,
+    arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt, boxrule=0.6pt,
+    fonttitle=\bfseries\sffamily\small, coltitle=white, colbacktitle=AnthOrange
+  },
+  formulabox/.style={
+    enhanced, breakable,
+    colback=AnthBlue!6, colframe=AnthBlue!80,
+    arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt, boxrule=0.5pt,
+    fonttitle=\bfseries\sffamily\footnotesize, coltitle=white, colbacktitle=AnthBlue
+  },
+  trapbox/.style={
+    enhanced, breakable,
+    colback=AnthOrange!8, colframe=AnthOrange!90,
+    arc=3pt, left=6pt, right=6pt, top=4pt, bottom=4pt, boxrule=0.5pt,
+    fonttitle=\bfseries\sffamily\footnotesize, coltitle=white, colbacktitle=AnthOrange
+  }
+}
+
+\newcommand{\ic}[1]{\mbox{\colorbox{AnthCodeBG}{\footnotesize\ttfamily\textcolor{AnthBlue}{#1}}}}
+\newcommand{\LeftJoin}{\mathbin{]\mkern-4mu\bowtie}}
+\newcommand{\RightJoin}{\mathbin{\bowtie\mkern-4mu[}}
+\newcommand{\FullOuterJoin}{\mathbin{]\mkern-4mu\bowtie\mkern-4mu[}}
+
+\setlist[itemize]{itemsep=1.0pt, topsep=1.0pt, parsep=0pt, label={\color{AnthOrange}\scriptsize$\blacktriangleright$}}
+\setlist[enumerate]{itemsep=1.0pt, topsep=1.0pt, parsep=0pt, label={\bfseries\color{AnthBlue}\arabic*.}}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries\sffamily\color{AnthDark} PBEOT504: DATABASE MANAGEMENT SYSTEM}\\[0.2em]
+  {\large\sffamily\color{AnthOrange}\textbf{Last-Minute High-Yield Exam Booster \& Query Cheatsheet}}\\[0.2em]
+  {\footnotesize\sffamily\color{AnthMidGray} Master Summary of Schemas, ER Synthesis, Indexing Formulas, Relational Algebra \& SQL Queries · Modules 1 \& 2}
+\end{center}
+\vspace{-0.5em}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\section{MODULE 1: DBMS Architecture, ER Conceptual Modeling \& Physical Storage}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{1. Three-Schema Architecture \& Data Independence}
+\begin{itemize}
+  \item \textbf{Three Levels:} \textbf{External Level} (Tailored user views) $\to$ \textbf{Conceptual Level} (Community logical schema: entities, relationships, constraints) $\to$ \textbf{Internal Level} (Physical storage formats, block layout, access paths/indexes).
+  \item \textbf{Logical Data Independence:} Ability to alter the \textbf{conceptual schema} (e.g., adding/deleting attributes or entities) without rewriting external schemas or application programs. \emph{(Harder to achieve)}.
+  \item \textbf{Physical Data Independence:} Ability to alter the \textbf{internal schema} (e.g., building a B+ tree index, changing physical file organization) without changing the conceptual or external schemas. \emph{(Easy to achieve)}.
+\end{itemize}
+
+\subsection{2. ER Modeling Elements \& Notation Cheat Sheet}
+
+\begin{center}
+\scriptsize
+\begin{tabularx}{\textwidth}{L{2.8cm} L{3.5cm} X}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{ER Element} & \color{white}\textbf{Diagram Graphic} & \color{white}\textbf{Exam Definition \& Key Rules} \\
+  \rowcolor{AnthCardBG} \textbf{Strong Entity} & Single Rectangle & Possesses an independent primary key attribute (\underline{underlined}). \\
+  \textbf{Weak Entity} & \textbf{Double Rectangle} & Has no key of its own; depends on owner entity via an \textbf{Identifying Relationship (Double Diamond)}. Has a \textbf{Partial Key / Discriminator (\dashuline{dashed underline})} and \textbf{always has Total Participation (Double Line)}. \\
+  \rowcolor{AnthCardBG} \textbf{Multivalued Attr} & \textbf{Double Oval} & Attribute that can take multiple values for one entity (e.g., \ic{Phone\_Numbers}). \\
+  \textbf{Derived Attribute} & \textbf{Dashed Oval} & Computed from stored attributes (e.g., \ic{Age} from \ic{DOB}). \\
+  \rowcolor{AnthCardBG} \textbf{Participation} & Total (Double Line) vs Partial (Single Line) & Total $\iff$ Every entity must participate ($min \ge 1$); Partial $\iff$ Optional ($min = 0$). \\
+  \textbf{Ternary (Degree 3)} & 1 Diamond linking 3 Entities & Cannot be split into 3 binary relationships without losing atomic multi-way association. \\
+\end{tabularx}
+\end{center}
+
+\subsection{3. Physical Storage \& Indexing Formulas (Guaranteed Numerical Question)}
+
+\begin{tcolorbox}[formulabox, title=Master Formulas for File Storage \& Index Calculations]
+\small
+\begin{minipage}[t]{0.48\textwidth}
+\begin{enumerate}
+  \item $\text{Blocking Factor } bfr = \lfloor B / R \rfloor \quad [\text{records/block}]$
+  \item $\text{Total Data Blocks } b = \lceil r / bfr \rceil \quad [\text{blocks}]$
+  \item $\text{Wasted Block Space} = B - (bfr \times R) \quad [\text{bytes}]$
+  \item $\text{Heap Linear Search Cost} = \lfloor b / 2 \rfloor \quad [\text{average I/Os}]$
+  \item $\text{Primary Index (Sparse):}$ One entry per data block ($b$ entries); $R_i = V_K + P_B$; $bfr_i = \lfloor B / R_i \rfloor$; $b_i = \lceil b / bfr_i \rceil$; Binary Search Cost $= \lceil \log_2(b_i) \rceil + 1$.
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{enumerate}[resume]
+  \item $\text{Secondary Index (Dense on Key):}$ One entry per data record ($r$ entries); $b_i = \lceil r / bfr_i \rceil$; Search Cost $= \lceil \log_2(b_i) \rceil + 1$.
+  \item $\text{Multi-Level Index Tree:}$ Fan-out $fo = bfr_i$;
+  \begin{itemize}
+    \item Level 1: $b_1 = \lceil b / fo \rceil$
+    \item Level 2: $b_2 = \lceil b_1 / fo \rceil \dots$ until $b_x = 1$ (root)
+  \end{itemize}
+  \item $\text{Total Multi-Level Access Cost} = x + 1 \quad [\text{block accesses}]$.
+\end{enumerate}
+\end{minipage}
+\end{tcolorbox}
+
+%% ─────────────────────────────────────────────────────────────────────────────
+\clearpage
+\section{MODULE 2: Relational Model, 7-Step Synthesis, Relational Algebra \& Advanced SQL}
+%% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{1. Relational Keys \& Integrity Constraints (Quick Definitions)}
+\begin{itemize}
+  \item \textbf{Super Key ($SK$):} Uniquely identifies a row (may have extra attributes). \textbf{Candidate Key ($CK$):} Minimal super key.
+  \item \textbf{Primary Key ($PK$):} Candidate key chosen for identification. \textbf{NEVER NULL!} \textbf{Alternate Key ($AK$):} $CK \setminus \{PK\}$.
+  \item \textbf{Foreign Key ($FK$):} Field matching $PK$ of referenced table or NULL (Referential Integrity).
+  \item \textbf{Entity Integrity:} $PK \neq \text{NULL}$. \textbf{Domain Integrity:} Values must belong to atomic domain.
+\end{itemize}
+
+\subsection{2. The 7-Step ER-to-Relational Synthesis Algorithm (Must Memorize!)}
+\begin{enumerate}
+  \item \textbf{Strong Entities:} Create table; flatten composite attributes into simple columns; $PK = \text{Entity } PK$.
+  \item \textbf{Weak Entities:} Create table; import owner's $PK$ as $FK$; composite $PK = \{ \text{Owner } PK, \text{Partial Key} \}$.
+  \item \textbf{Multivalued Attributes:} Create separate table with $\{ \text{Owner } PK_{\text{FK}}, \text{Attribute} \}$ as composite $PK$.
+  \item \textbf{Binary 1:1 Relationships:} Foreign Key Approach $\to$ Place $PK$ of one side as $FK$ on the side with \textbf{total participation}.
+  \item \textbf{Binary 1:N Relationships:} Place the $PK$ of the $1$-side as a \textbf{Foreign Key} inside the table on the \textbf{$N$-side}.
+  \item \textbf{Binary M:N Relationships:} Create a separate \textbf{Junction Table} with composite $PK = \{ FK_1, FK_2 \}$.
+  \item \textbf{Recursive 1:N / Ternary:} Add self-referencing $FK$ in same table / Create 3-way junction table with composite $PK$.
+\end{enumerate}
+
+\subsection{3. Relational Algebra vs. SQL Master Query Cheatsheet}
+
+\begin{center}
+\scriptsize
+\begin{tabularx}{\textwidth}{L{2.2cm} L{3.6cm} L{4.5cm} X}
+  \rowcolor{AnthDark}
+  \color{white}\textbf{Operation} & \color{white}\textbf{Relational Algebra ($\text{RA}$)} & \color{white}\textbf{Equivalent SQL Query} & \color{white}\textbf{Core Function} \\
+  \rowcolor{AnthCardBG} \textbf{Selection} & $\sigma_{\text{Salary} > 50000}(\text{EMPLOYEE})$ & \ic{SELECT * FROM EMPLOYEE WHERE Salary > 50000;} & Filters rows conditionally \\
+  \textbf{Projection} & $\Pi_{\text{FName, LName}}(\text{EMPLOYEE})$ & \ic{SELECT DISTINCT FName, LName FROM EMPLOYEE;} & Filters columns; eliminates duplicates \\
+  \rowcolor{AnthCardBG} \textbf{Theta / Inner Join} & $\text{EMP} \bowtie_{\text{EMP.DNo = DEPT.DNo}} \text{DEPT}$ & \ic{SELECT * FROM EMP JOIN DEPT ON EMP.DNo = DEPT.DNo;} & Combines matching rows \\
+  \textbf{Natural Join} & $\text{STUDENT} \bowtie \text{ENROLLS}$ & \ic{SELECT * FROM STUDENT NATURAL JOIN ENROLLS;} & Joins on common attribute names \\
+  \rowcolor{AnthCardBG} \textbf{Left Outer Join} & $\text{EMP} \LeftJoin \text{DEPT}$ & \ic{SELECT * FROM EMP LEFT JOIN DEPT ON EMP.DNo = DEPT.DNo;} & Preserves unmatched left tuples (NULLs) \\
+  \textbf{Division ($\div$)} & $\Pi_{\text{RollNo, CNo}}(\text{ENR}) \div \Pi_{\text{CNo}}(\text{COURSE})$ & \ic{SELECT S.RollNo FROM STUDENT S WHERE NOT EXISTS (...)} & Universal quantification ("for ALL") \\
+\end{tabularx}
+\end{center}
+
+\subsection{4. High-Yield SQL Templates for University Exams}
+
+\begin{tcolorbox}[formulabox, title=Must-Know SQL Constructs]
+\scriptsize
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{1. Aggregation \& Grouping (WHERE vs HAVING):}
+\begin{lstlisting}
+SELECT DNo, COUNT(*) AS Total, AVG(Salary) AS AvgSal
+FROM EMPLOYEE
+WHERE Salary >= 20000.00
+GROUP BY DNo
+HAVING COUNT(*) >= 5 AND AVG(Salary) > 45000;
+\end{lstlisting}
+\textbf{2. Nested Subqueries (IN vs EXISTS):}
+\begin{lstlisting}
+-- Non-correlated
+SELECT FName FROM EMPLOYEE 
+WHERE DNo IN (SELECT DNumber FROM DEPARTMENT WHERE DName='EEE');
+
+-- Correlated (Double NOT EXISTS for Division/ALL)
+SELECT S.Name FROM STUDENT S WHERE NOT EXISTS (
+    SELECT C.CourseID FROM COURSE C EXCEPT 
+    SELECT E.CourseID FROM ENROLLS E WHERE E.RollNo = S.RollNo);
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{3. View Creation:}
+\begin{lstlisting}
+CREATE VIEW HighEarners AS 
+SELECT SSN, FName, Salary FROM EMPLOYEE WHERE Salary > 60000;
+\end{lstlisting}
+\textbf{4. Trigger Definition (ECA Rule):}
+\begin{lstlisting}
+CREATE TRIGGER validate_salary 
+BEFORE INSERT ON EMPLOYEE FOR EACH ROW 
+BEGIN 
+    IF NEW.Salary < 15000 THEN 
+        SIGNAL SQLSTATE '45000' 
+        SET MESSAGE_TEXT = 'Salary below minimum!';
+    END IF; 
+END;
+\end{lstlisting}
+\textbf{5. JDBC Architecture:} \ic{DriverManager} $\to$ \ic{Connection} $\to$ \ic{PreparedStatement} $\to$ \ic{ResultSet}.
+\end{minipage}
+\end{tcolorbox}
+
+\end{document}

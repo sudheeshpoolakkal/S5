@@ -1,0 +1,943 @@
+=== PAGE 1 ===
+PCEOT502 Power Electronics 
+
+
+=== PAGE 2 ===
+Module 1
+
+
+=== PAGE 3 ===
+SILICON CONTROLLED RECTIFIER
+(SCR)
+
+
+=== PAGE 4 ===
+THYRISTORS (Contd…)
+• Has a PNPN structure
+• Can be viewed as a PNP and NPN transistor connected back-to-back
+• THYRISTOR               THYRatron + transISTOR
+• Is a device similar to a transistor and has characteristics similar to a 
+thyratron tube
+• Once the device is ON it acts like a rectifier and so it is called as SCR. 
+• It has common properties of diodes, resistors and transistors.
+• Thyristor is a unidirectional device and conducts current in only one 
+direction. 
+• It can be used only for switching and cannot be used for amplification.
+
+
+=== PAGE 5 ===
+THYRISTORS -Principle
+• 4 layered PNPN semiconductor device, having 3 
+junctions J1, J2, J3 and 3 terminals-Anode (A), 
+Cathode (K) and Gate (G).
+• Main terminals – Anode and Cathode
+• Control terminal – Gate
+• Gate terminal is kept near the Cathode
+• Outer p-region is the Anode
+• Outer n-region is the Cathode
+• Inner p-region is the Gate
+• Gate terminal controls the device
+• Voltage rating of 10 kV and rms current rating of 
+3 kA are available
+
+
+=== PAGE 6 ===
+THYRISTORS -Principle
+
+
+=== PAGE 7 ===
+TWO TRANSISTOR MODEL
+
+
+=== PAGE 8 ===
+TWO TRANSISTOR MODEL
+•
+SCR or thyristor is a three terminal semiconductor device having P-
+N-P-N structure.
+•
+Two transistor analogy of SCR is a method of representing SCR in
+the form of two transistor model.
+•
+The basic operating principle of SCR can realized by using the two
+transistor model.
+•
+This represents SCR as the combination of PNP and NPN transistor.
+•
+Anode of the SCR is connected to the emitter of the PNP transistor
+•
+Cathode of the SCR is connected to the emitter of NPN transistor
+•
+Both transistors are connected in common base configuration
+
+
+=== PAGE 9 ===
+THYRISTORS – Static V-I characteristics
+• 3 modes of operation of a thyristor –
+- reverse blocking mode
+- forward blocking mode (off-state)
+- forward conduction mode (on-state)
+• Anode and cathode are connected to the main source E through the
+load
+• Gate and cathode is connected to a source Es .
+• Es provides a +ve gate current from gate to cathode
+• Switching the SCR from forward blocking state (OFF – state) to
+forward conduction state (ON – state) is known as turning-ON
+process of SCR. This is also called as triggering.
+• The criteria for triggering the SCR depends on the several factors like
+supply voltage, gate current, temperature, etc.
+
+
+=== PAGE 10 ===
+Static V-I characteristics (Contd….)
+
+
+=== PAGE 11 ===
+Static V-I characteristics (Contd….)
+Reverse blocking mode:-
+• Also called off-state of the thyristor
+• When cathode is +ve wrt anode and
+switch S open, the thyristor is
+reverse biased.
+• Junction J2 is forward biased and J1
+and J3 are reverse biased.
+• Device is now similar to two
+diodes connected in series across a
+reverse voltage
+• Small leakage current (of the order of
+a few milliamps or microamps depending
+on the rating of the SCR) flows.
+
+
+=== PAGE 12 ===
+Static V-I characteristics (Contd….)
+Reverse blocking mode:- (Contd…)
+• When the reverse voltage is increased an
+avalanche occurs at J1 and J3 at a critical
+breakdown value.
+• This breakdown value is called reverse
+breakdown voltage, VBR.
+• Now the reverse current increases rapidly
+• Large current give rise to more losses in the
+SCR
+• May damage the thyristor as the junction
+temperature may exceed its permissible
+value.
+
+
+=== PAGE 13 ===
+Static V-I characteristics (Contd….)
+Reverse blocking mode:- (Contd…)
+• So the maximum working reverse voltage
+should not exceed VBR.
+• When the applied reverse voltage is less
+than VBR the device offers high impedance
+in the reverse direction.
+• SCR in this mode is treated as an open
+switch
+
+
+=== PAGE 14 ===
+Static V-I characteristics (Contd….)
+Forward blocking mode:-
+• When anode is +ve wrt cathode and switch S
+open, the thyristor is forward biased.
+• Junction J2 is reverse biased and J1 and J3 are
+forward biased.
+• Small current flows, known as the forward
+leakage current.
+
+
+=== PAGE 15 ===
+Static V-I characteristics (Contd….)
+Forward blocking mode:- (Contd...)
+• When the forward voltage is increased the
+reverse biased junction J2 will have an avalanche
+breakdown occurs at a critical breakdown value.
+• This
+critical
+value
+is
+known
+as
+forward
+breakover voltage, VBO.
+• When forward voltage is less VBO than SCR offer
+high impedance
+• SCR in this mode is treated as an open switch
+
+
+=== PAGE 16 ===
+Static V-I characteristics (Contd….)
+Forward Conduction mode:-
+• The SCR conducts current from anode to cathode
+with a very small voltage drop across it.
+• Thyristor is moved from forward blocking to
+forward conduction mode by turning it ON with
+a voltage greater than the
+forward breakover
+voltage across the SCR or by applying a gate
+pulse across gate and cathode.
+• In this mode the SCR is in the on-state
+• Behaves like a closed switch
+
+
+=== PAGE 17 ===
+Static V-I characteristics (Contd….)
+Forward Conduction mode:- (Contd....)
+• On-state voltage drop is of the order of 1 to 2 volt (it
+depends on the rating of the SCR).
+• On-state voltage drop increases slightly with the increase
+in anode current.
+• Anode current is limited by the load impedance alone in
+this mode because the voltage drop across SCR is very
+small
+• This small voltage drop is due to the ohmic drop in the
+four layers.
+• VBO and VBR are nearly same , but VBR slightly greater
+than VBO.
+• VBO is taken as the final voltage rating of the device for
+design purpose
+
+
+=== PAGE 18 ===
+Latching current (Il ) :- defined as the minimum value of anode current
+which it must attain during turn-on process to maintain conduction
+even if the gate signal is removed.
+•
+Once the thyristor starts conducting gate loses its control.
+•
+The thyristor can be turned-off only if the anode current (forward
+current) falls below a low-level current called the holding current.
+Holding current (Ih ):- defined as the minimum value of anode current
+below which it must fall for turning-off the thyristor.
+
+
+=== PAGE 19 ===
+•
+Latching current(Il) is higher than the
+holding current(Ih)
+•
+Latching current is taken as 2 to 3 times
+the holding current
+•
+For industrial applications, holding current
+is taken as zero, even though the typical
+value is 10 mA.
+•
+Latching current – associated with turn-on
+process
+•
+Holding current – associated with turn-off
+process
+
+
+=== PAGE 20 ===
+SWITCHING CHARACTERISTICS OF SCRs
+
+
+=== PAGE 21 ===
+SWITCHING CHARACTERISTICS
+• Static & switching chara of thyristors are required for the reliable
+design of converters
+• Switching chara – also known as dynamic or transient chara
+• During turn-on and turn-off, a thyristor is subjected to different
+voltages across it and different current through it.
+• Switching chara – variation of voltage across a thyristor and current
+through it plotted against time
+
+
+=== PAGE 22 ===
+SWITCHING CHARACTERISTICS-during turn-on
+• A forward biased thyristor is turned on by applying a +ve voltage
+between gate and cathode.
+• There is a transition time from forward off-state to forward on-state,
+called turn-on time.
+• Turn-on time:- defined as the time during which it changes form
+forward blocking to final on-state.
+• Total turn-on time (Ton)– 3 intervals - delay time (td), rise time (tr), and
+spread time (tp)
+
+
+=== PAGE 23 ===
+SWITCHING CHARACTERISTICS
+-during turn-on & turn-off
+
+
+=== PAGE 24 ===
+SWITCHING CHARACTERISTICS-during turn-on
+Delay time (td) :-
+• time measured from the instant at which gate
+current reaches 0.9Ig to the instant at which
+anode current reaches 0.1 Ia. (time from 0.9Ig to
+0.1 Ia).
+• Ig & Ia are the final values of gate current &
+anode current.
+• time during which anode voltage falls from Va to
+0.9Va, where Va = initial value of anode voltage
+• Time during which the anode current rises from
+the forward leakage current to 0.1 Ia.
+
+
+=== PAGE 25 ===
+SWITCHING CHARACTERISTICS-during turn-on
+Delay time (td) :- (Contd...)
+• In the forward blocking state, the anode voltage is OA & anode current is
+small leakage current.
+• Turn-on process is indicated by a rise in the anode current from the small
+leakage current.
+• At the same time there is a drop in the anode-cathode voltage from the
+forward blocking voltage.
+
+
+=== PAGE 26 ===
+SWITCHING CHARACTERISTICS-during turn-on
+Delay time (td) :- (Contd...)
+• When a gate signal is applied a gate
+current starts to flow from gate to cathode.
+• Due to the p-layer, the gate current has a
+non-uniform distribution
+• Its value is higher near the gate , decreases
+rapidly as the distance from the gate
+increases
+• During delay time anode current flows in a
+narrow region near the gate.
+• i.e., gate current density is highest near the
+gate.
+
+
+=== PAGE 27 ===
+SWITCHING CHARACTERISTICS-during turn-on
+Rise time (tr) :-
+• time taken by the anode current to rise from 0.1Ia to 0.9Ia
+• Time required by the forward blocking off-state voltage to fall from 0.9
+to 0.1 of its initial value
+• Inversely proportional to magnitude of gate current
+• Can be reduced if high and steep current pulses are applied to the gate
+• Nature of anode circuit mainly determines the rise time.
+
+
+=== PAGE 28 ===
+SWITCHING CHARACTERISTICS-during turn-on
+Spread time (tp) :- (Contd...)
+• time taken by the anode current to rise from 0.9Ia to Ia
+• Time required by the forward blocking voltage to fall from 0.1 of its
+initial value to the on-state drop which is around 1 to 1.5V
+• During tp the conduction spreads over the entire cross-section of the
+cathode of SCR
+• Spreading interval depends on the area of the cathode and gate structure
+• After tp anode current reaches steady state value
+• Also the voltage drop across SCR is equal to the on-state voltage drop.
+
+
+=== PAGE 29 ===
+SWITCHING CHARACTERISTICS-during turn-on
+• Total turn-on time = delay time + rise time + spread time
+• Total turn-on time depends on anode circuit parameters and waveshape
+of the gate signal.
+• Rise time is typically of the order of 1 to 4 μs
+• During turn-on SCR is considered as a charge controlled device
+• Certain amount of charge must be injected into the gate region for the
+conduction to begin.
+• So higher the gate current lesser will be the time to inject this charge
+• Turn-on time can be reduced by using gate currents of higher values
+• Magnitude of gate current is usually 3 to 5 times the minimum gate
+current required to trigger an SCR.
+
+
+=== PAGE 30 ===
+SWITCHING CHARACTERISTICS
+-during turn-off
+
+
+=== PAGE 31 ===
+Turn off characteristics
+• The turn off time tq of a thyristor is defined as the time 
+between the instant anode current become zero and the 
+instant SCR regains forward blocking capability.  (3 to 100μs)
+• tq=trr+tgr.
+trr - Reverse recovery time  
+tgr - gate recovery time  
+• The reason for the reversal of anode current after t1 is due 
+to the presence of carriers stored in the 4 layers.
+
+
+=== PAGE 32 ===
+• The reverse voltage surge appears across the thyristor
+terminals may damage it.
+• This is avoided by using protective RC elements across SCR.
+• At instance t3, when reverse recovery current has fallen to 
+nearly zero value, end junctions J1 and J3 recover and SCR is 
+able to block the reverse voltage
+• J2 still has trapped charges. Therefore the thyristor is not 
+able to block forward voltage at t3.
+• Trapped charges gets decayed only by recombination.
+• Recombination is possible by maintaining a reverse voltage 
+(0 to -50V) across SCR
+
+
+=== PAGE 33 ===
+• The time for the recombination of charges between t3and 
+t4 is called gate recovery time
+• At t4, J2 recovers, forward voltage can be reapplied between 
+anode and cathode
+• The turn off time provided to SCR by practical circuit is 
+called circuit turn off time, tc
+• Tc must be greater than tq for reliable turn off, otherwise 
+commutation failure (undesired turn on) may happen
+• Converter grade SCR : tq - 50 to 100μs
+• Inverter grade SCR : tq - 3 to 50μs
+
+
+=== PAGE 34 ===
+THYRISTOR- RATINGS
+
+
+=== PAGE 35 ===
+THYRISTOR RATINGS
+• Different ratings are:- voltage, current, power, dv/dt, di/dt, turn-on 
+time, turn-off time etc.
+• Representation of subscripts:-
+• First subscript indicate the direction or state: D- forward blocking 
+region with gate circuit open, T-on-state, R-reverse, F-forward
+• Second subscript denotes the operating values: W- working value, R-
+repetitive value, S- surge or non-repetitive value, T- trigger
+• Third subscript: M- maximum value
+• G- gate ratings, A –stands for anode, AV - stands for average
+
+
+=== PAGE 36 ===
+VOLTAGE RATINGS
+• Indicate the values of maximum voltages that a thyristor can
+withstand without a breakdown of the junction area with gate circuit
+open.
+(i) VDWM – Peak working forward blocking voltage:– maximum
+forward-blocking voltage that a thyristor can withstand during its
+working
+– it is maximum value of the sine voltage wave.
+
+
+=== PAGE 37 ===
+VOLTAGE RATINGS
+(ii) VDRM – Peak repetitive forward blocking voltage:– peak transient 
+voltage that a thyristor can withstand repeatedly in it forward-
+blocking mode.
+• this rating is specified at a maximum allowable junction temperature
+with gate circuit open.
+• is encountered when a thyristor is turned-off. 
+• During turn-off, an abrupt change in reverse recovery current is 
+accompanied by a spike in voltage 
+
+
+=== PAGE 38 ===
+VOLTAGE RATINGS
+
+
+=== PAGE 39 ===
+VOLTAGE RATINGS
+(iii) VDSM – Peak surge (or non-repetitive) forward blocking voltage: – peak 
+value of the forward surge voltage that does not repeat
+- about 130% of VDRM
+– VDSM < VBO .
+(iv) VRWM – Peak working reverse voltage:
+– maximum reverse voltage that a thyristor can withstand 
+repeatedly
+– peak negative value of a sine voltage wave.
+v) VRRM – Peak repetitive reverse voltage:
+– peak reverse transient voltage that may occur repeatedly in the
+reverse
+- direction at the allowable maximum junction temperature
+-lasts for a fraction of the time of one cycle.
+
+
+=== PAGE 40 ===
+VOLTAGE RATINGS
+(vi) VRSM – Peak surge (or non-repetitive) reverse voltage:
+– peak value of the reverse surge voltage that does not repeat
+- about 130% of VRRM
+– VRSM< V BR .
+• VDSM and VRSM ratings can be increased by connecting a diode in series
+with a thyristor.
+• Ratings (i) to (iii) – related to forward blocking voltages & ratings (iv) to
+(vi) – related to reverse blocking voltages.
+(vii) VT - On-state voltage drop:
+– voltage drop between anode and cathode with specified on-state 
+current and junction temperature
+– of the order of 1 to 1.5 V
+
+
+=== PAGE 41 ===
+VOLTAGE RATINGS
+(viii) Forward dv/dt rating of a thyristor:
+• maximum rate of rise of the anode voltage that will not trigger the device
+without any gate signal
+• if dv/dt is more than specified the value, thyristor may be switched on
+• With forward voltage, J2 is reverse biased
+• Charges across J2 develop a capacitance C.
+• When a forward voltage is suddenly applied to the device, a charging current
+flows
+• It may act as the gate current to turn-on the SCR without a positive gate
+signal.
+• This method of triggering is not used as it gives random turn-on of a
+thyristor.
+• This method also leads to damage of thyristor due to high junction
+temperature.
+
+
+=== PAGE 42 ===
+CURRENT RATINGS
+• A thyristor – made up of semiconductor material – so thermal capacity 
+is small 
+• junction temperature is dependent on the current handled by a thyristor
+• even for short over currents the junction temperature may exceed rated 
+value and the thyristor may get damaged
+• Proper selection of the current rating is essential for a long working life 
+of the device.
+
+
+=== PAGE 43 ===
+CURRENT RATINGS
+(i) ITAV -Average on-state current:
+- it is the allowable average current that can be applied safely such that
+maximum junction temperature and rms current limit are not exceeded.
+- the forward voltage drop across SCR during conduction is low and
+the power loss in a thyristor mainly depends on the average on-state current.
+- for the junction temperature to remain within the limits, SCR must be
+rated at a value lower than ITAV .
+- repetitive in nature.
+- this current determines the application of the device
+- Dependent on maximum junction temperature
+- With better cooling this rating can be improved
+
+
+=== PAGE 44 ===
+CURRENT RATINGS
+(ii) Irms – rms current:
+- heating of resistive elements of a thyristor depends on forward 
+rms current.
+- this rating is used as the upper limit of anode current rating of 
+the thyristor. 
+- Repetitive in nature.
+- Dependent on maximum junction temperature
+- With better cooling this rating can be improved
+
+
+=== PAGE 45 ===
+CURRENT RATINGS
+(iii) Surge current rating:
+- Maximum possible non repetitive or surge current which the device can
+withstand.
+- When a thyristor is working below its repetitive voltage and current rating,
+its permissible junction temperature is never exceeded.
+- Due to faults or short circuits, the thyristor may be subjected to abnormal
+operating conditions.
+- Higher currents caused by non repetitive faults or short circuits should
+occur once in a while during the life span of the thyristor to prevent its
+degradation.
+- Surge currents are sine waves with a frequency of 50 or 60 Hz, depending
+on the supply frequency
+-This rating specified in terms of the number of surge cycles with
+corresponding surge current peak.
+- this rating is inversely proportional to the duration of the surge
+
+
+=== PAGE 46 ===
+CURRENT RATINGS
+(vi) Other ratings:
+- Latching & holding currents
+- Turn-on & turn-off times
+- Gate circuit voltage, current and power ratings
+
+
+=== PAGE 47 ===
+CURRENT RATINGS
+(v) di/dt rating:
+- indicates the maximum rate of rise of current from anode to cathode
+- when a thyristor is turned on conduction starts near the gate and this
+small area of conduction spreads to the whole area of the junction.
+- If the rate of rise of anode current (di/dt) is large as compared to
+spread velocity of carriers across the cathode junction local hot spots will be
+formed near the gate due to high current density.
+- This causes the junction temperature to rise above safe value and SCR
+will be damaged permanently.
+- Therefore a limit on the value of di/dt at turn-on is specified.
+- typical values of di/dt are 20 to 500 A/μsec.
+
+
+=== PAGE 48 ===
+Thyristor protection
+• For reliable operation of SCR, it should be operated within 
+the specific ratings.
+• SCRs are very delicate devices and so they must be 
+protected against abnormal operating conditions.
+• Various protection of SCR are
+• di/dt protection
+• dv/dt protection
+• Over voltage protection
+• Over current protection
+• Gate protection
+
+
+=== PAGE 49 ===
+di/dt protection
+• If di/dt is large as compared to the spread velocity of 
+carriers, local hot spots will be formed near the gate on 
+account of high current density
+• localised heating may destroy SCR
+• The value of di/dt can be maintained below specified limit 
+by using small inductor called di/dt inductor
+• Typical  di/dt limit value of SCR – 20-500 A/μs
+• Gate current can be applied near to specified maximum 
+value to avoid local  spot heating
+
+
+=== PAGE 50 ===
+dv/dt protection
+• During forward blocking mode, J2 has the characteristics of 
+a capacitor
+• Charging current, iC=C.dv/dt. ie, when dv/dt is high, iC is 
+high.
+• This high current may turn ON SCR even when gate current 
+is zero. This is called as dv/dt turn ON or false turn ON of 
+SCR.
+• To protect the thyristor against false turn ON or against high 
+dv/dt a "Snubber Circuit" is used.
+
+
+=== PAGE 51 ===
+Snubber circuit
+• The snubber Circuit is a series combination of resistor 'R' and 
+capacitor 'C'.
+• They are connected across the thyristor to be protected.
+• The capacitor 'C' is used to limit the dv/dt
+across the SCR.
+• The resistor 'R' is used to limit high 
+discharging current through the SCR.
+• When switch S is closed, the capacitor 
+'C' behaves as a short-circuit.
+• Therefore voltage across SCR is zero.
+• As time increases, voltage across 'C' increases at a slow rate.
+• Therefore dv/dt across 'C' and SCR is less than maximum dv/dt
+rating of the device.
+• The capacitor charges to full voltage Vs; after which the gate is 
+triggered, and SCR is turned ON and  current flows through SCR.
+
+
+=== PAGE 52 ===
+SCR – TURN-ON METHODS
+
+
+=== PAGE 53 ===
+TURN-ON METHODS
+SCR can be turned on by:- (provided the anode should be +ve wrt
+cathode)
+1. Forward voltage triggering
+2. Gate triggering
+3. Temperature triggering
+4. Light triggering
+5. dv/dt triggering
+
+
+=== PAGE 54 ===
+TURN-ON METHODS (Contd….)
+Gate triggering:-
+•
+Common method for firing forward biased SCRs
+•
+Most simple, reliable & efficient method
+•
+A thyristor will remain in forward blocking mode with
+normal working voltage and gate circuit open
+•
+To turn-on the thyristor, a +ve gate voltage is applied
+between Gate & Cathode
+•
+Gate starts to flow, charges are injected into the inner p-
+region, this reduces the voltage at which the forward
+breakover occurs
+
+
+=== PAGE 55 ===
+TURN-ON METHODS (Contd….)
+Gate triggering:- (Contd...)
+•
+Gate
+current
+determines
+the
+forward
+breakover voltage at which the device
+switches from off-state to on-state.
+•
+Higher the gate current, lower will be the
+breakover voltage.
+•
+When positive gate signal is applied, inner
+p-layer is flooded with electrons from
+cathode
+•
+This is because outer n-layer is heavily
+doped than inner p-layer.
+
+
+=== PAGE 56 ===
+GATE CHARACTERISTICS
+•
+Gate-cathode circuit is similar to a p-n diode
+•
+The V-I chara of gate is also similar to that of a
+diode
+•
+The circuit which supplies firing signals to the
+gate must be designed
+- to assure triggering at the desired instant
+- not to exceed the maximum voltage & power
+capabilities of the gate
+- to prevent triggering from false signals or
+noise
+
+
+=== PAGE 57 ===
+GATE CHARACTERISTICS
+•
+Figure below shows the trigger circuit of an SCR
+
+
+=== PAGE 58 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+Forward gate chara- plot between gate voltage(Vg) and gate current(Ig)
+•
+Vg and Ig represent DC values
+•
+Applying gate drive increases the minority carrier density in the inner p-
+layer , this facilitate the reverse breakdown of junction J2.
+
+
+=== PAGE 59 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+Vg - Ig chara has a spread between curves 1 & 2
+•
+Spread is due to the doping density P2 and N2 layers.
+•
+Curve 1 represents the lowest voltages that must be applied to turn-
+on the SCR
+•
+Curve 2 represents the highest voltages that can be safely applied to
+the gate circuit of the SCR.
+•
+Each thyristor has maximum limits as Vgm(for gate voltage) and Igm
+(for gate current) and rated average gate power dissipation Pgav
+•
+These maximum values prevent the permanent damage of junction
+J3 and provide reliable triggering.
+•
+There are minimum levels for Vg and Ig for reliable turn-on.
+•
+Thyristor can be destroyed if Vgm, Igm and Pgav are exceeded
+
+
+=== PAGE 60 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+A non-triggering voltage is also specified by manufacturers.
+•
+In the fig oa is the non-triggering voltage
+•
+If the triggering circuit generates an unwanted signal, it’s magnitude
+should be less than the non-triggering voltage to prevent unwanted
+triggering of SCR.
+•
+All noise signals should be less than non-triggering voltage.
+
+
+=== PAGE 61 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+From fig (a) Es = Vg + IgRs
+where
+Es = gate source voltage
+Vg = gate-cathode voltage and
+Rs = gate-source resistance
+
+
+=== PAGE 62 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+Rs is selected such that the current (= Es/Rs) through it should not
+cause damage to the source and the gate circuit.
+•
+If Rs is low, an external resistance should be added in series with it
+•
+To provide an easy path to the flow of leakage current between SCR
+terminals a resistance R1 is connected across the gate-cathode
+terminals.
+•
+Let Vgmn and Igmn be the minimum gate voltage and gate current to
+turn-on the SCR, then
+current through R1 = Vgmn/ R1
+and
+source voltage Es= Vgmn + (Igmn+Vgmn/ R1) Rs
+
+
+=== PAGE 63 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+
+
+=== PAGE 64 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+• In the fig OA = Es , the gate source voltage and OD = trigger short 
+circuit current = Es / Rs
+• Consider a thyristor with a chara given by curve 3
+• Operating point is given by the intersection of curve 3 and the load 
+line.
+• For this SCR, gate voltage = PS & gate current = OP
+• To minimise the turn-on time and unreliable turn-on the load-line and 
+the operating point must be as close to the Pgav curve as possible
+
+
+=== PAGE 65 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+The operating curves must lie within the limit curves 1 & 2
+•
+Gradient of load line = required gate source resistance
+•
+Tangent to Pgav curve – minimum value of gate source resistance
+•
+Gate-drive requirements in terms of continuous signal DC signal can
+be obtained from this V-I chara.
+•
+Commonly a pulse is used to trigger a thyristor
+
+
+=== PAGE 66 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+Thyristor is a charge controlled device
+•
+Higher the magnitude of gate current pulse, lesser is the time to inject
+the required to inject charge for turning-on the thyristor
+•
+Turn-on time can be reduced by using gate current of higher
+magnitude.
+•
+The gate drive signal can be DC, AC or a sequence of high frequency
+pulses.
+•
+Gate pulse width should be sufficient to allow the anode current to
+exceed latching current
+•
+Gate pulse width normally taken as ≥turn-on time of SCR
+•
+i.e., T ≥ton
+
+
+=== PAGE 67 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+•
+With pulse triggering, greater amount of power dissipation can be
+allowed.
+•
+But this power dissipation should be less than the peak instantaneous
+gate power dissipation Pgm.
+•
+Frequency of firing pulses in Hz, f =1/T1 = Pgav/(T.Pgm)
+where T – pulse width in sec, T1 – periodicity of the pulse
+•
+Duty-cycle ( δ) – ratio of on-period of the pulse to the periodic time
+of the pulse
+•
+δ= T / T1=fT
+•
+Pgav / δ = Pgm
+
+
+=== PAGE 68 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+
+
+=== PAGE 69 ===
+GATE CHARACTERISTICS (Vg-Ig chara)
+• Sometimes the pulses are modulated to generate a train of pulses
+• This technique is called high frequency carrier gating
+• Advantages – lower rating, reduced dimensions, overall economical 
+design of the pulse transformer needed for isolating the low power 
+circuit from the main power circuit.
+• For an SCR Vgm and Igm are specified separately
+• Pulse voltage amplitude x pulse current amplitude < Pgm
+
+
+=== PAGE 70 ===
+Gate Triggering Circuits
+
+
+=== PAGE 71 ===
+Gate Triggering Circuits
+
+
+=== PAGE 72 ===
+R Triggering Circuit
+•Simplest triggering circuit
+•Triggering angle range (0 to 900)
+R1- Current limiting resistor 
+R2 – Variable resistor
+R – Stabilizing resistor
+Igm – max. permissible
+gate current
+Vgm - max. permissible
+gate voltage
+Vm – max. value of 
+source voltage 
+
+
+=== PAGE 73 ===
+
+
+=== PAGE 74 ===
+No Triggering
+
+
+=== PAGE 75 ===
+
+
+=== PAGE 76 ===
+
+
+=== PAGE 77 ===
+RC triggering circuit
+Triggering angle 
+range (0 to 1800)
+T=1/f
+
+
+=== PAGE 78 ===
+
+
+=== PAGE 79 ===
+
+
+=== PAGE 80 ===
+
+
+=== PAGE 81 ===
+
+
+=== PAGE 82 ===
+
+
+=== PAGE 83 ===
+
+
+=== PAGE 84 ===
+
+
+=== PAGE 85 ===
+
+
+=== PAGE 86 ===
+
+
+=== PAGE 87 ===
+
+
