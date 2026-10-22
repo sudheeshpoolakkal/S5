@@ -1,0 +1,97 @@
+{
+  "class_iteration": {
+    "V": [
+      "(1+0j)",
+      "(0.9857142857142858-0.03571428571428571j)",
+      "(0.9603174603174602-0.060317460317460325j)"
+    ],
+    "S1": "(0.6587301587301587+0.34126984126984095j)",
+    "voltage_changes": [
+      0.03846546290810358,
+      0.07220041533678836
+    ],
+    "magnitudes": [
+      1.0,
+      0.9863610714466109,
+      0.9622098630806718
+    ],
+    "angles": [
+      0.0,
+      -2.0750263614174074,
+      -3.594021896409063
+    ]
+  },
+  "class_converged_verification": {
+    "iterations": 20,
+    "V": [
+      "(1+0j)",
+      "(0.9681731207445109-0.05558719758268766j)",
+      "(0.9474682832281434-0.06882560483461747j)"
+    ],
+    "S": [
+      "(0.8999999999999639+0.5809273764141736j)",
+      "(-0.4999999999999669-0.1999999999999421j)",
+      "(-0.39999999999999697-0.2999999999999932j)"
+    ]
+  },
+  "stability": {
+    "Pm": 0.8,
+    "Ppre": 2.2,
+    "Ppost": 1.375,
+    "H": 5,
+    "delta0_rad": 0.372168533960326,
+    "delta0_deg": 21.32368626349793,
+    "delta_s_post_deg": 35.578525732458694,
+    "delta_u_deg": 144.42147426754133,
+    "delta_critical_deg": 64.10678877803035,
+    "delta_critical_rad": 1.1188745370571818,
+    "critical_time_s": 0.24376418054059612,
+    "critical_area": 0.5973648024774846,
+    "actual_clear_deg": 55,
+    "actual_clear_time": 0.2162698729998332,
+    "actual_max_deg": 107.62450896424885,
+    "actual_area": 0.47021004370924424,
+    "nonzero_fault_Pmax": 0.4,
+    "nonzero_fault_critical_deg": 76.48608277735475
+  },
+  "step_input": {
+    "d0_deg": 17.457603123722095,
+    "new_eq_deg": 30.000000000000004,
+    "Aacc": 0.04307852631788728,
+    "available_Adec": 1.3697065127445596,
+    "maximum_deg": 43.09849995211232
+  },
+  "trajectory_checks": {
+    "short_max_deg": 92.66247750649025,
+    "long_final_deg": 4568.859935142558,
+    "short_clearing_s": 0.19,
+    "long_clearing_s": 0.27
+  },
+  "independent_quadrature_and_unit_checks": {
+    "critical_acc_area": {
+      "computed": 0.5973648024774846,
+      "expected": 0.5973648024774846,
+      "passed": true
+    },
+    "critical_dec_area": {
+      "computed": 0.597364802477485,
+      "expected": 0.5973648024774846,
+      "passed": true
+    },
+    "actual_dec_area": {
+      "computed": 0.47021004370924413,
+      "expected": 0.47021004370924424,
+      "passed": true
+    },
+    "degree_rad_swing_consistency": {
+      "computed": 1.8000000000000003,
+      "expected": 1.8,
+      "passed": true
+    },
+    "practice_inertia_time": {
+      "computed": 0.30834000898911146,
+      "expected": 0.30835,
+      "passed": true
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "pages": 39,
+  "bounds_issues": [],
+  "invalid_internal_links": [],
+  "bookmarks": 106,
+  "links": 84,
+  "source_page_coverage": "31 of 31",
+  "class_numericals": "1 class illustration plus 5 original stability examples and 4 practice cases",
+  "page_summaries": [
+    {
+      "pdf_page": 1,
+      "characters": 853,
+      "text": "CET / SEMESTER 5 / PCEOT503 | POWER SYSTEMS | Module 4 | Load flow and | power system stability | Network | Ybus | Operating | point | |V "
+    },
+    {
+      "pdf_page": 2,
+      "characters": 1022,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Contents | 1 | Study map, scope and notation | 1 | 2 | What a load-flow study actually solves | 2 | "
+    },
+    {
+      "pdf_page": 3,
+      "characters": 2880,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 1 Study map, scope and notation | 1.1 Every Module 4 syllabus requirement | The supplied P"
+    },
+    {
+      "pdf_page": 4,
+      "characters": 2075,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 1.3 Notation that prevents common mix-ups | Symbol | Meaning and convention | Vi = vi\u2220\u03b8i | Com"
+    },
+    {
+      "pdf_page": 5,
+      "characters": 2778,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 2.2 Why the study is needed | A system can have enough installed generation and still ha"
+    },
+    {
+      "pdf_page": 6,
+      "characters": 1768,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Check your understanding | A study converges with all P/Q mismatches small. Is its opera"
+    },
+    {
+      "pdf_page": 7,
+      "characters": 2977,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Sign and base example | On a 100 MVA base, a bus has PG = 80 MW, PD = 20 MW, QD = 15 MVA"
+    },
+    {
+      "pdf_page": 8,
+      "characters": 1861,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 3.5 Counting unknowns | For nPQ load buses, nPV voltage-controlled buses and one convent"
+    },
+    {
+      "pdf_page": 9,
+      "characters": 2346,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 4.3 Assembly as a branch stamp | For an ordinary branch y joining i and j, add the follo"
+    },
+    {
+      "pdf_page": 10,
+      "characters": 1571,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 5 Complete class Y-bus example | Class-slide anchor: Load-flow deck, pp. 12\u201316; reused o"
+    },
+    {
+      "pdf_page": 11,
+      "characters": 1925,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 5.5 A physical KCL row | At bus 2, with no shunt, | I2 = \u2212j10(V2 \u2212V1) \u2212j4(V2 \u2212V3) = j10V1 "
+    },
+    {
+      "pdf_page": 12,
+      "characters": 2450,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | The diagram-like equations on image-only slide p. 21 are recovered by rearranging one "
+    },
+    {
+      "pdf_page": 13,
+      "characters": 1049,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | point may give a better initial estimate for a nearby study. An initial guess is not a"
+    },
+    {
+      "pdf_page": 14,
+      "characters": 1854,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 7.5 A complete qualitative flowchart | Read network, bases, bus | specifications and Q lim"
+    },
+    {
+      "pdf_page": 15,
+      "characters": 1925,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | For a bus remaining PV, enforce its specified magnitude after the chosen complex corre"
+    },
+    {
+      "pdf_page": 16,
+      "characters": 1884,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 8 The professor\u2019s one-iteration illustration | Class-slide anchor: Load-flow slides pp. "
+    },
+    {
+      "pdf_page": 17,
+      "characters": 2435,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Then S2 = \u22120.5 \u2212j0.2 and S3 = \u22120.4 \u2212j0.3 within rounding. Active injections sum to zer"
+    },
+    {
+      "pdf_page": 18,
+      "characters": 3038,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 10 Stability: three syllabus meanings | Syllabus supplement. The supplied Module 4 deck "
+    },
+    {
+      "pdf_page": 19,
+      "characters": 1849,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Check your understanding | Does a successful load flow prove transient stability? | Answer"
+    },
+    {
+      "pdf_page": 20,
+      "characters": 1950,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | \u03b4 (rad) | P (pu) | Pm = 0.8 | \u03b40 | \u03c0/2 | \u03b4u | \u03c0 | Pe = Pmax sin \u03b4 | positive slope | restoring | negative "
+    },
+    {
+      "pdf_page": 21,
+      "characters": 1740,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Example 1: transfer margin and synchronizing coe\ufb00icient | Let E = 1.1, V = 1, X = 0.5 pu"
+    },
+    {
+      "pdf_page": 22,
+      "characters": 1998,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Divide the torque-derived power equation by SB and substitute H. The electrical-angle "
+    },
+    {
+      "pdf_page": 23,
+      "characters": 2408,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Example 2: acceleration, speed and angle | A 100-MVA machine has H = 5 s at 50 Hz. For 0"
+    },
+    {
+      "pdf_page": 24,
+      "characters": 1846,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 13.2 Optional mathematical view | The characteristic equation is M\u03bb2 + D\u03bb + Ks = 0. For "
+    },
+    {
+      "pdf_page": 25,
+      "characters": 2018,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 14 Transient stability and the equal-area criterion | 14.1 Three networks during a fault"
+    },
+    {
+      "pdf_page": 26,
+      "characters": 2444,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Let \u03b4u be the unstable post-fault intersection. The maximum available decelerating are"
+    },
+    {
+      "pdf_page": 27,
+      "characters": 1819,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Check your understanding | A post-fault equilibrium exists because Pm < Ppost,max. Is th"
+    },
+    {
+      "pdf_page": 28,
+      "characters": 2354,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Thus | tcr = | s | 4H(\u03b4cr \u2212\u03b40) | \u03c9sPm | . | Use electrical radians and seconds. This formula assum"
+    },
+    {
+      "pdf_page": 29,
+      "characters": 1376,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Step 2: calculate the critical angle | cos \u03b4cr = cos \u03b4u + | 0.8 | 1.375(\u03b4u \u2212\u03b40). | Evaluate th"
+    },
+    {
+      "pdf_page": 30,
+      "characters": 1853,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Step 5: compare two actual time trajectories | t (s) | \u03b4 (deg) | 0 | 90 | 180 | 270 | 0.5 | 1 | 1.5 | 2 | 2."
+    },
+    {
+      "pdf_page": 31,
+      "characters": 2741,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | It exceeds the accelerating area, so this first swing is stable. The rotor does not st"
+    },
+    {
+      "pdf_page": 32,
+      "characters": 2879,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Measure | Physical reason | Qualification | Series compensation | Reduces effective series rea"
+    },
+    {
+      "pdf_page": 33,
+      "characters": 2223,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 18 Revision sheet and exam preparation | 18.1 Essential equations with their assumptions"
+    },
+    {
+      "pdf_page": 34,
+      "characters": 3228,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 18.3 Short-answer prompts with model points | 1. Why load flow? Determine steady-state b"
+    },
+    {
+      "pdf_page": 35,
+      "characters": 2978,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | \u03b4u; equate critical areas; derive time only for zero fault-on transfer; explain practi"
+    },
+    {
+      "pdf_page": 36,
+      "characters": 2475,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 17. Does rotor angle jump when a breaker opens? No, nor does speed jump without impuls"
+    },
+    {
+      "pdf_page": 37,
+      "characters": 2674,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Practice D: change inertia without changing the network | Example 3 has H = 5 s and tcr "
+    },
+    {
+      "pdf_page": 38,
+      "characters": 2622,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | Page | Source content | Coverage | 17 | GS divider | Section 7, method/flowchart. | 18 | GS/network "
+    },
+    {
+      "pdf_page": 39,
+      "characters": 2007,
+      "text": "POWER SYSTEMS / MODULE 4 | PCEOT503 | 21.2 Primary technical cross-checks | The teaching prose and new examples are independen"
+    }
+  ],
+  "visually_inspected_final_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "source_decks": [
+    {
+      "file": "Module_4_Load_Flow.pdf",
+      "sha256": "c6a3d2087c032ab570c4d73fffe9a8d0dde7e09396f4f59df5882442881729b9",
+      "pages": 31
+    },
+    {
+      "file": "Module_4_Load_Flow(1).pdf",
+      "sha256": "c6a3d2087c032ab570c4d73fffe9a8d0dde7e09396f4f59df5882442881729b9",
+      "pages": 31
+    }
+  ],
+  "image_only_slide_pages": [
+    4,
+    5,
+    16,
+    21
+  ],
+  "stability_source": "Syllabus supplement; supplied deck has no stability teaching section. Primary NPTEL/MATPOWER references in the note.",
+  "pdf_sha256": "d81d1228764dbf9a5e8e4a4ca27bdd61eaf71e3d62ca51d036649259133148b3",
+  "tex_sha256": "9fad2d8e99feb4e9e588e73c1a29d9ee1f3ec7d656e87d38d202714d31816f03",
+  "layout_review": "All 39 final pages reviewed; no clipping/overflow or invalid internal links; diagrams and associated captions kept together."
+}

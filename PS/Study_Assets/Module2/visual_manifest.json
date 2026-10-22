@@ -1,0 +1,261 @@
+[
+  {
+    "deck": "Part 1",
+    "page": 5,
+    "asset": "Study_Assets/Module2/p1_005.pdf",
+    "title": "Single and double circuits",
+    "caption": "Count three phase positions per circuit. The upper earth wire is a shield wire, not a fourth phase."
+  },
+  {
+    "deck": "Part 1",
+    "page": 6,
+    "asset": "Study_Assets/Module2/p1_006.pdf",
+    "title": "Single, double and multiple circuits",
+    "caption": "The photographs connect the circuit count to actual tower construction."
+  },
+  {
+    "deck": "Part 1",
+    "page": 7,
+    "asset": "Study_Assets/Module2/p1_007.pdf",
+    "title": "Solid and stranded conductors",
+    "caption": "Stranding provides flexibility. It does not eliminate skin effect; compare with Section~\\ref{resistance}."
+  },
+  {
+    "deck": "Part 1",
+    "page": 8,
+    "asset": "Study_Assets/Module2/p1_008.pdf",
+    "title": "Steel and composite cores",
+    "caption": "Recognize the load-bearing core and surrounding aluminium strands. Composite cores are class context."
+  },
+  {
+    "deck": "Part 1",
+    "page": 9,
+    "asset": "Study_Assets/Module2/p1_009.pdf",
+    "title": "ACSR cross-section",
+    "caption": "The steel core supplies tensile strength; aluminium carries most of the load current."
+  },
+  {
+    "deck": "Part 1",
+    "page": 14,
+    "asset": "Study_Assets/Module2/p1_014.pdf",
+    "title": "Current penetration",
+    "caption": "The darkened conducting regions are a qualitative sketch: current density varies continuously, not as a sharp hollow cylinder."
+  },
+  {
+    "deck": "Part 1",
+    "page": 19,
+    "asset": "Study_Assets/Module2/p1_019.pdf",
+    "title": "Magnetic loops",
+    "caption": "Circular flux paths around a long conductor explain the Ampere-law integration."
+  },
+  {
+    "deck": "Part 1",
+    "page": 20,
+    "asset": "Study_Assets/Module2/p1_020.pdf",
+    "title": "Internal and external flux",
+    "caption": "Internal flux links only a fraction of the total current; external flux links all the conductor current."
+  },
+  {
+    "deck": "Part 1",
+    "page": 22,
+    "asset": "Study_Assets/Module2/p1_022.pdf",
+    "title": "Internal cylindrical shell",
+    "caption": "Identify shell radius x, thickness dx and the fraction of current enclosed."
+  },
+  {
+    "deck": "Part 1",
+    "page": 24,
+    "asset": "Study_Assets/Module2/p1_024.pdf",
+    "title": "External cylindrical shell",
+    "caption": "Integrate the external field between the conductor surface and the return-path distance."
+  },
+  {
+    "deck": "Part 1",
+    "page": 30,
+    "asset": "Study_Assets/Module2/p1_030.pdf",
+    "title": "Flux linkage with a reference point",
+    "caption": "Each other conductor contributes a logarithmic distance term; the sum of balanced currents removes the remote reference."
+  },
+  {
+    "deck": "Part 1",
+    "page": 34,
+    "asset": "Study_Assets/Module2/p1_034.pdf",
+    "title": "Composite conductor groups",
+    "caption": "Use every cross-group pair for mutual GMD and all ordered within-group pairs for self GMD."
+  },
+  {
+    "deck": "Part 1",
+    "page": 39,
+    "asset": "Study_Assets/Module2/p1_039.pdf",
+    "title": "Three-phase transposition",
+    "caption": "Each phase occupies each physical position for one third of a full transposition cycle."
+  },
+  {
+    "deck": "Part 1",
+    "page": 41,
+    "asset": "Study_Assets/Module2/p1_041.pdf",
+    "title": "Hexagon and tower arrangements",
+    "caption": "The geometrical conductor diagram is the electrical model; the tower is its physical support."
+  },
+  {
+    "deck": "Part 1",
+    "page": 45,
+    "asset": "Study_Assets/Module2/p1_045.pdf",
+    "title": "All three double-circuit positions",
+    "caption": "Track phase partners through all three positions. Take the geometric mean of their group quantities; do not average distances arithmetically."
+  },
+  {
+    "deck": "Part 1",
+    "page": 53,
+    "asset": "Study_Assets/Module2/p1_053.pdf",
+    "title": "Bundle spacers and suspension",
+    "caption": "Subconductors of a bundle belong to one phase. The spacer fixes bundle geometry; circuit count is a separate idea."
+  },
+  {
+    "deck": "Part 1",
+    "page": 84,
+    "asset": "Study_Assets/Module2/p1_084.pdf",
+    "title": "Radial electric field",
+    "caption": "Gauss law gives E proportional to 1/x outside a long round conductor. Potential is the integral of this field."
+  },
+  {
+    "deck": "Part 1",
+    "page": 86,
+    "asset": "Study_Assets/Module2/p1_086.pdf",
+    "title": "Phase and earth capacitance",
+    "caption": "This is a conceptual sketch. Use the balanced per-phase model and image-conductor derivation in Section~\\ref{capacitance} for calculations."
+  },
+  {
+    "deck": "Part 1",
+    "page": 91,
+    "asset": "Study_Assets/Module2/p1_091.pdf",
+    "title": "Potential between radii",
+    "caption": "Only potential differences are finite for an isolated infinite line charge. Do not set its potential at infinity to zero."
+  },
+  {
+    "deck": "Part 1",
+    "page": 92,
+    "asset": "Study_Assets/Module2/p1_092.pdf",
+    "title": "Superposition of line charges",
+    "caption": "Sum the potential contributions of all charges before using balanced-charge cancellation."
+  },
+  {
+    "deck": "Part 1",
+    "page": 95,
+    "asset": "Study_Assets/Module2/p1_095.pdf",
+    "title": "Two-wire charges",
+    "caption": "Opposite charges set the phase-to-phase voltage; the capacitance to neutral is twice the two-wire capacitance."
+  },
+  {
+    "deck": "Part 2",
+    "page": 3,
+    "asset": "Study_Assets/Module2/p2_003.pdf",
+    "title": "Short-line equivalent",
+    "caption": "Series Z remains; shunt admittance is neglected. The nominal-T and nominal-pi models are redrawn in Section~\\ref{models}."
+  },
+  {
+    "deck": "Part 2",
+    "page": 6,
+    "asset": "Study_Assets/Module2/p2_006.pdf",
+    "title": "Distributed line",
+    "caption": "A small segment contains series resistance and inductance and shunt conductance and capacitance. The continuous limit produces the long-line equations."
+  },
+  {
+    "deck": "Part 2",
+    "page": 10,
+    "asset": "Study_Assets/Module2/p2_010.pdf",
+    "title": "Open-circuit terminal condition",
+    "caption": "Set receiving current to zero to identify A and C. Port current directions must match the ABCD definition."
+  },
+  {
+    "deck": "Part 2",
+    "page": 11,
+    "asset": "Study_Assets/Module2/p2_011.pdf",
+    "title": "Short-circuit terminal condition",
+    "caption": "Set receiving voltage to zero to identify B and D. This is a parameter-identification condition, not normal loading."
+  },
+  {
+    "deck": "Part 2",
+    "page": 17,
+    "asset": "Study_Assets/Module2/p2_017.pdf",
+    "title": "Cascade connection",
+    "caption": "The output of one network drives the input of the next. Multiply ABCD matrices in their physical order."
+  },
+  {
+    "deck": "Part 2",
+    "page": 18,
+    "asset": "Study_Assets/Module2/p2_018.pdf",
+    "title": "Parallel connection",
+    "caption": "Both networks share corresponding port voltages. Add admittance matrices, not ABCD matrices."
+  },
+  {
+    "deck": "Part 2",
+    "page": 28,
+    "asset": "Study_Assets/Module2/p2_028.pdf",
+    "title": "Skin-effect sections",
+    "caption": "Inner filaments link more magnetic flux. The hollow-looking conducting region is a qualitative high-frequency picture."
+  },
+  {
+    "deck": "Part 2",
+    "page": 33,
+    "asset": "Study_Assets/Module2/p2_033.pdf",
+    "title": "Ferranti physical picture",
+    "caption": "At no load, distributed charging current still flows and the receiving voltage can exceed sending voltage."
+  },
+  {
+    "deck": "Part 2",
+    "page": 36,
+    "asset": "Study_Assets/Module2/p2_036.pdf",
+    "title": "Ferranti phasors",
+    "caption": "With receiving voltage as reference, charging current leads by 90 degrees. The reactive series voltage points opposite to receiving voltage; resistive voltage follows charging current."
+  },
+  {
+    "deck": "Part 2",
+    "page": 40,
+    "asset": "Study_Assets/Module2/p2_040.pdf",
+    "title": "Ferranti waveforms",
+    "caption": "The voltage rise is explained by phasor addition. Use the half-length charging-current approximation in the main derivation; a lumped total current gives the wrong factor."
+  },
+  {
+    "deck": "Part 2",
+    "page": 44,
+    "asset": "Study_Assets/Module2/p2_044.pdf",
+    "title": "Corona on fittings",
+    "caption": "The class photograph illustrates visible discharge at regions of high surface electric field."
+  },
+  {
+    "deck": "Part 2",
+    "page": 45,
+    "asset": "Study_Assets/Module2/p2_045.pdf",
+    "title": "Corona along a line",
+    "caption": "Violet glow is a recognition aid; inception depends on geometry, surface condition and atmosphere, not a universal voltage threshold."
+  },
+  {
+    "deck": "Part 2",
+    "page": 62,
+    "asset": "Study_Assets/Module2/p2_062.pdf",
+    "title": "Insulator type gallery",
+    "caption": "Recognize glass/disc, post, pin, shackle, strain, stay and suspension forms. The four syllabus-focused forms are explained in the main text."
+  },
+  {
+    "deck": "Part 2",
+    "page": 63,
+    "asset": "Study_Assets/Module2/p2_063.pdf",
+    "title": "Mechanical string and electrical equivalent",
+    "caption": "Match metal links to shunt capacitances, and each insulating disc to series capacitance. Arcing horns provide a controlled external flashover path."
+  },
+  {
+    "deck": "Part 2",
+    "page": 65,
+    "asset": "Study_Assets/Module2/p2_065.pdf",
+    "title": "Four-disc string and earth capacitance",
+    "caption": "Equal series discs do not give equal voltages when their junctions have earth capacitance. Disc voltage rises towards the conductor."
+  },
+  {
+    "deck": "Part 2",
+    "page": 71,
+    "asset": "Study_Assets/Module2/p2_071.pdf",
+    "title": "Capacitance grading circuit",
+    "caption": "Different disc capacitances give equal intended disc voltages. The caption C1 on the shunt branches refers to the top-unit reference capacitance."
+  }
+]

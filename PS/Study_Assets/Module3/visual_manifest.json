@@ -1,0 +1,268 @@
+[
+  {
+    "deck": "Per-unit",
+    "page": 14,
+    "asset": "Study_Assets/Module3/pu_014.pdf",
+    "title": "Transformer equivalent",
+    "caption": "The ideal turns ratio disappears only with consistent voltage bases on the two sides. Leakage impedance remains."
+  },
+  {
+    "deck": "Per-unit",
+    "page": 15,
+    "asset": "Study_Assets/Module3/pu_015.pdf",
+    "title": "Referred impedance",
+    "caption": "A single per-unit series impedance can replace the referred transformer equivalent."
+  },
+  {
+    "deck": "Sequence",
+    "page": 5,
+    "asset": "Study_Assets/Module3/seq_005.pdf",
+    "title": "An unbalanced phasor set",
+    "caption": "Unequal magnitudes or unequal angular separations require component decomposition."
+  },
+  {
+    "deck": "Sequence",
+    "page": 6,
+    "asset": "Study_Assets/Module3/seq_006.pdf",
+    "title": "Three sequence phasor sets",
+    "caption": "Read the phase labels: positive a-b-c, negative a-c-b, zero all coincident. The main text fixes a=1 angle 120 degrees."
+  },
+  {
+    "deck": "Fault",
+    "page": 8,
+    "asset": "Study_Assets/Module3/fault_008.pdf",
+    "title": "A class one-line system",
+    "caption": "Generator, transformers, line, breakers, buses and load are represented by one phase of a balanced three-phase network."
+  },
+  {
+    "deck": "Fault",
+    "page": 9,
+    "asset": "Study_Assets/Module3/fault_009.pdf",
+    "title": "One-line symbol key",
+    "caption": "Recognize generator, bus, transformer, circuit breaker, transmission line and load before drawing equivalent networks."
+  },
+  {
+    "deck": "Fault",
+    "page": 14,
+    "asset": "Study_Assets/Module3/fault_014.pdf",
+    "title": "LG series connection",
+    "caption": "All three sequence currents are equal. Neutral impedance 3Zn belongs inside Z0; the external phase fault appears as 3Zf, counted separately."
+  },
+  {
+    "deck": "Fault",
+    "page": 25,
+    "asset": "Study_Assets/Module3/fault_025.pdf",
+    "title": "Finite-impedance LG network",
+    "caption": "The return branch is 3Zf because the physical phase current is three times the sequence current."
+  },
+  {
+    "deck": "Fault",
+    "page": 27,
+    "asset": "Study_Assets/Module3/fault_027.pdf",
+    "title": "LL connection and one-line location",
+    "caption": "The positive and negative ports share their fault voltage; their network currents have opposite signs. Zero sequence is absent."
+  },
+  {
+    "deck": "Fault",
+    "page": 31,
+    "asset": "Study_Assets/Module3/fault_031.pdf",
+    "title": "Solid LLG connection",
+    "caption": "Positive sequence feeds the parallel negative and zero networks. Use the corrected current signs in Section~\\ref{faultnumericals}; the diagram does not justify copying the erroneous source arithmetic."
+  },
+  {
+    "deck": "Protection",
+    "page": 5,
+    "asset": "Study_Assets/Module3/pr_005.pdf",
+    "title": "Relay and breaker recognition",
+    "caption": "The relay decides; the breaker interrupts the power circuit. They have different current ratings and functions."
+  },
+  {
+    "deck": "Protection",
+    "page": 6,
+    "asset": "Study_Assets/Module3/pr_006.pdf",
+    "title": "Primary and backup arrangement",
+    "caption": "The feeder device isolates its local fault first. The upstream device supplies delayed backup; settings depend on the actual installation."
+  },
+  {
+    "deck": "Protection",
+    "page": 10,
+    "asset": "Study_Assets/Module3/pr_010.pdf",
+    "title": "Time grading",
+    "caption": "The source illustration gives example delays. Coordination needs a margin covering breaker time, relay error and overtravel, not these exact universal settings."
+  },
+  {
+    "deck": "Protection",
+    "page": 11,
+    "asset": "Study_Assets/Module3/pr_011.pdf",
+    "title": "Current grading",
+    "caption": "Compare pickup and fault current along a radial feeder. Current grading alone fails where adjacent fault currents are too similar."
+  },
+  {
+    "deck": "Protection",
+    "page": 16,
+    "asset": "Study_Assets/Module3/pr_016.pdf",
+    "title": "CT-relay-trip-coil circuit",
+    "caption": "Follow the low-power sensing circuit separately from the DC trip supply. A relay contact energizes the breaker trip coil."
+  },
+  {
+    "deck": "Protection",
+    "page": 17,
+    "asset": "Study_Assets/Module3/pr_017.pdf",
+    "title": "Overcurrent characteristic family",
+    "caption": "Definite time, inverse, very inverse and extremely inverse curves describe operating time versus current multiple. Instantaneous still has finite operating time."
+  },
+  {
+    "deck": "Protection",
+    "page": 18,
+    "asset": "Study_Assets/Module3/pr_018.pdf",
+    "title": "Current and voltage coils",
+    "caption": "A directional element combines current and a polarizing quantity. An ordinary nondirectional overcurrent element need not have a voltage coil."
+  },
+  {
+    "deck": "Protection",
+    "page": 24,
+    "asset": "Study_Assets/Module3/pr_024.pdf",
+    "title": "Forward and reverse fault phasors",
+    "caption": "Direction depends on the polarizing-voltage/current relationship and relay characteristic angle, not current magnitude alone."
+  },
+  {
+    "deck": "Protection",
+    "page": 25,
+    "asset": "Study_Assets/Module3/pr_025.pdf",
+    "title": "Directional induction construction",
+    "caption": "Identify potential coil, current coil, moving disc and trip contacts. The configured torque direction defines forward operation; source prose must not be read as a universal reversed convention."
+  },
+  {
+    "deck": "Protection",
+    "page": 28,
+    "asset": "Study_Assets/Module3/pr_028.pdf",
+    "title": "Distance sensing and processing",
+    "caption": "The selected voltage/current loop estimates apparent impedance. Fault resistance, infeed and instrument errors affect the estimate."
+  },
+  {
+    "deck": "Protection",
+    "page": 30,
+    "asset": "Study_Assets/Module3/pr_030.pdf",
+    "title": "Distance reaches",
+    "caption": "The class 80/120 percent settings and delays are illustrative. Zone reaches must coordinate with neighbouring lines."
+  },
+  {
+    "deck": "Protection",
+    "page": 31,
+    "asset": "Study_Assets/Module3/pr_031.pdf",
+    "title": "Overlapping protection zones",
+    "caption": "CT locations define zone boundaries around breakers. This equipment-zone sketch is distinct from distance-relay reach zones."
+  },
+  {
+    "deck": "Protection",
+    "page": 34,
+    "asset": "Study_Assets/Module3/pr_034.pdf",
+    "title": "Differential balance and internal fault",
+    "caption": "With all currents referenced into the zone, their sum is approximately zero for through current and nonzero for an internal fault."
+  },
+  {
+    "deck": "Protection",
+    "page": 35,
+    "asset": "Study_Assets/Module3/pr_035.pdf",
+    "title": "Pilot-wire differential circuit",
+    "caption": "Trace CT secondary circulation during an external fault. Ideally no spill current flows through the operating coil."
+  },
+  {
+    "deck": "Protection",
+    "page": 42,
+    "asset": "Study_Assets/Module3/pr_042.pdf",
+    "title": "Electromagnetic relay gallery",
+    "caption": "These photographs provide recognition context. Attraction and induction are different mechanisms; the syllabus develops induction type."
+  },
+  {
+    "deck": "Protection",
+    "page": 44,
+    "asset": "Study_Assets/Module3/pr_044.pdf",
+    "title": "Double-winding induction-disc construction",
+    "caption": "Identify the two electromagnets, aluminium disc, spindle, spring, moving/fixed contacts and auxiliary winding connections."
+  },
+  {
+    "deck": "Protection",
+    "page": 47,
+    "asset": "Study_Assets/Module3/pr_047.pdf",
+    "title": "Shaded-pole induction structure",
+    "caption": "The copper shading ring delays one portion of the pole flux. Spatially and temporally displaced fluxes produce disc torque."
+  },
+  {
+    "deck": "Protection",
+    "page": 50,
+    "asset": "Study_Assets/Module3/pr_050.pdf",
+    "title": "Watt-hour-meter induction structure",
+    "caption": "The winding arrangement produces two phase-displaced fluxes through the disc. The permanent magnet supplies braking torque."
+  },
+  {
+    "deck": "Protection",
+    "page": 53,
+    "asset": "Study_Assets/Module3/pr_053.pdf",
+    "title": "Induction-cup construction",
+    "caption": "The light conducting cup rotates in the air gap around a stationary iron core. Multiple poles create the required flux interaction."
+  },
+  {
+    "deck": "Protection",
+    "page": 59,
+    "asset": "Study_Assets/Module3/pr_059.pdf",
+    "title": "Static device gallery",
+    "caption": "Electronic measuring circuits replace the moving measuring element. The output may still use an electromechanical auxiliary contact."
+  },
+  {
+    "deck": "Protection",
+    "page": 61,
+    "asset": "Study_Assets/Module3/pr_061.pdf",
+    "title": "Static and directional static blocks",
+    "caption": "The first diagram shows rectifier, measuring circuit, amplifier, output and trip supply. The second includes phase comparison for direction. Compare the clearly separated time-overcurrent and instantaneous diagrams in Section~\\ref{digital}."
+  },
+  {
+    "deck": "Protection",
+    "page": 62,
+    "asset": "Study_Assets/Module3/pr_062.pdf",
+    "title": "Instantaneous static chain",
+    "caption": "Rectification/conditioning, comparison and output trigger replace the induction delay. A comparator reference determines pickup."
+  },
+  {
+    "deck": "Protection",
+    "page": 64,
+    "asset": "Study_Assets/Module3/pr_064.pdf",
+    "title": "Digital relay recognition",
+    "caption": "Front-panel controls and indication are interfaces; the protection computation occurs inside the device."
+  },
+  {
+    "deck": "Protection",
+    "page": 65,
+    "asset": "Study_Assets/Module3/pr_065.pdf",
+    "title": "Basic microcomputer protection blocks",
+    "caption": "Analogue input conditioning precedes A/D conversion; the digital processor performs the protection decision."
+  },
+  {
+    "deck": "Protection",
+    "page": 66,
+    "asset": "Study_Assets/Module3/pr_066.pdf",
+    "title": "Original microprocessor flowchart",
+    "caption": "Follow acquisition, pickup decision, delay, repeated current check, trip and reset. The main text adds explicit dropout handling and a clearer loop."
+  },
+  {
+    "deck": "Protection",
+    "page": 67,
+    "asset": "Study_Assets/Module3/pr_067.pdf",
+    "title": "Historical 8085 overcurrent hardware",
+    "caption": "This class design rectifies CT-derived voltages before multiplexing and A/D conversion. It estimates an overcurrent magnitude; do not claim this rectified waveform retains AC phase for a general phasor relay."
+  },
+  {
+    "deck": "Protection",
+    "page": 72,
+    "asset": "Study_Assets/Module3/pr_072.pdf",
+    "title": "Sample-and-hold numerical hardware",
+    "caption": "CT/VT signals are conditioned, sampled, multiplexed, converted and processed. Anti-alias filtering is explained in the main text."
+  },
+  {
+    "deck": "Protection",
+    "page": 73,
+    "asset": "Study_Assets/Module3/pr_073.pdf",
+    "title": "Numerical relay signal and power paths",
+    "caption": "Surge filtering and anti-alias filtering protect the analogue input; the processor runs protection logic and sends digital outputs and communications."
+  }
+]
